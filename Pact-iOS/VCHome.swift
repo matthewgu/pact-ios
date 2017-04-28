@@ -14,7 +14,7 @@ class VCHome: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(r: 61, g: 91, b: 151, a: 1)
+        view.backgroundColor = UIColor.blue
         
         view.addSubview(scrlv)
         
@@ -83,6 +83,8 @@ class VCHome: UIViewController {
     func checkIfUserIsLoggedIn() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             print("user not signed in")
+            let vcRegister = VCRegister()
+            self.present(vcRegister, animated: true, completion: nil)
             //perform(#selector(handleLogout), with: nil, afterDelay: 0)
         }
     }
@@ -98,12 +100,4 @@ class VCHome: UIViewController {
         self.present(vcRegister, animated: true, completion: nil)
     }
 
-}
-
-extension UIColor {
-    
-    convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat  ) {
-        self.init(red: r/255, green: g/255, blue: b/255, alpha: a)
-    }
-    
 }
