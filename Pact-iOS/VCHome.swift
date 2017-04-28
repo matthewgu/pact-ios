@@ -51,7 +51,22 @@ class VCHome: UIViewController {
         return view
     }()
     
+    let pointsContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.blue
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let projectContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.green
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     func setupScrlv() {
+        // need x, y, width and height constraints
         scrlv.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrlv.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrlv.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -64,12 +79,35 @@ class VCHome: UIViewController {
     }
     
     func setupContentView() {
+        // need x, y, width and height constraints
         contentView.leftAnchor.constraint(equalTo: scrlv.leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: scrlv.rightAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrlv.bottomAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: scrlv.topAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         contentView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -64).isActive = true
+        
+        contentView.addSubview(pointsContainerView)
+        contentView.addSubview(projectContainerView)
+        
+        setupPointsContainerView()
+        setupProjectContainerView()
+    }
+    
+    func setupPointsContainerView() {
+        // need x, y, width and height constraints
+        pointsContainerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        pointsContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        pointsContainerView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        pointsContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
+    }
+    
+    func setupProjectContainerView() {
+        // need x, y, width and height constraints
+        projectContainerView.topAnchor.constraint(equalTo: pointsContainerView.bottomAnchor).isActive = true
+        projectContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        projectContainerView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        projectContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65).isActive = true
     }
     
     // MARK: - Func
