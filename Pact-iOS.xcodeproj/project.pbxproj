@@ -15,6 +15,7 @@
 		816F6EB31EB33AB30037E256 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EB11EB33AB30037E256 /* LaunchScreen.storyboard */; };
 		816F6EBD1EB33ACC0037E256 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 816F6EBC1EB33ACC0037E256 /* HealthKit.framework */; };
 		816F6EBF1EB363C50037E256 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EBE1EB363C50037E256 /* GoogleService-Info.plist */; };
+		816F6EC41EB36B3A0037E256 /* VCRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EC31EB36B3A0037E256 /* VCRegister.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		816F6EBA1EB33ACC0037E256 /* Pact-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pact-iOS.entitlements"; sourceTree = "<group>"; };
 		816F6EBC1EB33ACC0037E256 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		816F6EBE1EB363C50037E256 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		816F6EC31EB36B3A0037E256 /* VCRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCRegister.swift; sourceTree = "<group>"; };
 		A7638FCF2FC80C84A5CC85AF /* Pods_Pact_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pact_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0725B20C10C428169AFAC92 /* Pods-Pact-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pact-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pact-iOS/Pods-Pact-iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,9 +78,11 @@
 		816F6EA71EB33AB30037E256 /* Pact-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				816F6EC01EB36B0C0037E256 /* Model */,
+				816F6EC11EB36B140037E256 /* Controller */,
+				816F6EC21EB36B190037E256 /* View */,
 				816F6EBA1EB33ACC0037E256 /* Pact-iOS.entitlements */,
 				816F6EA81EB33AB30037E256 /* AppDelegate.swift */,
-				816F6EAA1EB33AB30037E256 /* VCHome.swift */,
 				816F6EAC1EB33AB30037E256 /* Main.storyboard */,
 				816F6EAF1EB33AB30037E256 /* Assets.xcassets */,
 				816F6EB11EB33AB30037E256 /* LaunchScreen.storyboard */,
@@ -95,6 +99,29 @@
 				A7638FCF2FC80C84A5CC85AF /* Pods_Pact_iOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		816F6EC01EB36B0C0037E256 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				816F6EAA1EB33AB30037E256 /* VCHome.swift */,
+				816F6EC31EB36B3A0037E256 /* VCRegister.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		816F6EC11EB36B140037E256 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		816F6EC21EB36B190037E256 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				816F6EAB1EB33AB30037E256 /* VCHome.swift in Sources */,
+				816F6EC41EB36B3A0037E256 /* VCRegister.swift in Sources */,
 				816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

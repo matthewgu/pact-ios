@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class VCHome: UIViewController {
 
@@ -29,6 +30,10 @@ class VCHome: UIViewController {
         scrlv.refreshControl = refreshControl
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        checkIfUserIsLoggedIn()
+    }
+    
     // MARK: - Data
     
     // MARK: - View
@@ -48,6 +53,10 @@ class VCHome: UIViewController {
     }()
     
     // MARK: - Func
+    @objc private func refreshOptions(sender: UIRefreshControl) {
+        sender.endRefreshing()
+        print("refresh working!")
+    }
     
     func setupScrlv() {
         scrlv.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -71,11 +80,24 @@ class VCHome: UIViewController {
     }
     
     // MARK: - Support
-
-    @objc private func refreshOptions(sender: UIRefreshControl) {
-        sender.endRefreshing()
-        print("refresh working!")
+    func checkIfUserIsLoggedIn() {
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            print("user not signed in")
+            //perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        }
     }
+    
+    func handleLogout() {
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        
+        let vcRegister = VCRegister()
+        self.present(vcRegister, animated: true, completion: nil)
+    }
+
 }
 
 extension UIColor {
