@@ -20,17 +20,55 @@ class VCRegister: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151, a: 1)
+        view.addSubview(scrlv)
+        setupScrlv()
+
+    }
+    
+    // MARK: - View
+    let scrlv: UIScrollView = {
+        let scrlv = UIScrollView()
+        scrlv.backgroundColor = UIColor.white
+        scrlv.translatesAutoresizingMaskIntoConstraints = false
+        return scrlv
+    }()
+    
+    let contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(r: 61, g: 91, b: 151, a: 1)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    func setupScrlv() {
+        scrlv.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scrlv.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrlv.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrlv.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
-        view.addSubview(inputsContainerView)
-        view.addSubview(loginRegisterButton)
-        view.addSubview(loginRegisterSegmentedControl)
+        // content view
+        scrlv.addSubview(contentView)
+        setupContentView()
         
+    }
+    
+    func setupContentView() {
+        contentView.leftAnchor.constraint(equalTo: scrlv.leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: scrlv.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrlv.bottomAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: scrlv.topAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        contentView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        
+        contentView.addSubview(inputsContainerView)
+        contentView.addSubview(loginRegisterButton)
+        contentView.addSubview(loginRegisterSegmentedControl)
+
         setupinputsContainerView()
         setuploginRegisterButton()
         setuploginRegisterSegmentedControl()
     }
     
-    // MARK: - View
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
