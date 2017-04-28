@@ -27,7 +27,13 @@
                                     <constraint firstAttribute="height" constant="64" id="ej3-Hk-OfA"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Pact" id="cqR-Fa-oD6"/>
+                                    <navigationItem title="Pact" id="cqR-Fa-oD6">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="qH9-Zb-hDZ">
+                                            <connections>
+                                                <action selector="logoutBtnPressed:" destination="BYZ-38-t0r" id="K2j-Kl-RTk"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>

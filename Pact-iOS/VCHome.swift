@@ -78,6 +78,10 @@ class VCHome: UIViewController {
         print("refresh working!")
     }
     
+    @IBAction func logoutBtnPressed(_ sender: Any) {
+        handleLogout()
+    }
+    
     
     // MARK: - Support
     func checkIfUserIsLoggedIn() {
