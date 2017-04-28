@@ -26,8 +26,8 @@ class VCRegister: UIViewController {
     }
     
     // MARK: - Model
-    let firstProjectNameID = "sendMeal"
-    let firstProject = Project(title: "Help Union Gospel Mission  Serve a Meal", description: "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", pointsNeeded: "3000", contributeCount: "0", coverImageName: "sendMealCover", sponsorImageName: "telus", itemName: "meals", buttonText: "SERVE A MEAL")
+    let firstProjectNameID = "serveMeal"
+    let firstProject = ["title": "Help Union Gospel Mission  Serve a Meal", "description": "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", "pointsNeeded": "3000", "contributeCount": "0", "coverImageName": "sendMealCover", "sponsorImageName": "telus", "itemName": "meals", "buttonText": "SERVE A MEAL"]
     
     // MARK: - View
     let scrlv: UIScrollView = {
@@ -276,17 +276,25 @@ class VCRegister: UIViewController {
             //successfully authenticated user
             self.ref = FIRDatabase.database().reference()
             let userReference = self.ref?.child("users:").child(uid)
-            let values = ["name": name, "email": email ]
+            let values = ["name": name, "email": email, "points": "0" ] as [String : Any]
             userReference?.updateChildValues(values, withCompletionBlock: { (err, ref) in
                 if err != nil {
                     print(err as Any)
                     return
                 }
-                self.dismiss(animated: true, completion: nil)
-                self.nameTextField.text = ""
-                self.emailTextField.text = ""
-                self.passwordTextField.text = ""
-                print("User successfully saved into Firebase DB")
+                
+                let values = [self.firstProjectNameID: self.firstProject]
+                userReference?.child("projects").updateChildValues(values, withCompletionBlock: { (err, ref) in
+                    if err != nil {
+                        print(err as Any)
+                        return
+                    }
+                    self.dismiss(animated: true, completion: nil)
+                    self.nameTextField.text = ""
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
+                    print("User successfully saved into Firebase DB")
+                })
             })
         })
     }
