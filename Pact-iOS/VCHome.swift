@@ -37,7 +37,6 @@ class VCHome: UIViewController {
     // MARK: - Data
     
     // MARK: - View
-    
     let scrlv: UIScrollView = {
         let scrlv = UIScrollView()
         scrlv.backgroundColor = UIColor.white
@@ -52,12 +51,6 @@ class VCHome: UIViewController {
         return view
     }()
     
-    // MARK: - Func
-    @objc private func refreshOptions(sender: UIRefreshControl) {
-        sender.endRefreshing()
-        print("refresh working!")
-    }
-    
     func setupScrlv() {
         scrlv.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrlv.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -67,7 +60,7 @@ class VCHome: UIViewController {
         // content view
         scrlv.addSubview(contentView)
         setupContentView()
-
+        
     }
     
     func setupContentView() {
@@ -78,6 +71,13 @@ class VCHome: UIViewController {
         contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         contentView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -64).isActive = true
     }
+    
+    // MARK: - Func
+    @objc private func refreshOptions(sender: UIRefreshControl) {
+        sender.endRefreshing()
+        print("refresh working!")
+    }
+    
     
     // MARK: - Support
     func checkIfUserIsLoggedIn() {
