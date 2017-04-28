@@ -65,6 +65,15 @@ class VCHome: UIViewController {
         return view
     }()
     
+    private lazy var pointsLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height * 0.35))
+        label.textAlignment = .center
+        label.text = "0 pts"
+        label.textColor = UIColor.black
+        label.font = UIFont.systemFont(ofSize: 28)
+        return label
+    }()
+    
     func setupScrlv() {
         // need x, y, width and height constraints
         scrlv.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -75,7 +84,6 @@ class VCHome: UIViewController {
         // content view
         scrlv.addSubview(contentView)
         setupContentView()
-        
     }
     
     func setupContentView() {
@@ -100,6 +108,9 @@ class VCHome: UIViewController {
         pointsContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         pointsContainerView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         pointsContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
+        
+        pointsContainerView.addSubview(pointsLabel)
+
     }
     
     func setupProjectContainerView() {
