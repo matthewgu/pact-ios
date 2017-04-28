@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33490D4BB53B662B792857EB /* Pods_Pact_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7638FCF2FC80C84A5CC85AF /* Pods_Pact_iOS.framework */; };
 		816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EA81EB33AB30037E256 /* AppDelegate.swift */; };
 		816F6EAB1EB33AB30037E256 /* VCHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EAA1EB33AB30037E256 /* VCHome.swift */; };
 		816F6EAE1EB33AB30037E256 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EAC1EB33AB30037E256 /* Main.storyboard */; };
 		816F6EB01EB33AB30037E256 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EAF1EB33AB30037E256 /* Assets.xcassets */; };
 		816F6EB31EB33AB30037E256 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EB11EB33AB30037E256 /* LaunchScreen.storyboard */; };
 		816F6EBD1EB33ACC0037E256 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 816F6EBC1EB33ACC0037E256 /* HealthKit.framework */; };
+		816F6EBF1EB363C50037E256 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EBE1EB363C50037E256 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051E298E4852A6D5C77ACF8C /* Pods-Pact-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pact-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pact-iOS/Pods-Pact-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		816F6EA51EB33AB30037E256 /* Pact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		816F6EA81EB33AB30037E256 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		816F6EAA1EB33AB30037E256 /* VCHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHome.swift; sourceTree = "<group>"; };
@@ -25,6 +28,9 @@
 		816F6EB41EB33AB30037E256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		816F6EBA1EB33ACC0037E256 /* Pact-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pact-iOS.entitlements"; sourceTree = "<group>"; };
 		816F6EBC1EB33ACC0037E256 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		816F6EBE1EB363C50037E256 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A7638FCF2FC80C84A5CC85AF /* Pods_Pact_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pact_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0725B20C10C428169AFAC92 /* Pods-Pact-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pact-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pact-iOS/Pods-Pact-iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,18 +39,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				816F6EBD1EB33ACC0037E256 /* HealthKit.framework in Frameworks */,
+				33490D4BB53B662B792857EB /* Pods_Pact_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A5AA7789469C26062A1ED05 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				051E298E4852A6D5C77ACF8C /* Pods-Pact-iOS.debug.xcconfig */,
+				D0725B20C10C428169AFAC92 /* Pods-Pact-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		816F6E9C1EB33AB30037E256 = {
 			isa = PBXGroup;
 			children = (
 				816F6EA71EB33AB30037E256 /* Pact-iOS */,
 				816F6EA61EB33AB30037E256 /* Products */,
 				816F6EBB1EB33ACC0037E256 /* Frameworks */,
+				2A5AA7789469C26062A1ED05 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +83,7 @@
 				816F6EAF1EB33AB30037E256 /* Assets.xcassets */,
 				816F6EB11EB33AB30037E256 /* LaunchScreen.storyboard */,
 				816F6EB41EB33AB30037E256 /* Info.plist */,
+				816F6EBE1EB363C50037E256 /* GoogleService-Info.plist */,
 			);
 			path = "Pact-iOS";
 			sourceTree = "<group>";
@@ -74,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				816F6EBC1EB33ACC0037E256 /* HealthKit.framework */,
+				A7638FCF2FC80C84A5CC85AF /* Pods_Pact_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -85,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 816F6EB71EB33AB30037E256 /* Build configuration list for PBXNativeTarget "Pact-iOS" */;
 			buildPhases = (
+				8A988714E53D860F96AEE56B /* [CP] Check Pods Manifest.lock */,
 				816F6EA11EB33AB30037E256 /* Sources */,
 				816F6EA21EB33AB30037E256 /* Frameworks */,
 				816F6EA31EB33AB30037E256 /* Resources */,
+				8C8285DD5A179CDB163A4DF6 /* [CP] Embed Pods Frameworks */,
+				9100E7B3E2BB4FA00FB88B3C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -144,12 +166,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				816F6EB31EB33AB30037E256 /* LaunchScreen.storyboard in Resources */,
+				816F6EBF1EB363C50037E256 /* GoogleService-Info.plist in Resources */,
 				816F6EB01EB33AB30037E256 /* Assets.xcassets in Resources */,
 				816F6EAE1EB33AB30037E256 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A988714E53D860F96AEE56B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8C8285DD5A179CDB163A4DF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pact-iOS/Pods-Pact-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9100E7B3E2BB4FA00FB88B3C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pact-iOS/Pods-Pact-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		816F6EA11EB33AB30037E256 /* Sources */ = {
@@ -278,6 +349,7 @@
 		};
 		816F6EB81EB33AB30037E256 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 051E298E4852A6D5C77ACF8C /* Pods-Pact-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pact-iOS/Pact-iOS.entitlements";
@@ -292,6 +364,7 @@
 		};
 		816F6EB91EB33AB30037E256 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0725B20C10C428169AFAC92 /* Pods-Pact-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pact-iOS/Pact-iOS.entitlements";
@@ -323,6 +396,7 @@
 				816F6EB91EB33AB30037E256 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

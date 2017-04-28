@@ -8,8 +8,7 @@
 
 import UIKit
 
-class VCHome: UIViewController
-{
+class VCHome: UIViewController {
 
     override func viewDidLoad()
     {
@@ -29,7 +28,11 @@ class VCHome: UIViewController
                                  for: .valueChanged)
         scrlv.refreshControl = refreshControl
     }
-
+    
+    // MARK: - Data
+    
+    // MARK: - View
+    
     let scrlv: UIScrollView = {
         let scrlv = UIScrollView()
         scrlv.backgroundColor = UIColor.white
@@ -44,14 +47,21 @@ class VCHome: UIViewController
         return view
     }()
     
+    // MARK: - Func
+    
     func setupScrlv() {
         scrlv.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrlv.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrlv.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scrlv.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
         
-        // set up content view
+        // content view
         scrlv.addSubview(contentView)
+        setupContentView()
+
+    }
+    
+    func setupContentView() {
         contentView.leftAnchor.constraint(equalTo: scrlv.leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: scrlv.rightAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrlv.bottomAnchor).isActive = true
@@ -60,15 +70,15 @@ class VCHome: UIViewController
         contentView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -64).isActive = true
     }
     
+    // MARK: - Support
+
     @objc private func refreshOptions(sender: UIRefreshControl) {
         sender.endRefreshing()
         print("refresh working!")
     }
-
 }
 
-extension UIColor
-{
+extension UIColor {
     
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat  ) {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: a)

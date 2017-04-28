@@ -1,0 +1,6 @@
+framework module Pods_Pact_iOS {
+  umbrella header "Pods-Pact-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
