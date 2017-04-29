@@ -179,9 +179,7 @@ class VCHome: UIViewController {
     func checkIfUserIsLoggedIn() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             print("user not signed in")
-            let vcRegister = VCRegister()
-            self.present(vcRegister, animated: true, completion: nil)
-            //perform(#selector(handleLogout), with: nil, afterDelay: 0)
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
         }
     }
     
@@ -191,9 +189,7 @@ class VCHome: UIViewController {
         } catch let logoutError {
             print(logoutError)
         }
-        
-        let vcRegister = VCRegister()
-        self.present(vcRegister, animated: true, completion: nil)
+        self.present(VCRegister(), animated: true, completion: nil)
     }
 
 }

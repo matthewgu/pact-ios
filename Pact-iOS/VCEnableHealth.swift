@@ -43,7 +43,26 @@ class VCEnableHealth: UIViewController {
     
     // MARK: - Func
     func handleHealthKitAuth() {
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        
+        // Check Authorization
+        HealthKitUtil.sharedInstance.checkAuthorization { (authorized) in
+            
+            if authorized
+            {
+                DispatchQueue.main.async {
+                    // go to VCHome
+                    print("Authorized")
+                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                }
+            }
+            else
+            {
+                DispatchQueue.main.async {
+                    print("Not authorized")
+                }
+            }
+        }
+        
     }
     
 }
