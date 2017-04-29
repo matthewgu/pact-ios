@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		33490D4BB53B662B792857EB /* Pods_Pact_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7638FCF2FC80C84A5CC85AF /* Pods_Pact_iOS.framework */; };
 		810A950D1EB3EEDA00E5A4DD /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A950C1EB3EEDA00E5A4DD /* Project.swift */; };
+		812CA78F1EB42D96002FD679 /* HealthKitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CA78C1EB42D96002FD679 /* HealthKitUtil.swift */; };
+		812CA7901EB42D96002FD679 /* StorageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CA78D1EB42D96002FD679 /* StorageUtil.swift */; };
+		812CA7911EB42D96002FD679 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CA78E1EB42D96002FD679 /* UserAccount.swift */; };
 		816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EA81EB33AB30037E256 /* AppDelegate.swift */; };
 		816F6EAB1EB33AB30037E256 /* VCHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EAA1EB33AB30037E256 /* VCHome.swift */; };
 		816F6EAE1EB33AB30037E256 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EAC1EB33AB30037E256 /* Main.storyboard */; };
@@ -22,6 +25,9 @@
 /* Begin PBXFileReference section */
 		051E298E4852A6D5C77ACF8C /* Pods-Pact-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pact-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pact-iOS/Pods-Pact-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		810A950C1EB3EEDA00E5A4DD /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		812CA78C1EB42D96002FD679 /* HealthKitUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitUtil.swift; sourceTree = "<group>"; };
+		812CA78D1EB42D96002FD679 /* StorageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageUtil.swift; sourceTree = "<group>"; };
+		812CA78E1EB42D96002FD679 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		816F6EA51EB33AB30037E256 /* Pact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		816F6EA81EB33AB30037E256 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		816F6EAA1EB33AB30037E256 /* VCHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHome.swift; sourceTree = "<group>"; };
@@ -59,6 +65,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		812CA78B1EB42D79002FD679 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				812CA78C1EB42D96002FD679 /* HealthKitUtil.swift */,
+				812CA78D1EB42D96002FD679 /* StorageUtil.swift */,
+				812CA78E1EB42D96002FD679 /* UserAccount.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		816F6E9C1EB33AB30037E256 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +99,7 @@
 				816F6EC01EB36B0C0037E256 /* Model */,
 				816F6EC11EB36B140037E256 /* Controller */,
 				816F6EC21EB36B190037E256 /* View */,
+				812CA78B1EB42D79002FD679 /* Supporting Files */,
 				816F6EBA1EB33ACC0037E256 /* Pact-iOS.entitlements */,
 				816F6EA81EB33AB30037E256 /* AppDelegate.swift */,
 				816F6EAC1EB33AB30037E256 /* Main.storyboard */,
@@ -257,10 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				812CA78F1EB42D96002FD679 /* HealthKitUtil.swift in Sources */,
 				816F6EAB1EB33AB30037E256 /* VCHome.swift in Sources */,
 				816F6EC41EB36B3A0037E256 /* VCRegister.swift in Sources */,
 				816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */,
 				810A950D1EB3EEDA00E5A4DD /* Project.swift in Sources */,
+				812CA7901EB42D96002FD679 /* StorageUtil.swift in Sources */,
+				812CA7911EB42D96002FD679 /* UserAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
