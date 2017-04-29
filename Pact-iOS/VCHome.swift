@@ -130,7 +130,7 @@ class VCHome: UIViewController, UIScrollViewDelegate {
             scrlv.addSubview(v)
             
             // project view
-            if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? ProjectView {
+            if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? VProject {
                 //let projectDetails: Project = projects[i]
                 //project.updateProjectView(project: projectDetails)
                 v.addSubview(project)
@@ -157,21 +157,6 @@ class VCHome: UIViewController, UIScrollViewDelegate {
             pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
         }
     }
-
-    
-//    func addProjectView() {
-//        if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? ProjectView {
-//            
-//            project.translatesAutoresizingMaskIntoConstraints = false
-//            self.projectContainerView.addSubview(project)
-//            
-//            // need x, y, width and height constraints
-//            project.leadingAnchor.constraint(equalTo: projectContainerView.leadingAnchor, constant: 15).isActive = true
-//            project.trailingAnchor.constraint(equalTo: projectContainerView.trailingAnchor, constant: -15).isActive = true
-//            project.heightAnchor.constraint(equalToConstant: projectHeightConstraintConstant()).isActive = true
-//            project.bottomAnchor.constraint(equalTo: projectContainerView.bottomAnchor, constant: -25).isActive = true
-//        }
-//    }
     
     func setupScrlv() {
         // need x, y, width and height constraints

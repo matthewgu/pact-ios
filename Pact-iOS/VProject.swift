@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProjectView: UIView {
+class VProject: UIView {
 
     @IBOutlet weak var pointsNeededLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
