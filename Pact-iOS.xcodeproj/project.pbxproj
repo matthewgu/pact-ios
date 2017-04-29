@@ -73,6 +73,12 @@
 				812CA78C1EB42D96002FD679 /* HealthKitUtil.swift */,
 				812CA78D1EB42D96002FD679 /* StorageUtil.swift */,
 				812CA78E1EB42D96002FD679 /* UserAccount.swift */,
+				816F6EBA1EB33ACC0037E256 /* Pact-iOS.entitlements */,
+				816F6EA81EB33AB30037E256 /* AppDelegate.swift */,
+				816F6EB41EB33AB30037E256 /* Info.plist */,
+				816F6EBE1EB363C50037E256 /* GoogleService-Info.plist */,
+				816F6EAF1EB33AB30037E256 /* Assets.xcassets */,
+				816F6EB11EB33AB30037E256 /* LaunchScreen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -98,17 +104,11 @@
 		816F6EA71EB33AB30037E256 /* Pact-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				816F6EAC1EB33AB30037E256 /* Main.storyboard */,
 				816F6EC01EB36B0C0037E256 /* Model */,
 				816F6EC11EB36B140037E256 /* Controller */,
 				816F6EC21EB36B190037E256 /* View */,
 				812CA78B1EB42D79002FD679 /* Supporting Files */,
-				816F6EBA1EB33ACC0037E256 /* Pact-iOS.entitlements */,
-				816F6EA81EB33AB30037E256 /* AppDelegate.swift */,
-				816F6EAC1EB33AB30037E256 /* Main.storyboard */,
-				816F6EAF1EB33AB30037E256 /* Assets.xcassets */,
-				816F6EB11EB33AB30037E256 /* LaunchScreen.storyboard */,
-				816F6EB41EB33AB30037E256 /* Info.plist */,
-				816F6EBE1EB363C50037E256 /* GoogleService-Info.plist */,
 			);
 			path = "Pact-iOS";
 			sourceTree = "<group>";

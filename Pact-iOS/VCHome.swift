@@ -168,7 +168,7 @@ class VCHome: UIViewController {
     // MARK: - Func
     @objc private func refreshOptions(sender: UIRefreshControl) {
         sender.endRefreshing()
-        print("refresh working!")
+        getStep()
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
