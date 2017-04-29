@@ -8,18 +8,23 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class VCHome: UIViewController {
-
+    
+    // firebase ref
+    var ref: FIRDatabaseReference?
+    
     override func viewDidLoad()
     {
+        
         super.viewDidLoad()
-        view.backgroundColor = UIColor.blue
         
+        // view related
         view.addSubview(scrlv)
-        
+    
         setupScrlv()
-        
+
         // refresh control
         let refreshControl = UIRefreshControl()
         let title = NSLocalizedString("Pull To Refresh", comment: "Pull to refresh")
@@ -33,7 +38,7 @@ class VCHome: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         checkIfUserIsLoggedIn()
     }
-    
+
     // MARK: - Data
     func getStep()
     {
@@ -104,7 +109,7 @@ class VCHome: UIViewController {
         label.textAlignment = .center
         label.text = "0 pts"
         label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 28)
+        label.font = UIFont.systemFont(ofSize: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -180,7 +185,17 @@ class VCHome: UIViewController {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        } else {
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            FIRDatabase.database().reference().child("users:").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    print(dictionary["name"]!)
+                }
+                
+            }, withCancel: nil)
         }
+
     }
     
     func handleLogout() {
