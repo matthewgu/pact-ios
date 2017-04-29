@@ -15,6 +15,8 @@ class VCHome: UIViewController {
     // firebase ref
     var ref: FIRDatabaseReference?
     
+    var projects = [Project]()
+    
     override func viewDidLoad()
     {
         
@@ -182,6 +184,9 @@ class VCHome: UIViewController {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
             fetchPoints()
+            fetchProject(completion: { (true) in
+                print(self.projects[0].description)
+            })
         }
         
     }
@@ -202,6 +207,26 @@ class VCHome: UIViewController {
         ref = FIRDatabase.database().reference()
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
+    }
+    
+    func fetchProject(completion: @escaping (Bool) -> ()) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let dict = snap.value as? [String: Any] {
+                        if let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let itemName = dict["itemName"] as? String, let buttonText = dict["buttonText"] as? String {
+                            
+                            let project = Project(title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, itemName: itemName, buttonText: buttonText)
+                            
+                            self.projects.append(project)
+                        }
+                    }
+                }
+            }
+            completion(true)
+        })
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
