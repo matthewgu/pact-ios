@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class VCHome: UIViewController, UIScrollViewDelegate {
+class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
     // firebase ref
     var ref: FIRDatabaseReference?
@@ -131,6 +131,7 @@ class VCHome: UIViewController, UIScrollViewDelegate {
             
             // project view
             if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? VProject {
+                project.delegate = self
                 //let projectDetails: Project = projects[i]
                 //project.updateProjectView(project: projectDetails)
                 v.addSubview(project)
@@ -261,6 +262,10 @@ class VCHome: UIViewController, UIScrollViewDelegate {
             }
             completion(true)
         })
+    }
+    
+    func tappedContributeBtn() {
+        print("contribute button pressed")
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {

@@ -7,9 +7,15 @@
 //
 
 import UIKit
+protocol VProjectDelegate: class {
+    func tappedContributeBtn()
+}
+
 
 class VProject: UIView {
-
+    
+    var delegate: VProjectDelegate?
+    
     @IBOutlet weak var pointsNeededLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -19,6 +25,7 @@ class VProject: UIView {
     @IBOutlet weak var contributeButton: UIButton!
     
     @IBAction func contributeBtnPressed(_ sender: Any) {
+        delegate?.tappedContributeBtn()
     }
     
 
