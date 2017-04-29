@@ -221,8 +221,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         } else {
             fetchPoints()
             fetchProject(completion: { (true) in
-                print(self.projects.count)
-                print(self.projects[0].description)
+                print("Project Count: \(self.projects.count)")
                 self.setupPagingView()
             })
         }

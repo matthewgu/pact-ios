@@ -32,8 +32,14 @@ class VProject: UIView {
     }
     
     func updateProjectView(project: Project) {
+        
+        // points label
         pointsNeededLabel.text = project.pointsNeeded + " pts"
+        
+        // title text
         titleLabel.text = project.title
+        
+        // description text
         descriptionLabel.text = project.description
         
         // contribute button
