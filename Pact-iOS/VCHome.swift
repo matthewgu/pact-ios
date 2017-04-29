@@ -113,7 +113,7 @@ class VCHome: UIViewController, UIScrollViewDelegate {
         // Scroll View
         let scrlv = UIScrollView()
         let scrlvHeight: CGFloat = ((self.view.frame.size.height - 64) * 0.65)
-        scrlv.frame = CGRect(x: 0, y: self.view.frame.size.height - 64 - scrlvHeight, width: self.view.frame.size.width, height: scrlvHeight)
+        scrlv.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: scrlvHeight)
         scrlv.bounces = true
         scrlv.isPagingEnabled = true
         scrlv.isScrollEnabled = true
@@ -123,27 +123,27 @@ class VCHome: UIViewController, UIScrollViewDelegate {
         var x = 0 as CGFloat
         for i in 0..<5
         {
-            // Base View
+            // base iiew
             let v = UIView()
             v.backgroundColor = getRandomColor()
             v.frame = CGRect(x: x, y: 0, width: self.view.frame.size.width, height: scrlvHeight)
             scrlv.addSubview(v)
             
-            // Number label
-            let lb = UILabel()
-            lb.frame = v.bounds
-            lb.text = "\(i + 1)"
-            lb.textAlignment = .center
-            lb.font = UIFont.boldSystemFont(ofSize: 25)
-            v.addSubview(lb)
+            // project view
+            if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? ProjectView {
+                //let projectDetails: Project = projects[i]
+                //project.updateProjectView(project: projectDetails)
+                v.addSubview(project)
+                project.frame = CGRect(x: 18, y: 40, width: (v.frame.size.width) - 36, height: (v.frame.size.height) - 66)
+            }
             
             // Adjust size
             x = v.frame.maxX
             scrlv.contentSize.width = x
         }
         
-        // PageControl
-        pageControl.frame = CGRect(x: 0, y: view.frame.size.height - scrlvHeight + 20, width: self.view.frame.size.width, height: 50)
+        // page control
+        pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - scrlvHeight - 10), width: self.view.frame.size.width, height: 50)
         pageControl.numberOfPages = 5
         pageControl.currentPage = 0
         self.view.addSubview(pageControl)
