@@ -35,6 +35,39 @@ class VCHome: UIViewController {
     }
     
     // MARK: - Data
+    func getStep()
+    {
+        // Check Authorization
+        HealthKitUtil.sharedInstance.checkAuthorization { (authorized) in
+            
+            if authorized
+            {
+                // Get step
+                HealthKitUtil.sharedInstance.getStep(completion: { (success, totalSteps) in
+                    if success
+                    {
+                        // Get past steps and new steps
+                        DispatchQueue.main.async {
+                            print("total steps: " + "\(totalSteps)")
+                            print("---------------------------------")
+                        }
+                    }
+                    else
+                    {
+                        DispatchQueue.main.async {
+                            print("Failed to get steps")
+                        }
+                    }
+                })
+            }
+            else
+            {
+                DispatchQueue.main.async {
+                    print("Not authorized")
+                }
+            }
+        }
+    }
     
     // MARK: - View
     let scrlv: UIScrollView = {
@@ -141,7 +174,6 @@ class VCHome: UIViewController {
     @IBAction func logoutBtnPressed(_ sender: Any) {
         handleLogout()
     }
-    
     
     // MARK: - Support
     func checkIfUserIsLoggedIn() {

@@ -21,6 +21,7 @@ class VCRegister: UIViewController {
         
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151, a: 1)
         view.addSubview(scrlv)
+        
         setupScrlv()
 
     }
