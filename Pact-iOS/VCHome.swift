@@ -53,6 +53,7 @@ class VCHome: UIViewController {
                     {
                         // Get past steps and new steps
                         DispatchQueue.main.async {
+                            self.addPoints(steps: totalSteps)
                             print("total steps: " + "\(totalSteps)")
                             print("---------------------------------")
                         }
@@ -103,11 +104,9 @@ class VCHome: UIViewController {
         return view
     }()
     
-    private lazy var pointsLabel: UILabel = {
+    let pointsLabel: UILabel = {
         let label = UILabel()
-        //(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height * 0.35))
         label.textAlignment = .center
-        label.text = "0 pts"
         label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -174,6 +173,7 @@ class VCHome: UIViewController {
     @objc private func refreshOptions(sender: UIRefreshControl) {
         sender.endRefreshing()
         getStep()
+        fetchPoints()
     }
     
     func checkIfUserIsLoggedIn() {
@@ -188,13 +188,20 @@ class VCHome: UIViewController {
     
     func fetchPoints() {
         let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users:").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 self.pointsLabel.text = dictionary["points"] as? String
             }
             
         }, withCancel: nil)
+    }
+    
+    func addPoints(steps: Int) {
+        let currentPointsStr = "\(steps)"
+        ref = FIRDatabase.database().reference()
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
