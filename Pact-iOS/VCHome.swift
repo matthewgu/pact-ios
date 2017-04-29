@@ -66,11 +66,13 @@ class VCHome: UIViewController {
     }()
     
     private lazy var pointsLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height * 0.35))
+        let label = UILabel()
+        //(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height * 0.35))
         label.textAlignment = .center
         label.text = "0 pts"
         label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 28)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -110,7 +112,8 @@ class VCHome: UIViewController {
         pointsContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
         
         pointsContainerView.addSubview(pointsLabel)
-
+        
+        setupPointsLabel()
     }
     
     func setupProjectContainerView() {
@@ -119,6 +122,14 @@ class VCHome: UIViewController {
         projectContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         projectContainerView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         projectContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65).isActive = true
+    }
+    
+    func setupPointsLabel() {
+        // need x, y, width and height constraints
+        pointsLabel.centerYAnchor.constraint(equalTo: pointsContainerView.centerYAnchor).isActive = true
+        pointsLabel.centerXAnchor.constraint(equalTo: pointsContainerView.centerXAnchor).isActive = true
+        pointsLabel.widthAnchor.constraint(equalTo: pointsContainerView.widthAnchor).isActive = true
+        pointsLabel.heightAnchor.constraint(equalTo: pointsContainerView.heightAnchor).isActive = true
     }
     
     // MARK: - Func
