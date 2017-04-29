@@ -121,7 +121,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         self.contentView.addSubview(scrlv)
         
         var x = 0 as CGFloat
-        for i in 0..<5
+        for i in 0..<projects.count
         {
             // base iiew
             let v = UIView()
@@ -132,8 +132,10 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             // project view
             if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? VProject {
                 project.delegate = self
-                //let projectDetails: Project = projects[i]
-                //project.updateProjectView(project: projectDetails)
+                project.layer.cornerRadius = 6
+                project.layer.masksToBounds = true
+                let projectDetails: Project = projects[i]
+                project.updateProjectView(project: projectDetails)
                 v.addSubview(project)
                 project.frame = CGRect(x: 18, y: 40, width: (v.frame.size.width) - 36, height: (v.frame.size.height) - 66)
             }
@@ -145,7 +147,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         
         // page control
         pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - scrlvHeight - 10), width: self.view.frame.size.width, height: 50)
-        pageControl.numberOfPages = 5
+        pageControl.numberOfPages = projects.count - 1
         pageControl.currentPage = 0
         self.view.addSubview(pageControl)
     }
@@ -183,7 +185,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         contentView.addSubview(pointsContainerView)
         
         setupPointsContainerView()
-        setupPagingView()
     }
     
     func setupPointsContainerView() {
@@ -220,7 +221,9 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         } else {
             fetchPoints()
             fetchProject(completion: { (true) in
+                print(self.projects.count)
                 print(self.projects[0].description)
+                self.setupPagingView()
             })
         }
         

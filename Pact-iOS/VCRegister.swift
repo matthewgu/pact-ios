@@ -28,7 +28,7 @@ class VCRegister: UIViewController {
     
     // MARK: - Model
     let firstProjectNameID = "serveMeal"
-    let firstProject = ["title": "Help Union Gospel Mission  Serve a Meal", "description": "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", "pointsNeeded": "3000", "contributeCount": "0", "coverImageName": "sendMealCover", "sponsorImageName": "telus", "itemName": "meals", "buttonText": "SERVE A MEAL"]
+    let firstProject = ["title": "Help Union Gospel Mission  Serve a Meal", "description": "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", "pointsNeeded": "3000", "contributeCount": "0", "coverImageName": "serveMeal.jpg", "sponsorImageName": "telus.png", "itemName": "meals", "buttonText": "SERVE A MEAL"]
     
     // MARK: - View
     let scrlv: UIScrollView = {
