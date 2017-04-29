@@ -249,7 +249,7 @@ class VCRegister: UIViewController {
                 return
             }
             
-            self.dismiss(animated: true, completion: nil)
+            self.present(VCEnableHealth(), animated: true, completion: nil)
             self.nameTextField.text = ""
             self.emailTextField.text = ""
             self.passwordTextField.text = ""
@@ -290,7 +290,8 @@ class VCRegister: UIViewController {
                         print(err as Any)
                         return
                     }
-                    self.dismiss(animated: true, completion: nil)
+                    
+                    self.present(VCEnableHealth(), animated: true, completion: nil)
                     self.nameTextField.text = ""
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
@@ -314,3 +315,5 @@ extension UIColor {
     }
     
 }
+
+
