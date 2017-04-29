@@ -26,6 +26,9 @@
                     <state key="normal" title="PLANT A TREE">
                         <color key="titleColor" red="0.98039215690000003" green="0.97254901959999995" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="contributeBtnPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="d2m-yP-QIF"/>
+                    </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SFf-S8-tp2">
                     <rect key="frame" x="0.0" y="0.0" width="340" height="213"/>
@@ -38,12 +41,12 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alB-FO-pYd">
-                    <rect key="frame" x="10" y="56.5" width="320" height="51.5"/>
+                    <rect key="frame" x="10" y="56.5" width="320" height="49"/>
                     <attributedString key="attributedText">
                         <fragment content="Help The Canopy Project Plant  a Tree">
                             <attributes>
                                 <color key="NSColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="22" name="Roboto-BoldItalic"/>
+                                <font key="NSFont" size="21" name="Roboto-BoldItalic"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -52,13 +55,13 @@
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPu-dy-mg4">
-                    <rect key="frame" x="10" y="123" width="320" height="47.5"/>
+                    <rect key="frame" x="10" y="120.5" width="320" height="50"/>
                     <attributedString key="attributedText">
                         <fragment>
                             <string key="content">Since launching in 2010, The Canopy Project has planted over 1.5 million trees in 21 countries, focusing on areas most in need of reforestation.</string>
                             <attributes>
                                 <color key="NSColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="11" name=".AppleSystemUIFont"/>
+                                <font key="NSFont" size="12" name="Roboto-Regular"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -94,6 +97,14 @@
                 <constraint firstAttribute="bottom" secondItem="R8p-eD-1tH" secondAttribute="bottom" constant="15" id="zxd-Sg-Lw4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contributeButton" destination="R8p-eD-1tH" id="dTB-rl-LVd"/>
+                <outlet property="coverImage" destination="SFf-S8-tp2" id="HDG-sa-EyG"/>
+                <outlet property="descriptionLabel" destination="EPu-dy-mg4" id="r37-5B-QUC"/>
+                <outlet property="pointsNeededLabel" destination="1vu-ir-fc8" id="Wts-dV-Dqv"/>
+                <outlet property="sponsorImage" destination="xWN-Cs-5WB" id="HRb-F3-fHs"/>
+                <outlet property="titleLabel" destination="alB-FO-pYd" id="24a-9Q-56a"/>
+            </connections>
             <point key="canvasLocation" x="53" y="-127"/>
         </view>
     </objects>
