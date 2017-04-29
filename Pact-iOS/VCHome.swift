@@ -10,12 +10,13 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class VCHome: UIViewController {
+class VCHome: UIViewController, UIScrollViewDelegate {
     
     // firebase ref
     var ref: FIRDatabaseReference?
     
     var projects = [Project]()
+    let pageControl = UIPageControl()
     
     override func viewDidLoad()
     {
@@ -23,7 +24,7 @@ class VCHome: UIViewController {
         super.viewDidLoad()
         
         // view related
-        view.addSubview(scrlv)
+        view.addSubview(scrollView)
     
         setupScrlv()
 
@@ -34,7 +35,7 @@ class VCHome: UIViewController {
         refreshControl.addTarget(self,
                                  action: #selector(refreshOptions(sender:)),
                                  for: .valueChanged)
-        scrlv.refreshControl = refreshControl
+        scrollView.refreshControl = refreshControl
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,7 +79,7 @@ class VCHome: UIViewController {
     }
     
     // MARK: - View
-    let scrlv: UIScrollView = {
+    let scrollView: UIScrollView = {
         let scrlv = UIScrollView()
         scrlv.backgroundColor = UIColor.white
         scrlv.translatesAutoresizingMaskIntoConstraints = false
@@ -99,13 +100,6 @@ class VCHome: UIViewController {
         return view
     }()
     
-    let projectContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.green
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     let pointsLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -115,47 +109,95 @@ class VCHome: UIViewController {
         return label
     }()
     
+    func setupPagingView() {
+        // Scroll View
+        let scrlv = UIScrollView()
+        let scrlvHeight: CGFloat = ((self.view.frame.size.height - 64) * 0.65)
+        scrlv.frame = CGRect(x: 0, y: self.view.frame.size.height - 64 - scrlvHeight, width: self.view.frame.size.width, height: scrlvHeight)
+        scrlv.bounces = true
+        scrlv.isPagingEnabled = true
+        scrlv.isScrollEnabled = true
+        scrlv.delegate = self
+        self.contentView.addSubview(scrlv)
+        
+        var x = 0 as CGFloat
+        for i in 0..<5
+        {
+            // Base View
+            let v = UIView()
+            v.backgroundColor = getRandomColor()
+            v.frame = CGRect(x: x, y: 0, width: self.view.frame.size.width, height: scrlvHeight)
+            scrlv.addSubview(v)
+            
+            // Number label
+            let lb = UILabel()
+            lb.frame = v.bounds
+            lb.text = "\(i + 1)"
+            lb.textAlignment = .center
+            lb.font = UIFont.boldSystemFont(ofSize: 25)
+            v.addSubview(lb)
+            
+            // Adjust size
+            x = v.frame.maxX
+            scrlv.contentSize.width = x
+        }
+        
+        // PageControl
+        pageControl.frame = CGRect(x: 0, y: view.frame.size.height - scrlvHeight + 20, width: self.view.frame.size.width, height: 50)
+        pageControl.numberOfPages = 5
+        pageControl.currentPage = 0
+        self.view.addSubview(pageControl)
+    }
     
-    func addProjectView() {
-        if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? ProjectView {
-            
-            project.translatesAutoresizingMaskIntoConstraints = false
-            self.projectContainerView.addSubview(project)
-            
-            // need x, y, width and height constraints
-            project.leadingAnchor.constraint(equalTo: projectContainerView.leadingAnchor, constant: 15).isActive = true
-            project.trailingAnchor.constraint(equalTo: projectContainerView.trailingAnchor, constant: -15).isActive = true
-            project.heightAnchor.constraint(equalToConstant: projectHeightConstraintConstant()).isActive = true
-            project.bottomAnchor.constraint(equalTo: projectContainerView.bottomAnchor, constant: -25).isActive = true
+    // UIScrollViewDelegate
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    {
+        if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0
+        {
+            pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
         }
     }
+
+    
+//    func addProjectView() {
+//        if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? ProjectView {
+//            
+//            project.translatesAutoresizingMaskIntoConstraints = false
+//            self.projectContainerView.addSubview(project)
+//            
+//            // need x, y, width and height constraints
+//            project.leadingAnchor.constraint(equalTo: projectContainerView.leadingAnchor, constant: 15).isActive = true
+//            project.trailingAnchor.constraint(equalTo: projectContainerView.trailingAnchor, constant: -15).isActive = true
+//            project.heightAnchor.constraint(equalToConstant: projectHeightConstraintConstant()).isActive = true
+//            project.bottomAnchor.constraint(equalTo: projectContainerView.bottomAnchor, constant: -25).isActive = true
+//        }
+//    }
     
     func setupScrlv() {
         // need x, y, width and height constraints
-        scrlv.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrlv.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        scrlv.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        scrlv.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
         
         // content view
-        scrlv.addSubview(contentView)
+        scrollView.addSubview(contentView)
         setupContentView()
     }
     
     func setupContentView() {
         // need x, y, width and height constraints
-        contentView.leftAnchor.constraint(equalTo: scrlv.leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: scrlv.rightAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrlv.bottomAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: scrlv.topAnchor).isActive = true
+        contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         contentView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -64).isActive = true
         
         contentView.addSubview(pointsContainerView)
-        contentView.addSubview(projectContainerView)
         
         setupPointsContainerView()
-        setupProjectContainerView()
+        setupPagingView()
     }
     
     func setupPointsContainerView() {
@@ -168,16 +210,6 @@ class VCHome: UIViewController {
         pointsContainerView.addSubview(pointsLabel)
         
         setupPointsLabel()
-    }
-    
-    func setupProjectContainerView() {
-        // need x, y, width and height constraints
-        projectContainerView.topAnchor.constraint(equalTo: pointsContainerView.bottomAnchor).isActive = true
-        projectContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        projectContainerView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        projectContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65).isActive = true
-        
-        addProjectView()
     }
     
     func setupPointsLabel() {
@@ -259,6 +291,14 @@ class VCHome: UIViewController {
             print(logoutError)
         }
         self.present(VCRegister(), animated: true, completion: nil)
+    }
+    
+    func getRandomColor() -> UIColor
+    {
+        let randomRed:CGFloat = CGFloat(drand48())
+        let randomGreen:CGFloat = CGFloat(drand48())
+        let randomBlue:CGFloat = CGFloat(drand48())
+        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
     }
     
     //   Project View Height constraint based on device screen height
