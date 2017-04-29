@@ -115,6 +115,21 @@ class VCHome: UIViewController {
         return label
     }()
     
+    
+    func addProjectView() {
+        if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? ProjectView {
+            
+            project.translatesAutoresizingMaskIntoConstraints = false
+            self.projectContainerView.addSubview(project)
+            
+            // need x, y, width and height constraints
+            project.leadingAnchor.constraint(equalTo: projectContainerView.leadingAnchor, constant: 15).isActive = true
+            project.trailingAnchor.constraint(equalTo: projectContainerView.trailingAnchor, constant: -15).isActive = true
+            project.heightAnchor.constraint(equalToConstant: projectHeightConstraintConstant()).isActive = true
+            project.bottomAnchor.constraint(equalTo: projectContainerView.bottomAnchor, constant: -18).isActive = true
+        }
+    }
+    
     func setupScrlv() {
         // need x, y, width and height constraints
         scrlv.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -161,6 +176,8 @@ class VCHome: UIViewController {
         projectContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         projectContainerView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         projectContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65).isActive = true
+        
+        addProjectView()
     }
     
     func setupPointsLabel() {
@@ -242,6 +259,16 @@ class VCHome: UIViewController {
             print(logoutError)
         }
         self.present(VCRegister(), animated: true, completion: nil)
+    }
+    
+    //   Project View Height constraint based on device screen height
+    func projectHeightConstraintConstant() -> CGFloat {
+        switch(UIScreen.main.fixedCoordinateSpace.bounds.height) {
+        case 568:
+            return 300
+        default:
+            return 340
+        }
     }
 
 }
