@@ -110,7 +110,7 @@ class VCHome: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 40)
+        label.font = UIFont.systemFont(ofSize: 60)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -126,7 +126,7 @@ class VCHome: UIViewController {
             project.leadingAnchor.constraint(equalTo: projectContainerView.leadingAnchor, constant: 15).isActive = true
             project.trailingAnchor.constraint(equalTo: projectContainerView.trailingAnchor, constant: -15).isActive = true
             project.heightAnchor.constraint(equalToConstant: projectHeightConstraintConstant()).isActive = true
-            project.bottomAnchor.constraint(equalTo: projectContainerView.bottomAnchor, constant: -18).isActive = true
+            project.bottomAnchor.constraint(equalTo: projectContainerView.bottomAnchor, constant: -25).isActive = true
         }
     }
     
@@ -267,7 +267,7 @@ class VCHome: UIViewController {
         case 568:
             return 300
         default:
-            return 340
+            return 320
         }
     }
 
