@@ -11,27 +11,32 @@ import Firebase
 import FirebaseStorage
 
 protocol VProjectDelegate: class {
-    func tappedContributeBtn()
+    func tappedContributeBtn(project: Project)
 }
 
 
 class VProject: UIView {
     
     var delegate: VProjectDelegate?
+    var projectOptional: Project?
     
     @IBOutlet weak var pointsNeededLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var sponsorImage: UIImageView!
-    
     @IBOutlet weak var contributeButton: UIButton!
-    
+
     @IBAction func contributeBtnPressed(_ sender: Any) {
-        delegate?.tappedContributeBtn()
+        if let project = projectOptional {
+            delegate?.tappedContributeBtn(project: project)
+        }
     }
     
     func updateProjectView(project: Project) {
+        
+        // set project object
+        self.projectOptional = project
         
         // points label
         pointsNeededLabel.text = project.pointsNeeded + " pts"
