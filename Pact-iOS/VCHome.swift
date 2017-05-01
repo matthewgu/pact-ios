@@ -361,6 +361,8 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             fetchUser()
             fetchProject(completion: { (true) in
                 print("Project Count: \(self.projects.count)")
+                // need to avoid loading duplicate projects
+                self.projects.removeAll()
                 self.setupPagingView()
             })
         }
