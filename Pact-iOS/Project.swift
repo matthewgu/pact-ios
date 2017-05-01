@@ -10,7 +10,7 @@ import UIKit
 
 class Project {
     
-    private var _serveMeal: String!
+    private var _projectNameID: String!
     private var _title: String!
     private var _description: String!
     private var _pointsNeeded: String!
@@ -21,8 +21,8 @@ class Project {
     private var _buttonText: String!
     private var _buttonColour: UIColor = UIColor.blue
     
-    var serveMeal: String {
-        return _serveMeal
+    var projectNameID: String {
+        return _projectNameID
     }
     
     var title: String {
@@ -61,8 +61,8 @@ class Project {
         return _buttonColour
     }
     
-    init(serveMeal: String, title: String, description: String, pointsNeeded: String, contributeCount: String, coverImageName: String, sponsorImageName: String, itemName: String, buttonText: String) {
-        _serveMeal = serveMeal
+    init(projectNameID: String, title: String, description: String, pointsNeeded: String, contributeCount: String, coverImageName: String, sponsorImageName: String, itemName: String, buttonText: String) {
+        _projectNameID = projectNameID
         _title = title
         _description = description
         _pointsNeeded = pointsNeeded
