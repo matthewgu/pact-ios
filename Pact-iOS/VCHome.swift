@@ -78,6 +78,44 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         }
     }
     
+    func fetchPoints() {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                self.pointsLabel.text = dictionary["points"] as? String
+            }
+            
+        }, withCancel: nil)
+    }
+    
+    func addPoints(steps: Int) {
+        let currentPointsStr = "\(steps)"
+        ref = FIRDatabase.database().reference()
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
+    }
+    
+    func fetchProject(completion: @escaping (Bool) -> ()) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let dict = snap.value as? [String: Any] {
+                        if let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let itemName = dict["itemName"] as? String, let buttonText = dict["buttonText"] as? String {
+                            
+                            let project = Project(title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, itemName: itemName, buttonText: buttonText)
+                            
+                            self.projects.append(project)
+                        }
+                    }
+                }
+            }
+            completion(true)
+        })
+    }
+    
     // MARK: - View
     let scrollView: UIScrollView = {
         let scrlv = UIScrollView()
@@ -123,11 +161,26 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         var x = 0 as CGFloat
         for i in 0..<projects.count
         {
-            // base iiew
+            // base view
             let v = UIView()
             v.backgroundColor = getRandomColor()
             v.frame = CGRect(x: x, y: 0, width: self.view.frame.size.width, height: scrlvHeight)
             scrlv.addSubview(v)
+            
+            // shadow view
+            let shadowView = UIView()
+            shadowView.backgroundColor = UIColor.white
+            
+            shadowView.layer.masksToBounds = false
+
+            shadowView.layer.cornerRadius = 6
+            shadowView.layer.shadowColor = UIColor.black.cgColor
+            shadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+            shadowView.layer.shadowOpacity = 0.4
+            shadowView.layer.shadowRadius = 10
+            
+            v.addSubview(shadowView)
+            shadowView.frame = CGRect(x: 18 + 5, y: 40, width: (v.frame.size.width) - 36 - 10, height: (v.frame.size.height) - 66)
             
             // project view
             if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? VProject {
@@ -226,44 +279,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             })
         }
         
-    }
-    
-    func fetchPoints() {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                self.pointsLabel.text = dictionary["points"] as? String
-            }
-            
-        }, withCancel: nil)
-    }
-    
-    func addPoints(steps: Int) {
-        let currentPointsStr = "\(steps)"
-        ref = FIRDatabase.database().reference()
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
-    }
-    
-    func fetchProject(completion: @escaping (Bool) -> ()) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    if let dict = snap.value as? [String: Any] {
-                        if let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let itemName = dict["itemName"] as? String, let buttonText = dict["buttonText"] as? String {
-                            
-                            let project = Project(title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, itemName: itemName, buttonText: buttonText)
-                            
-                            self.projects.append(project)
-                        }
-                    }
-                }
-            }
-            completion(true)
-        })
     }
     
     func tappedContributeBtn(project: Project) {
