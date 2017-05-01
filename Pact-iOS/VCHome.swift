@@ -239,6 +239,17 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         return view
     }()
     
+    let ptsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "pts"
+        label.backgroundColor = UIColor.orange
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.black
+        return label
+    }()
+    
     let pointsLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -356,8 +367,17 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         pointsContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
         
         pointsContainerView.addSubview(pointsLabel)
+        pointsContainerView.addSubview(ptsLabel)
         
         setupPointsLabel()
+        setupPtsLabel()
+    }
+    
+    func setupPtsLabel() {
+        // need x, y, width and height constraints
+        ptsLabel.centerYAnchor.constraint(equalTo: pointsContainerView.centerYAnchor).isActive = true
+        ptsLabel.centerXAnchor.constraint(equalTo: pointsContainerView.centerXAnchor).isActive = true
+        print(pointsLabel.centerXAnchor)
     }
     
     func setupPointsLabel() {
