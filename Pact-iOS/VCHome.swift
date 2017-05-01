@@ -16,6 +16,8 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     var ref: FIRDatabaseReference?
     
     var projects = [Project]()
+    var user: User?
+    
     let pageControl = UIPageControl()
     
     override func viewDidLoad()
@@ -94,6 +96,20 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         ref = FIRDatabase.database().reference()
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
+    }
+    
+    func fetchUser() {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let name = dictionary["name"] as! String
+                let email = dictionary["email"] as! String
+                let points = dictionary["points"] as! String
+                let pointsContributed = dictionary["pointsContributed"] as! String
+                self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed)
+            }
+        }, withCancel: nil)
     }
     
     func fetchProject(completion: @escaping (Bool) -> ()) {
@@ -272,7 +288,9 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
+            fetchUser()
             fetchPoints()
+            
             fetchProject(completion: { (true) in
                 print("Project Count: \(self.projects.count)")
                 self.setupPagingView()
