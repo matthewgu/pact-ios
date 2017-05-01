@@ -107,7 +107,10 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
                 let email = dictionary["email"] as! String
                 let points = dictionary["points"] as! String
                 let pointsContributed = dictionary["pointsContributed"] as! String
+                
                 self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed)
+                self.pointsLabel.text = points
+                
             }
         }, withCancel: nil)
     }
@@ -289,8 +292,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
             fetchUser()
-            fetchPoints()
-            
             fetchProject(completion: { (true) in
                 print("Project Count: \(self.projects.count)")
                 self.setupPagingView()
@@ -334,16 +335,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         let randomGreen:CGFloat = CGFloat(drand48())
         let randomBlue:CGFloat = CGFloat(drand48())
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
-    }
-    
-    //   Project View Height constraint based on device screen height
-    func projectHeightConstraintConstant() -> CGFloat {
-        switch(UIScreen.main.fixedCoordinateSpace.bounds.height) {
-        case 568:
-            return 300
-        default:
-            return 320
-        }
     }
 
 }
