@@ -12,6 +12,10 @@ import FirebaseAuth
 
 class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
+    @IBAction func confirmBtnPressed(_ sender: Any) {
+        self.present(VCConfirmation(), animated: true, completion: nil)
+    }
+    
     // firebase ref
     var ref: FIRDatabaseReference?
     

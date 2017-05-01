@@ -33,6 +33,11 @@
                                                 <action selector="logoutBtnPressed:" destination="BYZ-38-t0r" id="K2j-Kl-RTk"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="ogr-YS-wyt">
+                                            <connections>
+                                                <action selector="confirmBtnPressed:" destination="BYZ-38-t0r" id="Kzu-Jy-3zB"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
