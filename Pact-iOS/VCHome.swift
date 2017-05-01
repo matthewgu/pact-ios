@@ -283,7 +283,16 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
     func tappedContributeBtn(project: Project) {
         print("project title: \(project.title)")
-
+        
+//        var currentPoints = Int()
+//        var pointsNeeded = Int()
+//        var contributeCount = Int()
+//        
+//        if let currentPointsOptional = Int(pointsLabel.text!), let pointsNeededOptional = Int(project.pointsNeeded) {
+//            currentPoints = currentPointsOptional
+//            pointsNeeded = pointsNeededOptional
+//        }
+    
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {

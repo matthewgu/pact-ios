@@ -1,0 +1,40 @@
+//
+//  User.swift
+//  Pact-iOS
+//
+//  Created by matt on 2017-05-01.
+//  Copyright © 2017 matt. All rights reserved.
+//
+
+import UIKit
+
+class User {
+    
+    private var _name: String!
+    private var _email: String!
+    private var _points: String!
+    private var _pointsContributed: String!
+    
+    var name: String {
+        return _name
+    }
+    
+    var email: String {
+        return _email
+    }
+    
+    var points: String {
+        return _points
+    }
+    
+    var pointsContributed: String {
+        return _pointsContributed
+    }
+    
+    init(name: String, email: String, points: String, pointsContributed: String) {
+        _name = name
+        _email = email
+        _points = points
+        _pointsContributed = pointsContributed
+    }
+}
