@@ -303,15 +303,45 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     func tappedContributeBtn(project: Project) {
         print("project title: \(project.title)")
         
-//        var currentPoints = Int()
-//        var pointsNeeded = Int()
-//        var contributeCount = Int()
-//        
-//        if let currentPointsOptional = Int(pointsLabel.text!), let pointsNeededOptional = Int(project.pointsNeeded) {
-//            currentPoints = currentPointsOptional
-//            pointsNeeded = pointsNeededOptional
-//        }
-    
+        var currentPoints = Int()
+        var pointsNeeded = Int()
+        var contributeCount = Int()
+        var pointsContributed =  Int()
+        
+        if let currentPointsOptional = Int((user?.points)!), let pointsNeededOptional = Int(project.pointsNeeded), let contributeCountOptional = Int(project.contributeCount), let pointsContributedOptional = Int((user?.pointsContributed)!)  {
+            currentPoints = currentPointsOptional
+            pointsNeeded = pointsNeededOptional
+            contributeCount = contributeCountOptional
+            pointsContributed = pointsContributedOptional
+        }
+        
+        if currentPoints <= pointsNeeded {
+//            fetchProjectContriuteCount(projectNameID: projectNameID, projectIndex: projectIndex)
+//            
+//            if let projectContributeCountOptional = Int(projects[projectIndex].projectContributeCount ?? "0") {
+//                projectContributeCount = projectContributeCountOptional
+//            }
+//            
+//            let newPoints = currentPoints - pointsNeeded
+//            projectContributeCount = projectContributeCount + 1
+//            
+//            let projectContributeCountString = "\(projectContributeCount)"
+//            let newPointsString = "\(newPoints)"
+//            
+//            ref = FIRDatabase.database().reference()
+//            self.ref.child("users/\(uid!)/projects/\(projectNameID)/projectContributeCount/").setValue(projectContributeCountString)
+//            self.ref.child("users/\(uid!)/points").setValue(newPointsString)
+//            
+//            //fetch new points
+//            fetchProjectContriuteCount(projectNameID: projectNameID, projectIndex: projectIndex)
+//            fetchPoints()
+            
+        } else {
+            // Not enough points alert
+            let alert = UIAlertController(title: "Not Enough Points", message: "Try Again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
