@@ -122,9 +122,9 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     if let dict = snap.value as? [String: Any] {
-                        if let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let itemName = dict["itemName"] as? String, let buttonText = dict["buttonText"] as? String {
+                        if let serveMeal = dict["serveMeal"] as? String, let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let itemName = dict["itemName"] as? String, let buttonText = dict["buttonText"] as? String {
                             
-                            let project = Project(title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, itemName: itemName, buttonText: buttonText)
+                            let project = Project(serveMeal: serveMeal, title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, itemName: itemName, buttonText: buttonText)
                             
                             self.projects.append(project)
                         }
@@ -315,26 +315,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             pointsContributed = pointsContributedOptional
         }
         
-        if currentPoints <= pointsNeeded {
-//            fetchProjectContriuteCount(projectNameID: projectNameID, projectIndex: projectIndex)
-//            
-//            if let projectContributeCountOptional = Int(projects[projectIndex].projectContributeCount ?? "0") {
-//                projectContributeCount = projectContributeCountOptional
-//            }
-//            
-//            let newPoints = currentPoints - pointsNeeded
-//            projectContributeCount = projectContributeCount + 1
-//            
-//            let projectContributeCountString = "\(projectContributeCount)"
-//            let newPointsString = "\(newPoints)"
-//            
-//            ref = FIRDatabase.database().reference()
-//            self.ref.child("users/\(uid!)/projects/\(projectNameID)/projectContributeCount/").setValue(projectContributeCountString)
-//            self.ref.child("users/\(uid!)/points").setValue(newPointsString)
-//            
-//            //fetch new points
-//            fetchProjectContriuteCount(projectNameID: projectNameID, projectIndex: projectIndex)
-//            fetchPoints()
+        if currentPoints >= pointsNeeded {
             
         } else {
             // Not enough points alert
