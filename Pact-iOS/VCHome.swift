@@ -12,10 +12,6 @@ import FirebaseAuth
 
 class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
-    @IBAction func confirmBtnPressed(_ sender: Any) {
-        self.present(VCConfirm(), animated: true, completion: nil)
-    }
-    
     // firebase ref
     var ref: FIRDatabaseReference?
     
@@ -31,9 +27,10 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         
         // view related
         view.addSubview(scrollView)
-    
+        view.addSubview(navBar)
         setupScrlv()
-
+        setupNavBar()
+        
         // refresh control
         let refreshControl = UIRefreshControl()
         let title = NSLocalizedString("Pull To Refresh", comment: "Pull to refresh")
@@ -212,6 +209,15 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     }
     
     // MARK: - View
+    let navBar: UINavigationBar = {
+        let navBar = UINavigationBar()
+        let navItem = UINavigationItem(title: "Pact")
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        navBar.setItems([navItem], animated: false)
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        return navBar
+    }()
+    
     let scrollView: UIScrollView = {
         let scrlv = UIScrollView()
         scrlv.backgroundColor = UIColor.white
@@ -241,6 +247,13 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    func setupNavBar() {
+        navBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        navBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        navBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        navBar.heightAnchor.constraint(equalToConstant: 64).isActive = true
+    }
     
     func setupPagingView() {
         // Scroll View
@@ -379,10 +392,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     func tappedContributeBtn(project: Project) {
         // TODO: Pull user and project data before
         handleProjectContribution(project: project)
-    }
-    
-    @IBAction func logoutBtnPressed(_ sender: Any) {
-        handleLogout()
     }
     
     // MARK: - Support

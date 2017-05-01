@@ -20,34 +20,7 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CR1-Og-F4m">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="ej3-Hk-OfA"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Pact" id="cqR-Fa-oD6">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="qH9-Zb-hDZ">
-                                            <connections>
-                                                <action selector="logoutBtnPressed:" destination="BYZ-38-t0r" id="K2j-Kl-RTk"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="ogr-YS-wyt">
-                                            <connections>
-                                                <action selector="confirmBtnPressed:" destination="BYZ-38-t0r" id="Kzu-Jy-3zB"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="CR1-Og-F4m" secondAttribute="trailing" id="8T6-aL-kxJ"/>
-                            <constraint firstItem="CR1-Og-F4m" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="TVh-nX-bpW"/>
-                            <constraint firstItem="CR1-Og-F4m" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Wg6-b2-kA3"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

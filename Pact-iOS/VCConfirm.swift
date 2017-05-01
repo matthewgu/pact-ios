@@ -14,6 +14,7 @@ class VCConfirm: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         
+        
         view.addSubview(confirmImageView)
         view.addSubview(sentenceLabel)
         view.addSubview(contributeCountLabel)
@@ -28,7 +29,6 @@ class VCConfirm: UIViewController {
     }
     
     // MARK: - View
-    
     let confirmImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "pactConfirmLogo.png")
