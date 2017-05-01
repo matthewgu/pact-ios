@@ -283,6 +283,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         scrlv.isPagingEnabled = true
         scrlv.isScrollEnabled = true
         scrlv.delegate = self
+        scrlv.backgroundColor = UIColor(red: 250/255, green: 248/255, blue: 246/255, alpha: 1)
         self.contentView.addSubview(scrlv)
         
         var x = 0 as CGFloat
@@ -290,11 +291,11 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         {
             // base view
             let v = UIView()
-            v.backgroundColor = getRandomColor()
+            //v.backgroundColor = getRandomColor()
             v.frame = CGRect(x: x, y: 0, width: self.view.frame.size.width, height: scrlvHeight)
             scrlv.addSubview(v)
             
-            // shadow view
+            // shawdow view
             let shadowView = UIView()
             shadowView.backgroundColor = UIColor.white
             
@@ -329,6 +330,8 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: 20)
         pageControl.numberOfPages = projects.count
         pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+        pageControl.currentPageIndicatorTintColor = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
         contentView.addSubview(pageControl)
     }
     
@@ -430,14 +433,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             print(logoutError)
         }
         self.present(VCRegister(), animated: true, completion: nil)
-    }
-    
-    func getRandomColor() -> UIColor
-    {
-        let randomRed:CGFloat = CGFloat(drand48())
-        let randomGreen:CGFloat = CGFloat(drand48())
-        let randomBlue:CGFloat = CGFloat(drand48())
-        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
     }
 
 }
