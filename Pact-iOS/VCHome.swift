@@ -153,6 +153,51 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         })
     }
     
+    func handleProjectContribution(project: Project) {
+        var currentPoints = Int()
+        var pointsNeeded = Int()
+        var contributeCount = Int()
+        var pointsContributed =  Int()
+        
+        if let currentPointsOptional = Int((user?.points)!), let pointsNeededOptional = Int(project.pointsNeeded), let contributeCountOptional = Int(project.contributeCount), let pointsContributedOptional = Int((user?.pointsContributed)!)  {
+            currentPoints = currentPointsOptional
+            pointsNeeded = pointsNeededOptional
+            contributeCount = contributeCountOptional
+            pointsContributed = pointsContributedOptional
+        }
+        
+        if currentPoints >= pointsNeeded {
+            // setting new values
+            let newPoints = currentPoints - pointsNeeded
+            contributeCount = contributeCount + 1
+            pointsContributed = pointsContributed + pointsNeeded
+            
+            // converting to string
+            let newPointsString = "\(newPoints)"
+            let contributeCountString = "\(contributeCount)"
+            let pointsContributedString = "\(pointsContributed)"
+            
+            // updating new values
+            ref = FIRDatabase.database().reference()
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            self.ref?.child("users/\(uid!)/points").setValue(newPointsString)
+            self.ref?.child("users/\(uid!)/pointsContributed").setValue(pointsContributedString)
+            self.ref?.child("users/\(uid!)/projects/\(project.projectNameID)/contributeCount/").setValue(contributeCountString)
+            
+            // pull new data
+            fetchUser()
+            fetchContriuteCount(project: project)
+            
+            print("Project Title: \(project.title), Contribute Count: \(project.contributeCount) \(project.itemName), Points Contributed: \(user?.pointsContributed ?? "0") points")
+            
+        } else {
+            // not enough points
+            let alert = UIAlertController(title: "Not Enough Points", message: "Try Again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - View
     let scrollView: UIScrollView = {
         let scrlv = UIScrollView()
@@ -236,10 +281,10 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         }
         
         // page control
-        pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - scrlvHeight - 10), width: self.view.frame.size.width, height: 50)
-        pageControl.numberOfPages = projects.count - 1
+        pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: 20)
+        pageControl.numberOfPages = projects.count
         pageControl.currentPage = 0
-        self.view.addSubview(pageControl)
+        contentView.addSubview(pageControl)
     }
     
     // UIScrollViewDelegate
@@ -319,49 +364,8 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     }
     
     func tappedContributeBtn(project: Project) {
-        
-        var currentPoints = Int()
-        var pointsNeeded = Int()
-        var contributeCount = Int()
-        var pointsContributed =  Int()
-        
-        if let currentPointsOptional = Int((user?.points)!), let pointsNeededOptional = Int(project.pointsNeeded), let contributeCountOptional = Int(project.contributeCount), let pointsContributedOptional = Int((user?.pointsContributed)!)  {
-            currentPoints = currentPointsOptional
-            pointsNeeded = pointsNeededOptional
-            contributeCount = contributeCountOptional
-            pointsContributed = pointsContributedOptional
-        }
-        
-        if currentPoints >= pointsNeeded {
-            // setting new values
-            let newPoints = currentPoints - pointsNeeded
-            contributeCount = contributeCount + 1
-            pointsContributed = pointsContributed + pointsNeeded
-            
-            // converting to string
-            let newPointsString = "\(newPoints)"
-            let contributeCountString = "\(contributeCount)"
-            let pointsContributedString = "\(pointsContributed)"
-            
-            // updating new values
-            ref = FIRDatabase.database().reference()
-            let uid = FIRAuth.auth()?.currentUser?.uid
-            self.ref?.child("users/\(uid!)/points").setValue(newPointsString)
-            self.ref?.child("users/\(uid!)/pointsContributed").setValue(pointsContributedString)
-            self.ref?.child("users/\(uid!)/projects/\(project.projectNameID)/contributeCount/").setValue(contributeCountString)
-            
-            // pull new data
-            fetchUser()
-            fetchContriuteCount(project: project)
-            
-            print("Project Title: \(project.title), Contribute Count: \(project.contributeCount) \(project.itemName), Points Contributed: \(user?.pointsContributed ?? "0") points")
-                
-        } else {
-            // not enough points
-            let alert = UIAlertController(title: "Not Enough Points", message: "Try Again", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        // have to pull user and project data before
+        handleProjectContribution(project: project)
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
