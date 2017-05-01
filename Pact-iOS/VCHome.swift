@@ -232,17 +232,17 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         return view
     }()
     
-    let pointsContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.blue
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    let pointsContainerView: UIStackView = {
+        let sView = UIStackView()
+        sView.backgroundColor = UIColor.blue
+        sView.translatesAutoresizingMaskIntoConstraints = false
+        return sView
     }()
     
     let ptsLabel: UILabel = {
         let label = UILabel()
         label.text = "pts"
-        label.backgroundColor = UIColor.orange
+        //label.backgroundColor = UIColor.orange
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 20)
@@ -250,11 +250,19 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         return label
     }()
     
+    let pointsSeparatorView: UIView = {
+        let view = UIView()
+        //view.backgroundColor = UIColor.black
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let pointsLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        //label.backgroundColor = UIColor.blue
+        label.textAlignment = .right
         label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 60)
+        label.font = UIFont.systemFont(ofSize: 70)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -366,26 +374,25 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         pointsContainerView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         pointsContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
         
-        pointsContainerView.addSubview(pointsLabel)
-        pointsContainerView.addSubview(ptsLabel)
+        pointsContainerView.addArrangedSubview(pointsLabel)
+        pointsContainerView.addArrangedSubview(pointsSeparatorView)
+        pointsContainerView.addArrangedSubview(ptsLabel)
         
         setupPointsLabel()
+        setupPointsSeparatorView()
         setupPtsLabel()
     }
     
-    func setupPtsLabel() {
-        // need x, y, width and height constraints
-        ptsLabel.centerYAnchor.constraint(equalTo: pointsContainerView.centerYAnchor).isActive = true
-        ptsLabel.centerXAnchor.constraint(equalTo: pointsContainerView.centerXAnchor).isActive = true
-        print(pointsLabel.centerXAnchor)
+    func setupPointsLabel() {
+        pointsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
     }
     
-    func setupPointsLabel() {
-        // need x, y, width and height constraints
-        pointsLabel.centerYAnchor.constraint(equalTo: pointsContainerView.centerYAnchor).isActive = true
-        pointsLabel.centerXAnchor.constraint(equalTo: pointsContainerView.centerXAnchor).isActive = true
-        pointsLabel.widthAnchor.constraint(equalTo: pointsContainerView.widthAnchor).isActive = true
-        pointsLabel.heightAnchor.constraint(equalTo: pointsContainerView.heightAnchor).isActive = true
+    func setupPointsSeparatorView() {
+        pointsSeparatorView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.02).isActive = true
+    }
+    
+    func setupPtsLabel() {
+        ptsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.33).isActive = true
     }
     
     // MARK: - Func
