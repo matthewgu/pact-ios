@@ -24,7 +24,12 @@ class User {
     }
     
     var points: String {
-        return _points
+        get {
+            return _points
+        }
+        set{
+            _points = newValue
+        }
     }
     
     var pointsContributed: String {

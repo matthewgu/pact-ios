@@ -80,17 +80,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         }
     }
     
-    func fetchPoints() {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                self.pointsLabel.text = dictionary["points"] as? String
-            }
-            
-        }, withCancel: nil)
-    }
-    
     func addPoints(steps: Int) {
         let currentPointsStr = "\(steps)"
         ref = FIRDatabase.database().reference()
@@ -98,6 +87,32 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
         
         fetchPoints()
+    }
+    
+    func fetchPoints() {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                if let points = dictionary["points"] as? String {
+                    self.user?.points = points
+                }
+                self.pointsLabel.text = self.user?.points
+            }
+            
+        }, withCancel: nil)
+    }
+    
+    func fetchContriuteCount(project: Project) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).child("projects").child(project.projectNameID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                if let contributeCount = dictionary["contributeCount"] as? String {
+                    project.contributeCount = contributeCount
+                }
+            }
+        }, withCancel: nil)
     }
     
     func fetchUser() {
@@ -304,7 +319,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     }
     
     func tappedContributeBtn(project: Project) {
-        print("project title: \(project.title)")
         
         var currentPoints = Int()
         var pointsNeeded = Int()
@@ -338,6 +352,9 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             
             // pull new data
             fetchUser()
+            fetchContriuteCount(project: project)
+            
+            print("Project Title: \(project.title), Contribute Count: \(project.contributeCount) \(project.itemName), Points Contributed: \(user?.pointsContributed ?? "0") points")
                 
         } else {
             // not enough points

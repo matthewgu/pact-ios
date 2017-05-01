@@ -38,7 +38,12 @@ class Project {
     }
     
     var contributeCount: String {
-        return _contributeCount
+        get {
+            return _contributeCount
+        }
+        set{
+            _contributeCount = newValue
+        }
     }
     
     var coverImageName: String {
