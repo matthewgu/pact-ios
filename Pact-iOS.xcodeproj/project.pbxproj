@@ -15,7 +15,7 @@
 		812CA7911EB42D96002FD679 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CA78E1EB42D96002FD679 /* UserAccount.swift */; };
 		812CA7931EB42EED002FD679 /* VCEnableHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CA7921EB42EED002FD679 /* VCEnableHealth.swift */; };
 		812CA7951EB441F6002FD679 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 812CA7941EB441F6002FD679 /* GoogleService-Info.plist */; };
-		813904D91EB7151600F35545 /* VCConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813904D81EB7151600F35545 /* VCConfirmation.swift */; };
+		813904D91EB7151600F35545 /* VCConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813904D81EB7151600F35545 /* VCConfirm.swift */; };
 		813BFB7D1EB45AAA00766E12 /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 813BFB7C1EB45AAA00766E12 /* CustomView.xib */; };
 		813BFB7F1EB45AFC00766E12 /* VProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813BFB7E1EB45AFC00766E12 /* VProject.swift */; };
 		816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EA81EB33AB30037E256 /* AppDelegate.swift */; };
@@ -36,7 +36,7 @@
 		812CA78E1EB42D96002FD679 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		812CA7921EB42EED002FD679 /* VCEnableHealth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCEnableHealth.swift; sourceTree = "<group>"; };
 		812CA7941EB441F6002FD679 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		813904D81EB7151600F35545 /* VCConfirmation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConfirmation.swift; sourceTree = "<group>"; };
+		813904D81EB7151600F35545 /* VCConfirm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConfirm.swift; sourceTree = "<group>"; };
 		813BFB7C1EB45AAA00766E12 /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 		813BFB7E1EB45AFC00766E12 /* VProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VProject.swift; sourceTree = "<group>"; };
 		816F6EA51EB33AB30037E256 /* Pact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +146,7 @@
 				816F6EAA1EB33AB30037E256 /* VCHome.swift */,
 				816F6EC31EB36B3A0037E256 /* VCRegister.swift */,
 				812CA7921EB42EED002FD679 /* VCEnableHealth.swift */,
-				813904D81EB7151600F35545 /* VCConfirmation.swift */,
+				813904D81EB7151600F35545 /* VCConfirm.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -295,7 +295,7 @@
 				816F6EC41EB36B3A0037E256 /* VCRegister.swift in Sources */,
 				816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */,
 				810A950D1EB3EEDA00E5A4DD /* Project.swift in Sources */,
-				813904D91EB7151600F35545 /* VCConfirmation.swift in Sources */,
+				813904D91EB7151600F35545 /* VCConfirm.swift in Sources */,
 				812CA7931EB42EED002FD679 /* VCEnableHealth.swift in Sources */,
 				813BFB7F1EB45AFC00766E12 /* VProject.swift in Sources */,
 				812CA7901EB42D96002FD679 /* StorageUtil.swift in Sources */,
