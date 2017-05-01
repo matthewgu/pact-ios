@@ -283,6 +283,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
     func tappedContributeBtn(project: Project) {
         print("project title: \(project.title)")
+
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
