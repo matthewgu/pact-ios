@@ -96,6 +96,8 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         ref = FIRDatabase.database().reference()
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
+        
+        fetchPoints()
     }
     
     func fetchUser() {
@@ -125,8 +127,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
                         if let projectNameID = dict["projectNameID"] as? String, let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let itemName = dict["itemName"] as? String, let buttonText = dict["buttonText"] as? String {
                             
                             let project = Project(projectNameID: projectNameID, title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, itemName: itemName, buttonText: buttonText)
-                            
-                            print(project.projectNameID)
+                
                             self.projects.append(project)
                             
                         }
@@ -318,9 +319,28 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         }
         
         if currentPoints >= pointsNeeded {
+            // setting new values
+            let newPoints = currentPoints - pointsNeeded
+            contributeCount = contributeCount + 1
+            pointsContributed = pointsContributed + pointsNeeded
             
+            // converting to string
+            let newPointsString = "\(newPoints)"
+            let contributeCountString = "\(contributeCount)"
+            let pointsContributedString = "\(pointsContributed)"
+            
+            // updating new values
+            ref = FIRDatabase.database().reference()
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            self.ref?.child("users/\(uid!)/points").setValue(newPointsString)
+            self.ref?.child("users/\(uid!)/pointsContributed").setValue(pointsContributedString)
+            self.ref?.child("users/\(uid!)/projects/\(project.projectNameID)/contributeCount/").setValue(contributeCountString)
+            
+            // pull new data
+            fetchUser()
+                
         } else {
-            // Not enough points alert
+            // not enough points
             let alert = UIAlertController(title: "Not Enough Points", message: "Try Again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
