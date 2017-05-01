@@ -37,7 +37,7 @@ class VCConfirm: UIViewController {
         return imageView
     }()
     
-    let sentenceLabel: UILabel = {
+    var sentenceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "this is the confirmation sentence"
@@ -48,7 +48,7 @@ class VCConfirm: UIViewController {
         return label
     }()
     
-    let contributeCountLabel: UILabel = {
+    var contributeCountLabel: UILabel = {
         let label = UILabel()
         label.text = "10"
         label.translatesAutoresizingMaskIntoConstraints = false

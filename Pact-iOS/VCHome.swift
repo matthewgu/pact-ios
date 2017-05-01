@@ -42,10 +42,14 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
                                  action: #selector(refreshOptions(sender:)),
                                  for: .valueChanged)
         scrollView.refreshControl = refreshControl
+        
+        // TODO: need to avoid loading duplicate projects
+        // self.projects.removeAll()
+        self.checkIfUserIsLoggedIn()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        checkIfUserIsLoggedIn()
+        
     }
 
     // MARK: - Data
@@ -193,6 +197,11 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             fetchContriuteCount(project: project)
             
             print("Project Title: \(project.title), Contribute Count: \(project.contributeCount) \(project.itemName), Points Contributed: \(user?.pointsContributed ?? "0") points")
+            
+            let vcConfirm = VCConfirm()
+            vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
+            vcConfirm.contributeCountLabel.text = project.contributeCount
+            self.present(vcConfirm, animated: true, completion: nil)
             
         } else {
             // not enough points
@@ -361,8 +370,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             fetchUser()
             fetchProject(completion: { (true) in
                 print("Project Count: \(self.projects.count)")
-                // need to avoid loading duplicate projects
-                self.projects.removeAll()
                 self.setupPagingView()
             })
         }
@@ -370,7 +377,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     }
     
     func tappedContributeBtn(project: Project) {
-        // have to pull user and project data before
+        // TODO: Pull user and project data before
         handleProjectContribution(project: project)
     }
     
