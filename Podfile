@@ -10,5 +10,6 @@ target 'Pact-iOS' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'IQKeyboardManagerSwift'
   
 end
