@@ -40,12 +40,19 @@ class VProject: UIView {
         
         // points label
         pointsNeededLabel.text = project.pointsNeeded + " pts"
+        pointsNeededLabel.font = UIFont.boldSystemFont(ofSize: 18)
         
         // title text
         titleLabel.text = project.title
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         
         // description text
-        descriptionLabel.text = project.description
+        // TODO: change text font 
+        let attributedString = NSMutableAttributedString(string: project.description)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 3
+        attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        descriptionLabel.attributedText = attributedString
         
         // contribute button
         contributeButton.setTitle(project.buttonText, for: .normal)

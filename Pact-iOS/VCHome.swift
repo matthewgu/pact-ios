@@ -301,7 +301,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             
             shadowView.layer.masksToBounds = false
 
-            shadowView.layer.cornerRadius = 6
+            shadowView.layer.cornerRadius = 8
             shadowView.layer.shadowColor = UIColor.black.cgColor
             shadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
             shadowView.layer.shadowOpacity = 0.4
@@ -313,7 +313,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             // project view
             if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? VProject {
                 project.delegate = self
-                project.layer.cornerRadius = 6
+                project.layer.cornerRadius = 8
                 project.layer.masksToBounds = true
                 let projectDetails: Project = projects[i]
                 project.updateProjectView(project: projectDetails)

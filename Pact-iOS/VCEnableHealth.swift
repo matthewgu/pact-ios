@@ -22,10 +22,10 @@ class VCEnableHealth: UIViewController {
     // MARK: - View
     let enableHealthKitButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
-        button.setTitle("Enable", for: .normal)
+        button.backgroundColor = UIColor(red: 183/255, green: 56/255, blue: 42/255, alpha: 1)
+        button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -33,12 +33,12 @@ class VCEnableHealth: UIViewController {
         button.addTarget(self, action: #selector(handleHealthKitAuth), for: .touchUpInside)
         return button
     }()
-
+    
     func setupEnableHealthKitButton() {
         enableHealthKitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        enableHealthKitButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        enableHealthKitButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        enableHealthKitButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        enableHealthKitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44).isActive = true
+        enableHealthKitButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48).isActive = true
+        enableHealthKitButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
     }
     
     // MARK: - Func
