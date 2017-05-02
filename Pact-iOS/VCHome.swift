@@ -221,21 +221,28 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
     let scrollView: UIScrollView = {
         let scrlv = UIScrollView()
-        scrlv.backgroundColor = UIColor.white
+        scrlv.backgroundColor = UIColor(red: 250/255, green: 248/255, blue: 246/255, alpha: 1)
         scrlv.translatesAutoresizingMaskIntoConstraints = false
         return scrlv
     }()
     
     let contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.gray
+        //view.backgroundColor = UIColor.gray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     let pointsContainerView: UIStackView = {
+        let view = UIStackView()
+        //view.backgroundColor = UIColor.red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let pointsStackView: UIStackView = {
         let sView = UIStackView()
-        sView.backgroundColor = UIColor.blue
+        //sView.backgroundColor = UIColor.blue
         sView.translatesAutoresizingMaskIntoConstraints = false
         return sView
     }()
@@ -283,7 +290,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         scrlv.isPagingEnabled = true
         scrlv.isScrollEnabled = true
         scrlv.delegate = self
-        scrlv.backgroundColor = UIColor(red: 250/255, green: 248/255, blue: 246/255, alpha: 1)
         self.contentView.addSubview(scrlv)
         
         var x = 0 as CGFloat
@@ -366,36 +372,33 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         contentView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -64).isActive = true
         
         contentView.addSubview(pointsContainerView)
-        
         setupPointsContainerView()
     }
     
     func setupPointsContainerView() {
-        // need x, y, width and height constraints
+    
         pointsContainerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         pointsContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         pointsContainerView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         pointsContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35).isActive = true
         
-        pointsContainerView.addArrangedSubview(pointsLabel)
-        pointsContainerView.addArrangedSubview(pointsSeparatorView)
-        pointsContainerView.addArrangedSubview(ptsLabel)
-        
-        setupPointsLabel()
-        setupPointsSeparatorView()
-        setupPtsLabel()
+        pointsContainerView.addSubview(pointsStackView)
+        setupPointsStackView()
     }
     
-    func setupPointsLabel() {
-        pointsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
+    func setupPointsStackView() {
+        pointsStackView.centerYAnchor.constraint(equalTo: pointsContainerView.centerYAnchor).isActive = true
+        pointsStackView.centerXAnchor.constraint(equalTo: pointsContainerView.centerXAnchor).isActive = true
+        
+        pointsStackView.addArrangedSubview(pointsLabel)
+        pointsStackView.addArrangedSubview(pointsSeparatorView)
+        pointsStackView.addArrangedSubview(ptsLabel)
+        
+        setupPointsSeparatorView()
     }
     
     func setupPointsSeparatorView() {
-        pointsSeparatorView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.02).isActive = true
-    }
-    
-    func setupPtsLabel() {
-        ptsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.33).isActive = true
+        pointsSeparatorView.widthAnchor.constraint(equalToConstant: 8).isActive = true
     }
     
     // MARK: - Func
