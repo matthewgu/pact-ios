@@ -21,10 +21,12 @@ class VCRegister: UIViewController {
         
         view.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         
+        view.addSubview(logoView)
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
         view.addSubview(loginRegisterSegmentedControl)
         
+        setupLogoView()
         setupinputsContainerView()
         setuploginRegisterButton()
         setuploginRegisterSegmentedControl()
@@ -35,9 +37,16 @@ class VCRegister: UIViewController {
     let firstProject = ["projectNameID": "serveMeal", "title": "Help Union Gospel Mission  Serve a Meal", "description": "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", "pointsNeeded": "3000", "contributeCount": "0", "coverImageName": "serveMeal.jpg", "sponsorImageName": "telus.png", "itemName": "meals", "buttonText": "SERVE A MEAL"]
     
     // MARK: - View
+    let logoView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "pactLogo.png")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     let inputsContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -47,15 +56,26 @@ class VCRegister: UIViewController {
     let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Name"
+        tf.backgroundColor = UIColor.white
+        tf.layer.cornerRadius = 8
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.font = .systemFont(ofSize: 14)
         return tf
     }()
     
+    let nameView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 8
+        view.backgroundColor = UIColor.white
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
-        tf.backgroundColor = UIColor.green
+        tf.backgroundColor = UIColor.white
         tf.layer.cornerRadius = 8
         tf.layer.masksToBounds = true
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -63,13 +83,33 @@ class VCRegister: UIViewController {
         return tf
     }()
     
+    let emailView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 8
+        view.backgroundColor = UIColor.white
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
+        tf.backgroundColor = UIColor.white
+        tf.layer.cornerRadius = 8
         tf.isSecureTextEntry = true
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.font = .systemFont(ofSize: 14)
         return tf
+    }()
+    
+    let passwordView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 8
+        view.backgroundColor = UIColor.white
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     let loginRegisterButton: UIButton = {
@@ -86,6 +126,14 @@ class VCRegister: UIViewController {
         return button
     }()
     
+    func setupLogoView() {
+        // need x, y, width and height constraints
+        logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 110).isActive = true
+        logoView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -110).isActive = true
+        logoView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+    
     func setupinputsContainerView() {
         // need x, y, width and height constraints
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -94,8 +142,11 @@ class VCRegister: UIViewController {
         inputsContainerViewHeigthAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 185)
         inputsContainerViewHeigthAnchor?.isActive = true
         
+        inputsContainerView.addSubview(nameView)
         inputsContainerView.addSubview(nameTextField)
+        inputsContainerView.addSubview(emailView)
         inputsContainerView.addSubview(emailTextField)
+        inputsContainerView.addSubview(passwordView)
         inputsContainerView.addSubview(passwordTextField)
         
         //Name Text Field
@@ -104,6 +155,11 @@ class VCRegister: UIViewController {
         nameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -14).isActive = true
         nameTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
+        //Name View
+        nameView.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor).isActive = true
+        nameView.bottomAnchor.constraint(equalTo: emailTextField.topAnchor, constant: -10).isActive = true
+        nameView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        nameView.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         //Email Text Field
         emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 14).isActive = true
@@ -111,11 +167,23 @@ class VCRegister: UIViewController {
         emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -14).isActive = true
         emailTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
+        //Email View
+        emailView.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor).isActive = true
+        emailView.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -10).isActive = true
+        emailView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        emailView.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        
         //Password Text Field
         passwordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 14).isActive = true
         passwordTextField.bottomAnchor.constraint(equalTo: inputsContainerView.bottomAnchor).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -14).isActive = true
         passwordTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        
+        //Password View
+        passwordView.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor).isActive = true
+        passwordView.bottomAnchor.constraint(equalTo: inputsContainerView.bottomAnchor).isActive = true
+        passwordView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -14).isActive = true
+        passwordView.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
     }
     
