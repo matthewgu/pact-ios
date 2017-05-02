@@ -191,6 +191,7 @@ class VCRegister: UIViewController {
 
     // MARK: - Func
     func handleLoginRegister() {
+        IJProgressView.shared.showProgressView(view)
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             handleLogin()
         } else {
@@ -201,6 +202,7 @@ class VCRegister: UIViewController {
     func handleLogin() {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             print("form is not valid")
+            IJProgressView.shared.hideProgressView()
             return
         }
         
@@ -210,6 +212,7 @@ class VCRegister: UIViewController {
                 // TODO: proper login error message
                 let alert = UIAlertController(title: "Ops!", message: "wrong email or password", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                IJProgressView.shared.hideProgressView()
                 self.present(alert, animated: true, completion: nil)
                 return
             }
@@ -227,6 +230,7 @@ class VCRegister: UIViewController {
         
         guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
             print("form is not valid")
+            IJProgressView.shared.hideProgressView()
             return
         }
         
@@ -236,6 +240,7 @@ class VCRegister: UIViewController {
                 // TODO: proper register error message
                 let alert = UIAlertController(title: "Ops!", message: "email is already taken", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                IJProgressView.shared.hideProgressView()
                 return
             }
             guard let uid = user?.uid else {
@@ -259,6 +264,7 @@ class VCRegister: UIViewController {
                         return
                     }
                     
+                    IJProgressView.shared.hideProgressView()
                     self.present(VCEnableHealth(), animated: true, completion: nil)
                     self.nameTextField.text = ""
                     self.emailTextField.text = ""

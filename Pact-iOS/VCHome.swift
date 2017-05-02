@@ -130,6 +130,8 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
                 let pointsContributed = dictionary["pointsContributed"] as! String
                 
                 self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed)
+                // show pts label only when points is loaded
+                self.ptsLabel.text = "pts"
                 self.pointsLabel.text = points
                 
             }
@@ -240,7 +242,6 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
     let ptsLabel: UILabel = {
         let label = UILabel()
-        label.text = "pts"
         //label.backgroundColor = UIColor.orange
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
