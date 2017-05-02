@@ -100,7 +100,7 @@ class VCRegister: UIViewController {
     func setupinputsContainerView() {
         // need x, y, width and height constraints
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        inputsContainerView.bottomAnchor.constraint(equalTo: loginRegisterButton.topAnchor, constant: -12).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
         inputsContainerViewHeigthAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 150)
         inputsContainerViewHeigthAnchor?.isActive = true
@@ -152,7 +152,7 @@ class VCRegister: UIViewController {
     
     func setuploginRegisterButton() {
         loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginRegisterButton.topAnchor.constraint(lessThanOrEqualTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
+        loginRegisterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60).isActive = true
         loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
@@ -207,6 +207,10 @@ class VCRegister: UIViewController {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 print(error as Any)
+                // TODO: proper login error message
+                let alert = UIAlertController(title: "Ops!", message: "wrong email or password", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
@@ -229,6 +233,9 @@ class VCRegister: UIViewController {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user:FIRUser?, error) in
             if error != nil {
                 print(error as Any)
+                // TODO: proper register error message
+                let alert = UIAlertController(title: "Ops!", message: "email is already taken", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 return
             }
             guard let uid = user?.uid else {
