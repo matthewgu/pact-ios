@@ -20,8 +20,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
     let pageControl = UIPageControl()
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         
         super.viewDidLoad()
         
