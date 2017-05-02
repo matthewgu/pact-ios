@@ -58,7 +58,8 @@ class VProject: UIView {
         contributeButton.setTitle(project.buttonText, for: .normal)
         contributeButton.layer.cornerRadius = 8
         contributeButton.layer.masksToBounds = true
-        contributeButton.backgroundColor = project.buttonColour
+        contributeButton.backgroundColor = UIColor.customBlue
+        //project.buttonColour
         
         // images
         coverImage.layer.masksToBounds = true
