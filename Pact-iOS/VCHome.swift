@@ -20,7 +20,8 @@ class VCHome: UIViewController, VProjectDelegate {
     var user: User?
     
     let scrlv = UIScrollView()
-    @IBOutlet weak var snakePageControl: SnakePageControl!
+    //@IBOutlet weak var snakePageControl: SnakePageControl!
+    var snakePageControl = SnakePageControl()
     
     override func viewDidLoad() {
         
@@ -344,6 +345,11 @@ class VCHome: UIViewController, VProjectDelegate {
         // page control
         contentView.addSubview(snakePageControl)
         snakePageControl.pageCount = projects.count
+        snakePageControl.indicatorPadding = 15
+        snakePageControl.indicatorRadius = 8
+        snakePageControl.activeTint = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
+        snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+        snakePageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: 20)
         
 //        pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: 20)
 //        pageControl.numberOfPages = projects.count
