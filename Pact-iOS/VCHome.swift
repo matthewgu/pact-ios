@@ -308,13 +308,15 @@ class VCHome: UIViewController, VProjectDelegate {
         self.contentView.addSubview(scrlv)
         
         // page control
-        scrlv.addSubview(snakePageControl)
-        snakePageControl.pageCount = projects.count
-        snakePageControl.indicatorPadding = 15
-        snakePageControl.indicatorRadius = 6
-        snakePageControl.activeTint = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
-        snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
-        
+        if projects.count > 1 {
+            scrlv.addSubview(snakePageControl)
+            snakePageControl.pageCount = projects.count
+            snakePageControl.indicatorPadding = 15
+            snakePageControl.indicatorRadius = 6
+            snakePageControl.activeTint = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
+            snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+        }
+    
         var x = 0 as CGFloat
         for i in 0..<projects.count
         {
