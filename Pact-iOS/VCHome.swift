@@ -316,7 +316,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             shadowView.layer.cornerRadius = 10
             shadowView.layer.shadowColor = UIColor.black.cgColor
             shadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-            shadowView.layer.shadowOpacity = 0.4
+            shadowView.layer.shadowOpacity = 0.25
             shadowView.layer.shadowRadius = 10
             
             v.addSubview(shadowView)
