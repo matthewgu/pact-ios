@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import PageControls
 
-class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
+class VCHome: UIViewController, VProjectDelegate {
     
     // firebase ref
     var ref: FIRDatabaseReference?
@@ -18,15 +19,20 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     var projects = [Project]()
     var user: User?
     
-    let pageControl = UIPageControl()
+    let scrlv = UIScrollView()
+    @IBOutlet weak var snakePageControl: SnakePageControl!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        scrlv.isPagingEnabled = true
+        scrlv.delegate = self
+        
         // view related
         view.addSubview(scrollView)
         view.addSubview(navBar)
+        
         setupScrlv()
         setupNavBar()
         
@@ -289,13 +295,10 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     
     func setupPagingView() {
         // Scroll View
-        let scrlv = UIScrollView()
         let scrlvHeight: CGFloat = ((self.view.frame.size.height - 64) * 0.65)
         scrlv.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: scrlvHeight)
         scrlv.bounces = true
-        scrlv.isPagingEnabled = true
         scrlv.isScrollEnabled = true
-        scrlv.delegate = self
         self.contentView.addSubview(scrlv)
         
         var x = 0 as CGFloat
@@ -339,23 +342,26 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
         }
         
         // page control
-        pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: 20)
-        pageControl.numberOfPages = projects.count
-        pageControl.currentPage = 0
-        pageControl.pageIndicatorTintColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
-        pageControl.currentPageIndicatorTintColor = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
-        contentView.addSubview(pageControl)
+        contentView.addSubview(snakePageControl)
+        snakePageControl.pageCount = projects.count
+        
+//        pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: 20)
+//        pageControl.numberOfPages = projects.count
+//        pageControl.currentPage = 0
+//        pageControl.pageIndicatorTintColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+//        pageControl.currentPageIndicatorTintColor = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
+//        contentView.addSubview(pageControl)
     }
     
     // UIScrollViewDelegate
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
-    {
-        if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0
-        {
-            pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
-        }
-    }
-    
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+//    {
+//        if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0
+//        {
+//            pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
+//        }
+//    }
+//    
     func setupScrlv() {
         // need x, y, width and height constraints
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -445,3 +451,13 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     }
 
 }
+
+extension VCHome: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrlv: UIScrollView) {
+        let page = scrlv.contentOffset.x / scrlv.bounds.width
+        let progressInPage = scrlv.contentOffset.x - (page * scrlv.bounds.width)
+        let progress = CGFloat(page) + progressInPage
+        snakePageControl.progress = progress
+    }
+}
+

@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PageControls.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Pact-iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,12 +37,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>35F819084801B6D2D44C834A1B9F4AEC</key>
+		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
+		<key>97381A438117BA97EB5A505EA91C8C73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A73D61F02CB7C60D30E8861AF5E9B5A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
