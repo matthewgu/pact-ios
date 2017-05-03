@@ -11,33 +11,35 @@ import HealthKit
 
 class HealthKitUtil
 {
-    static var sharedInstance = HealthKitUtil()
+    static var shared = HealthKitUtil()
     private init() {} // Singleton
     
     lazy var healthStore = HKHealthStore()
     
-    internal func getStep(completion: @escaping (_ success: Bool, _ totalSteps: Int) -> Void)
+    internal func getStep(completion: @escaping (_ success: Bool, _ newSteps: Int) -> Void)
     {
+        
         // Define the step quantity Type
         guard let qualityType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
             completion(false, 0)
             return
         }
         
-        // Set end date (=now)
-        let toDt = Date()
         
-        // Get start date
-        guard let fromDt = self.getFromDate(toDate: toDt) else { return }
+        // Get from date
+        guard let fromDt = self.getFromDate() else { return }
+        
+        // Set to date (=now)
+        let toDt = self.convertToStepValidDate(date: Date())
         
         // Set the Predicates & Interval
-        let predicate = HKQuery.predicateForSamples(withStart: fromDt, end: toDt, options: .strictStartDate)
+        let predicate = HKQuery.predicateForSamples(withStart: fromDt, end: toDt, options: .strictEndDate)
         
         // Interval
         let interval = self.getDateComponent(fromDate: fromDt, toDate: toDt)
         
         // Perform the Query
-        let query = HKStatisticsCollectionQuery(quantityType: qualityType, quantitySamplePredicate: predicate, options: [.cumulativeSum], anchorDate: fromDt, intervalComponents: interval)
+        let query = HKStatisticsCollectionQuery(quantityType: qualityType, quantitySamplePredicate: predicate, options: [.cumulativeSum], anchorDate: toDt, intervalComponents: interval)
         
         // Result handler
         query.initialResultsHandler = { query, results, error in
@@ -48,6 +50,8 @@ class HealthKitUtil
             }
             
             // Count up step
+            print("🌟Specified data range")
+            print("    <From> \(fromDt) \n    <To> \(toDt).")
             var steps = 0 as Double
             if let rst = results {
                 rst.enumerateStatistics(from: fromDt, to: toDt) {
@@ -55,11 +59,29 @@ class HealthKitUtil
                     
                     if let quantity = statistics.sumQuantity()
                     {
+                        // If previous fetch date match with current fetch date
+                        if UserAccount.shared.previousToDate > 0.0 &&
+                            UserAccount.shared.previousStatisticsEndDate == statistics.endDate.timeIntervalSince1970
+                        {
+                            // Remove previous fetched steps
+                            UserAccount.shared.totalSteps -= UserAccount.shared.previousSteps
+                        }
+                        
+                        // Save the fetched result
+                        UserAccount.shared.previousSteps = Int(quantity.doubleValue(for: HKUnit.count()))
+                        UserAccount.shared.previousFromDate = fromDt.timeIntervalSince1970
+                        UserAccount.shared.previousToDate = toDt.timeIntervalSince1970
+                        UserAccount.shared.previousStatisticsEndDate = statistics.endDate.timeIntervalSince1970
+                        
                         // Add steps
                         steps += quantity.doubleValue(for: HKUnit.count())
-                        print("⭐️\(steps) pts, From \(statistics.startDate) to \(statistics.endDate).")
+                        print("🌟Fetched data range")
+                        print("    <Statistics From> \(statistics.startDate) \n    <Statistics To> \(statistics.endDate).")
+                        print("    <new steps>: " + "\(steps)")
+                        print("    <past steps>: " + "\(UserAccount.shared.totalSteps)")
                     }
                 }
+                print("+++++++++++++++++++++++++++++++++++")
             }
             
             completion(true, Int(steps))
@@ -129,31 +151,33 @@ class HealthKitUtil
         }
     }
     
-    private func getFromDate(toDate: Date) -> Date?
+    private func getFromDate() -> Date?
     {
         // If the last fetched Data was not set in the userDefault
-        if UserAccount.sharedInstance.fromDate == 0.0
+        if UserAccount.shared.previousToDate == 0.0
         {
+            // Convert to appropriate from date (eg. 00:00:01 ~ 00:01:00 => convert to "00:00:00")
+            let nowDt = Date()
+            let fromDt = self.convertToStepValidDate(date: nowDt)
+            
             // Set start date(=3 days ago)
-            guard let dt = Calendar.current.date(byAdding: .day, value: -3, to: toDate) else {
-                return nil
-            }
-            
-            // Save fromDate
-            UserAccount.sharedInstance.fromDate = dt.timeIntervalSince1970
-            
-            return dt
+            return Calendar.current.date(byAdding: .day, value: -3, to: fromDt) ?? nowDt
         }
-        else
-        {
-            // Get last fetched date as double since we are saved date as timeStamp
-            let lastFetchedDataTypeDouble = UserAccount.sharedInstance.fromDate
-            
-            // Convert double(timestamp) to Date
-            let fromData = Date(timeIntervalSince1970: lastFetchedDataTypeDouble)
-            
-            // Set start date(=Last fetched date)
-            return fromData
-        }
+        
+        // Get last fetched date as double since we are saved date as timeStamp
+        let lastFetchedDataTypeDouble = UserAccount.shared.previousToDate
+        
+        // Convert double(timestamp) to Date
+        let fromData = Date(timeIntervalSince1970: lastFetchedDataTypeDouble)
+        
+        return self.convertToStepValidDate(date: fromData)
+    }
+    
+    private func convertToStepValidDate(date: Date) -> Date
+    {
+        // Convert to appropriate from date (eg. 00:00:00 ~ 00:00:59 => convert to "00:00:01")
+        var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        components.second = 1
+        return Calendar.current.date(from: components) ?? date
     }
 }

@@ -45,7 +45,7 @@ class VCEnableHealth: UIViewController {
     func handleHealthKitAuth() {
         
         // Check Authorization
-        HealthKitUtil.sharedInstance.checkAuthorization { (authorized) in
+        HealthKitUtil.shared.checkAuthorization { (authorized) in
             
             if authorized
             {

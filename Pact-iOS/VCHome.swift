@@ -57,22 +57,24 @@ class VCHome: UIViewController, VProjectDelegate {
     }
 
     // MARK: - Data
-    func getStep()
-    {
+    func getStep() {
         // Check Authorization
-        HealthKitUtil.sharedInstance.checkAuthorization { (authorized) in
+        HealthKitUtil.shared.checkAuthorization { (authorized) in
             
             if authorized
             {
-                // Get step
-                HealthKitUtil.sharedInstance.getStep(completion: { (success, totalSteps) in
+                // get step
+                HealthKitUtil.shared.getStep(completion: { (success, newSteps) in
                     if success
                     {
-                        // Get past steps and new steps
+                        // get past steps and new steps
                         DispatchQueue.main.async {
-                            self.addPoints(steps: totalSteps)
-                            print("total steps: " + "\(totalSteps)")
-                            print("---------------------------------")
+                            
+                            // add steups
+                            self.addPoints(steps: newSteps)
+                            
+                            // save steps
+                            UserAccount.shared.totalSteps += newSteps
                         }
                     }
                     else
@@ -93,7 +95,9 @@ class VCHome: UIViewController, VProjectDelegate {
     }
     
     func addPoints(steps: Int) {
-        let currentPointsStr = "\(steps)"
+        let oldPoints = Int(self.pointsLabel.text!)
+        let currentPoints = oldPoints! + steps
+        let currentPointsStr = "\(currentPoints)"
         ref = FIRDatabase.database().reference()
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
@@ -344,30 +348,14 @@ class VCHome: UIViewController, VProjectDelegate {
         }
         
         // page control
-        contentView.addSubview(snakePageControl)
+        scrlv.addSubview(snakePageControl)
         snakePageControl.pageCount = projects.count
         snakePageControl.indicatorPadding = 15
         snakePageControl.indicatorRadius = 6
         snakePageControl.activeTint = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
         snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
-        
-//        pageControl.frame = CGRect(x: 0, y: (self.view.frame.size.height - 64 - scrlvHeight), width: self.view.frame.size.width, height: 20)
-//        pageControl.numberOfPages = projects.count
-//        pageControl.currentPage = 0
-//        pageControl.pageIndicatorTintColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
-//        pageControl.currentPageIndicatorTintColor = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
-//        contentView.addSubview(pageControl)
     }
     
-    // UIScrollViewDelegate
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
-//    {
-//        if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0
-//        {
-//            pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
-//        }
-//    }
-//    
     func setupScrlv() {
         // need x, y, width and height constraints
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -422,8 +410,8 @@ class VCHome: UIViewController, VProjectDelegate {
     // MARK: - Func
     @objc private func refreshOptions(sender: UIRefreshControl) {
         sender.endRefreshing()
-        getStep()
         fetchPoints()
+        getStep()
     }
     
     func checkIfUserIsLoggedIn() {
