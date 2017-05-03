@@ -72,8 +72,8 @@ class VCConfirm: UIViewController {
     
     let dismissButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
-        button.setTitle("Enable", for: .normal)
+        button.backgroundColor = UIColor(red: 183/255, green: 56/255, blue: 42/255, alpha: 1)
+        button.setTitle("DISMISS", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
@@ -108,12 +108,12 @@ class VCConfirm: UIViewController {
     }
     
     func setupDismissButton() {
-        // need x, y, width and height constraints
         dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
-        dismissButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
+        dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44).isActive = true
+        dismissButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48).isActive = true
         dismissButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
     }
+
     
     // MARK: - Func
     func handleDismiss() {

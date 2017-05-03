@@ -160,6 +160,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
     }
     
     func handleProjectContribution(project: Project) {
+        IJProgressView.shared.showProgressView(view)
         var currentPoints = Int()
         var pointsNeeded = Int()
         var contributeCount = Int()
@@ -196,12 +197,17 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             
             print("Project Title: \(project.title), Contribute Count: \(project.contributeCount) \(project.itemName), Points Contributed: \(user?.pointsContributed ?? "0") points")
             
-            let vcConfirm = VCConfirm()
-            vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
-            vcConfirm.contributeCountLabel.text = project.contributeCount
-            self.present(vcConfirm, animated: true, completion: nil)
+            
+            _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
+                IJProgressView.shared.hideProgressView()
+                let vcConfirm = VCConfirm()
+                vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
+                vcConfirm.contributeCountLabel.text = project.contributeCount
+                self.present(vcConfirm, animated: true, completion: nil)
+            })
             
         } else {
+            IJProgressView.shared.hideProgressView()
             // not enough points
             let alert = UIAlertController(title: "Not Enough Points", message: "Try Again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -307,7 +313,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             
             shadowView.layer.masksToBounds = false
 
-            shadowView.layer.cornerRadius = 8
+            shadowView.layer.cornerRadius = 10
             shadowView.layer.shadowColor = UIColor.black.cgColor
             shadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
             shadowView.layer.shadowOpacity = 0.4
@@ -319,7 +325,7 @@ class VCHome: UIViewController, UIScrollViewDelegate, VProjectDelegate {
             // project view
             if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? VProject {
                 project.delegate = self
-                project.layer.cornerRadius = 8
+                project.layer.cornerRadius = 10
                 project.layer.masksToBounds = true
                 let projectDetails: Project = projects[i]
                 project.updateProjectView(project: projectDetails)
