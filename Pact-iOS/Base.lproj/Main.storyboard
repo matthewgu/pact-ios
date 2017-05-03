@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yh-1Q-A8w" customClass="SnakePageControl" customModule="PageControls">
-                                <rect key="frame" x="139.5" y="200" width="96" height="22"/>
+                                <rect key="frame" x="139.5" y="267" width="96" height="400"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="pageCount">
                                         <integer key="value" value="3"/>
@@ -46,7 +47,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4yh-1Q-A8w" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3B1-c9-hLO"/>
-                            <constraint firstItem="4yh-1Q-A8w" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="200" id="mD2-Fw-fPD"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="4yh-1Q-A8w" secondAttribute="bottom" id="8pk-Xn-BC9"/>
+                            <constraint firstItem="4yh-1Q-A8w" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.6" id="hwr-v9-982"/>
                         </constraints>
                     </view>
                     <connections>
