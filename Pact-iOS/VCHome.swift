@@ -307,6 +307,14 @@ class VCHome: UIViewController, VProjectDelegate {
         scrlv.isScrollEnabled = true
         self.contentView.addSubview(scrlv)
         
+        // page control
+        scrlv.addSubview(snakePageControl)
+        snakePageControl.pageCount = projects.count
+        snakePageControl.indicatorPadding = 15
+        snakePageControl.indicatorRadius = 6
+        snakePageControl.activeTint = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
+        snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+        
         var x = 0 as CGFloat
         for i in 0..<projects.count
         {
@@ -346,14 +354,6 @@ class VCHome: UIViewController, VProjectDelegate {
             x = v.frame.maxX
             scrlv.contentSize.width = x
         }
-        
-        // page control
-        scrlv.addSubview(snakePageControl)
-        snakePageControl.pageCount = projects.count
-        snakePageControl.indicatorPadding = 15
-        snakePageControl.indicatorRadius = 6
-        snakePageControl.activeTint = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
-        snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
     }
     
     func setupScrlv() {
