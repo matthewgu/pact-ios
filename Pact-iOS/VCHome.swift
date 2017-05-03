@@ -28,6 +28,15 @@ class VCHome: UIViewController, VProjectDelegate {
         
         super.viewDidLoad()
         
+        JTSplashView.splashViewWithBackgroundColor(nil, circleColor: nil, circleSize: nil)
+        
+        // Simulate state when we want to hide the splash view
+        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(VCHome.hideSplashView), userInfo: nil, repeats: false)
+        
+        // TODO: need to avoid loading duplicate projects
+        // self.projects.removeAll()
+        self.checkIfUserIsLoggedIn()
+        
         scrlv.isPagingEnabled = true
         scrlv.delegate = self
         
@@ -46,10 +55,6 @@ class VCHome: UIViewController, VProjectDelegate {
                                  action: #selector(refreshOptions(sender:)),
                                  for: .valueChanged)
         scrollView.refreshControl = refreshControl
-        
-        // TODO: need to avoid loading duplicate projects
-        // self.projects.removeAll()
-        self.checkIfUserIsLoggedIn()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -436,6 +441,11 @@ class VCHome: UIViewController, VProjectDelegate {
     }
     
     // MARK: - Support
+    func hideSplashView() {
+        JTSplashView.finishWithCompletion { () -> Void in
+            UIApplication.shared.isStatusBarHidden = false
+        }
+    }
     
     func handleLogout() {
         do {
