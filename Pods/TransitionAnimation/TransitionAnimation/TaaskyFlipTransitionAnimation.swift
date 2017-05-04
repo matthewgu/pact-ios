@@ -37,7 +37,7 @@ open class TaaskyFlipTransitionAnimation: NSObject, TRViewControllerAnimatedTran
         
         let containView = transitionContext.containerView
         
-        let angle = M_PI/2
+        let angle = Double.pi/2
         var startTransform = CATransform3DIdentity
         startTransform.m34 = -1.0/500.0
         startTransform = CATransform3DRotate(startTransform, CGFloat(angle), 0, 1, 0)

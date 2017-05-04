@@ -23,6 +23,10 @@ class VCConfirm: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         
+        fetchProjectContribute { (true) in
+            print("finished fetching")
+        }
+        
         view.addSubview(confirmImageView)
         view.addSubview(sentenceLabel)
         view.addSubview(contributeCountLabel)
@@ -34,21 +38,19 @@ class VCConfirm: UIViewController {
         setupcontributeCountLabel()
         setupByYouLabel()
         setupDismissButton()
-        
-        print(projectNameID)
-        fetchProjectContribute()
     }
     
     // MARK: - Data
-    func fetchProjectContribute() {
+    func fetchProjectContribute(completion: @escaping (Bool) -> ()) {
         let uid = FIRAuth.auth()?.currentUser?.uid
         FIRDatabase.database().reference().child("users").child(uid!).child("projects").child(projectNameID).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let contributeCount = dictionary["contributeCount"] as! String
+                self.contributeCountLabel.text = contributeCount
                 
-                print(contributeCount)
             }
-        }, withCancel: nil)
+            completion(true)
+        })
     }
     
     // MARK: - View
@@ -73,7 +75,7 @@ class VCConfirm: UIViewController {
     
     var contributeCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "10"
+        label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = UIColor.black
         label.textAlignment = .center
