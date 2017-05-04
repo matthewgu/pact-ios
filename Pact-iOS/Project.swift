@@ -10,6 +10,8 @@ import UIKit
 
 class Project {
     
+    let buttonColors = [UIColor.buttonGreen, UIColor.blue]
+    
     private var _projectNameID: String!
     private var _title: String!
     private var _description: String!
@@ -83,6 +85,7 @@ class Project {
         _itemVerb = itemVerb
         _buttonText = buttonText
     }
+
 }
 
 

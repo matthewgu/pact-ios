@@ -243,6 +243,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                     vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
                     vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
                     vcConfirm.contributeCountLabel.text = project.contributeCount
+                    vcConfirm.view.backgroundColor = UIColor.buttonGreen
                     self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: nil)
                 })
             })
@@ -263,8 +264,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
         navItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navBar.tintColor = UIColor.white
-        navBar.barTintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        //navBar.tintColor = UIColor.white
+        //navBar.barTintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         navBar.setItems([navItem], animated: false)
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar

@@ -22,4 +22,10 @@ extension UIColor {
         }
     }
     
+    class var buttonGreen:UIColor {
+        get {
+            return UIColor(red:91/255, green: 208/255, blue: 155/255, alpha: 1)
+        }
+    }
+    
 }
