@@ -18,6 +18,7 @@ class Project {
     private var _coverImageName: String!
     private var _sponsorImageName: String!
     private var _itemName: String!
+    private var _itemVerb: String!
     private var _buttonText: String!
     private var _buttonColour: UIColor = UIColor.blue
     
@@ -58,6 +59,10 @@ class Project {
         return _itemName
     }
     
+    var itemVerb: String {
+        return _itemVerb
+    }
+    
     var buttonText: String {
         return _buttonText
     }
@@ -66,7 +71,7 @@ class Project {
         return _buttonColour
     }
     
-    init(projectNameID: String, title: String, description: String, pointsNeeded: String, contributeCount: String, coverImageName: String, sponsorImageName: String, itemName: String, buttonText: String) {
+    init(projectNameID: String, title: String, description: String, pointsNeeded: String, contributeCount: String, coverImageName: String, sponsorImageName: String, itemName: String, itemVerb: String, buttonText: String) {
         _projectNameID = projectNameID
         _title = title
         _description = description
@@ -75,6 +80,7 @@ class Project {
         _coverImageName = coverImageName
         _sponsorImageName = sponsorImageName
         _itemName = itemName
+        _itemVerb = itemVerb
         _buttonText = buttonText
     }
 }

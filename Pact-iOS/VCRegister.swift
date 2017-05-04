@@ -34,7 +34,7 @@ class VCRegister: UIViewController {
     
     // MARK: - Model
     let firstProjectNameID = "serveMeal"
-    let firstProject = ["projectNameID": "serveMeal", "title": "Help Union Gospel Mission  Serve a Meal", "description": "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", "pointsNeeded": "3000", "contributeCount": "0", "coverImageName": "serveMeal.jpg", "sponsorImageName": "telus.png", "itemName": "meals", "buttonText": "SERVE A MEAL"]
+    let firstProject = ["projectNameID": "serveMeal", "title": "Help Union Gospel Mission  Serve a Meal", "description": "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", "pointsNeeded": "3000", "contributeCount": "0", "coverImageName": "serveMeal.jpg", "sponsorImageName": "telus.png", "itemName": "meals", "itemVerb": "served", "buttonText": "SERVE A MEAL"]
     
     // MARK: - View
     let logoView: UIImageView = {
@@ -210,13 +210,6 @@ class VCRegister: UIViewController {
         
         // change height of input container view
         inputsContainerViewHeigthAnchor?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 120 : 185
-        
-        
-        // change top anchor of nameTextField
-//        nameTextFieldTopAnchor?.isActive = false
-//        nameTextFieldTopAnchor = nameTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? -50 : 0)
-//        nameTextField.isHidden = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? true : false
-//        nameTextFieldTopAnchor?.isActive = true
     }
     
     func setuploginRegisterSegmentedControl() {

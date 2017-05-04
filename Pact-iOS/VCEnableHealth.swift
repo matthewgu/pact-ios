@@ -23,7 +23,7 @@ class VCEnableHealth: UIViewController {
     let enableHealthKitButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(red: 183/255, green: 56/255, blue: 42/255, alpha: 1)
-        button.setTitle("Register", for: .normal)
+        button.setTitle("ENABLE APPLE HEALTH", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
