@@ -44,10 +44,10 @@ class VCConfirm: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "this is the confirmation sentence"
-        label.backgroundColor = UIColor.black
+        //label.backgroundColor = UIColor.black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.white
         return label
     }()
     
@@ -55,10 +55,10 @@ class VCConfirm: UIViewController {
         let label = UILabel()
         label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = UIColor.black
+        //label.backgroundColor = UIColor.black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 80)
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.white
         return label
     }()
     
@@ -66,10 +66,10 @@ class VCConfirm: UIViewController {
         let label = UILabel()
         label.text = "by you"
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = UIColor.black
+        //label.backgroundColor = UIColor.black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 40)
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.white
         return label
     }()
     

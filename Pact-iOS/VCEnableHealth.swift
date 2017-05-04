@@ -15,15 +15,43 @@ class VCEnableHealth: UIViewController {
         view.backgroundColor = UIColor.white
         
         view.addSubview(enableHealthKitButton)
+        view.addSubview(appleHealthLogo)
+        view.addSubview(sentenceLabel)
         
         setupEnableHealthKitButton()
+        setupSentenceLabel()
+        setupAppleHealthLogo()
     }
     
     // MARK: - View
+    let appleHealthLogo: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "appleHealth.png")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    var sentenceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let attributedString = NSMutableAttributedString(string: "Pact allows your to earn points by walking. You need to first allow Pact to read your fitness data from Apple Health")
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 3
+        attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        label.attributedText = attributedString
+        label.backgroundColor = UIColor.black
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.darkGray
+        return label
+    }()
+    
     let enableHealthKitButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(red: 183/255, green: 56/255, blue: 42/255, alpha: 1)
-        button.setTitle("ENABLE APPLE HEALTH", for: .normal)
+        button.setTitle("CONNECT TO APPLE HEALTH", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
@@ -33,6 +61,20 @@ class VCEnableHealth: UIViewController {
         button.addTarget(self, action: #selector(handleHealthKitAuth), for: .touchUpInside)
         return button
     }()
+    
+    
+    func setupAppleHealthLogo() {
+        // need x, y, width and height constraints
+        appleHealthLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        appleHealthLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40).isActive = true
+        appleHealthLogo.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
+        appleHealthLogo.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    }
+    
+    func setupSentenceLabel() {
+        sentenceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        sentenceLabel.topAnchor.constraint(equalTo: appleHealthLogo.bottomAnchor, constant: 60).isActive = true
+    }
     
     func setupEnableHealthKitButton() {
         enableHealthKitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
