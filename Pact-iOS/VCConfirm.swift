@@ -12,20 +12,11 @@ import TransitionTreasury
 
 class VCConfirm: UIViewController {
     
-    // firebase ref
-    var ref: FIRDatabaseReference?
-    
-    var projectNameID = String()
-    
     weak var modalDelegate: ModalViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-        
-        fetchProjectContribute { (true) in
-            print("finished fetching")
-        }
         
         view.addSubview(confirmImageView)
         view.addSubview(sentenceLabel)
@@ -38,19 +29,6 @@ class VCConfirm: UIViewController {
         setupcontributeCountLabel()
         setupByYouLabel()
         setupDismissButton()
-    }
-    
-    // MARK: - Data
-    func fetchProjectContribute(completion: @escaping (Bool) -> ()) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).child("projects").child(projectNameID).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                let contributeCount = dictionary["contributeCount"] as! String
-                self.contributeCountLabel.text = contributeCount
-                
-            }
-            completion(true)
-        })
     }
     
     // MARK: - View

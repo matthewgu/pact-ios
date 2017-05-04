@@ -139,16 +139,17 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         }, withCancel: nil)
     }
     
-    func fetchContriuteCount(project: Project) {
+    func fetchContriuteCount(project: Project, completion: @escaping (Bool) -> ()) {
         let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).child("projects").child(project.projectNameID).observeSingleEvent(of: .value, with: { (snapshot) in
+            FIRDatabase.database().reference().child("users").child(uid!).child("projects").child(project.projectNameID).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 if let contributeCount = dictionary["contributeCount"] as? String {
                     project.contributeCount = contributeCount
                 }
             }
-        }, withCancel: nil)
+            completion(true)
+        })
     }
     
     func fetchUser() {
@@ -227,20 +228,19 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             
             // pull new data
             fetchUser()
-            fetchContriuteCount(project: project)
+            fetchContriuteCount(project: project, completion: { (true) in
+                _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
+                    IJProgressView.shared.hideProgressView()
+                    
+                    let vcConfirm = VCConfirm()
+                    vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
+                    vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
+                    vcConfirm.contributeCountLabel.text = project.contributeCount
+                    self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: nil)
+                })
+            })
             
             print("Project Title: \(project.title), Contribute Count: \(project.contributeCount) \(project.itemName), Points Contributed: \(user?.pointsContributed ?? "0") points")
-            
-            _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
-                IJProgressView.shared.hideProgressView()
-                
-                let vcConfirm = VCConfirm()
-                vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
-                //vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
-                //vcConfirm.contributeCountLabel.text = project.contributeCount
-                vcConfirm.projectNameID = project.projectNameID
-                self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: nil)
-            })
             
         } else {
             IJProgressView.shared.hideProgressView()
