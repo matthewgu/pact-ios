@@ -23,7 +23,10 @@ class VCHome: UIViewController, VProjectDelegate {
     // horizonta scroll view
     let scrlv = UIScrollView()
     @IBOutlet weak var snakePageControl: SnakePageControl!
-
+    
+    // refresh control
+    let refresh = UIRefreshControl()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -48,13 +51,11 @@ class VCHome: UIViewController, VProjectDelegate {
         setupNavBar()
         
         // refresh control
-        let refreshControl = UIRefreshControl()
-        let title = NSLocalizedString("Pull To Refresh", comment: "Pull to refresh")
-        refreshControl.attributedTitle = NSAttributedString(string: title)
-        refreshControl.addTarget(self,
-                                 action: #selector(refreshOptions(sender:)),
-                                 for: .valueChanged)
-        scrollView.refreshControl = refreshControl
+        loadRefreshControl()
+        refresh.tintColor = UIColor.clear
+        refresh.backgroundColor = UIColor.clear
+        refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        scrollView.refreshControl = refresh
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -113,6 +114,13 @@ class VCHome: UIViewController, VProjectDelegate {
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
         
+        // refresh Timer
+        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (Timer) in
+            // end refresh
+            self.refresh.endRefreshing()
+        })
+        
+        // animate points
         if currentPoints != oldPoints {
             countingLabel(start: oldPoints, end: currentPoints)
         }
@@ -222,7 +230,6 @@ class VCHome: UIViewController, VProjectDelegate {
             fetchContriuteCount(project: project)
             
             print("Project Title: \(project.title), Contribute Count: \(project.contributeCount) \(project.itemName), Points Contributed: \(user?.pointsContributed ?? "0") points")
-            
             
             _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
                 IJProgressView.shared.hideProgressView()
@@ -424,8 +431,8 @@ class VCHome: UIViewController, VProjectDelegate {
     }
     
     // MARK: - Func
-    @objc private func refreshOptions(sender: UIRefreshControl) {
-        sender.endRefreshing()
+    
+    func handleRefresh() {
         fetchPoints()
         getStep()
         self.pointsLabel.text = self.user?.points
@@ -460,6 +467,25 @@ class VCHome: UIViewController, VProjectDelegate {
         JTSplashView.finishWithCompletion { () -> Void in
             UIApplication.shared.isStatusBarHidden = false
         }
+    }
+    
+    func loadRefreshControl() {
+        let refreshContents = UINib(nibName: "VRefresh", bundle: nil).instantiate(withOwner: self, options: nil)
+        
+        let customView = refreshContents[0] as! UIView
+        
+        customView.frame = refresh.bounds
+        customView.backgroundColor = UIColor.clear
+        
+        let customLabel = customView.viewWithTag(1) as! UILabel
+        customLabel.textColor = UIColor.white
+        
+        UIView.animate(withDuration: 0.5 , delay: 0, options: [.autoreverse, .curveLinear, .repeat], animations: {
+            customView.backgroundColor = UIColor.red
+            customView.backgroundColor = UIColor.blue
+        }, completion: nil)
+        
+        self.refresh.addSubview(customView)
     }
     
     func handleLogout() {
