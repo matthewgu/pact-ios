@@ -118,12 +118,13 @@ class VCHome: UIViewController, VProjectDelegate {
         _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (Timer) in
             // end refresh
             self.refresh.endRefreshing()
+            
+            // animate points
+            if currentPoints != oldPoints {
+                self.countingLabel(start: oldPoints, end: currentPoints)
+            }
         })
-        
-        // animate points
-        if currentPoints != oldPoints {
-            countingLabel(start: oldPoints, end: currentPoints)
-        }
+
     }
     
     func fetchPoints() {
