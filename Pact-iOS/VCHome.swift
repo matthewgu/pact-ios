@@ -115,7 +115,7 @@ class VCHome: UIViewController, VProjectDelegate {
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
         
         // refresh Timer
-        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (Timer) in
+        _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (Timer) in
             // end refresh
             self.refresh.endRefreshing()
         })

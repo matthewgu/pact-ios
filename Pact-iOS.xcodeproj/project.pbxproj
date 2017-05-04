@@ -91,6 +91,7 @@
 				818759981EBAA851002EAD58 /* CountingLabel.swift */,
 				81C56EB61EB8121C009F2C3F /* IJProgressView.swift */,
 				818759961EBAA504002EAD58 /* JTSplashView.swift */,
+				818759BA1EBABBB4002EAD58 /* VRefresh.xib */,
 				813BFB7C1EB45AAA00766E12 /* CustomView.xib */,
 				812CA78C1EB42D96002FD679 /* HealthKitUtil.swift */,
 				812CA78D1EB42D96002FD679 /* StorageUtil.swift */,
@@ -169,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				813BFB7E1EB45AFC00766E12 /* VProject.swift */,
-				818759BA1EBABBB4002EAD58 /* VRefresh.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
