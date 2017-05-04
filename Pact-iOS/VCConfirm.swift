@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import TransitionTreasury
 
 class VCConfirm: UIViewController {
 
+    weak var modalDelegate: ModalViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
@@ -117,6 +120,7 @@ class VCConfirm: UIViewController {
     
     // MARK: - Func
     func handleDismiss() {
-        self.dismiss(animated: true, completion: nil)
+        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+        //self.dismiss(animated: true, completion: nil)
     }
 }

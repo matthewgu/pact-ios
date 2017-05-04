@@ -48,6 +48,9 @@ PODS:
   - PageControls/PillPageControl (1.0.1)
   - PageControls/ScrollingPageControl (1.0.1)
   - PageControls/SnakePageControl (1.0.1)
+  - TransitionAnimation (4.0.0):
+    - TransitionTreasury (~> 4.0)
+  - TransitionTreasury (4.0.0)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -56,6 +59,8 @@ DEPENDENCIES:
   - Firebase/Storage
   - IQKeyboardManagerSwift
   - PageControls
+  - TransitionAnimation
+  - TransitionTreasury
 
 SPEC CHECKSUMS:
   Firebase: 2b1cdfba1cda8589f32904a697cc753322bff9d8
@@ -69,7 +74,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
   PageControls: fc2436c93e79419521a6de5d46d84722593e2949
+  TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
+  TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
 
-PODFILE CHECKSUM: 59e39e7fca334ce80aeee0560646b79c9f773755
+PODFILE CHECKSUM: 80ad7ddb54691f7a51ce1e6c989e5e0413c9b101
 
 COCOAPODS: 1.2.0

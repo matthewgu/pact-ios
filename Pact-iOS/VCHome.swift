@@ -10,8 +10,12 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import PageControls
+import TransitionTreasury
+import TransitionAnimation
 
-class VCHome: UIViewController, VProjectDelegate {
+class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
+    
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     // firebase ref
     var ref: FIRDatabaseReference?
@@ -44,6 +48,7 @@ class VCHome: UIViewController, VProjectDelegate {
         scrlv.delegate = self
         
         // view related
+        view.backgroundColor = UIColor.gray
         view.addSubview(scrollView)
         view.addSubview(navBar)
         
@@ -234,10 +239,14 @@ class VCHome: UIViewController, VProjectDelegate {
             
             _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
                 IJProgressView.shared.hideProgressView()
+                
                 let vcConfirm = VCConfirm()
+                vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
                 vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
                 vcConfirm.contributeCountLabel.text = project.contributeCount
-                self.present(vcConfirm, animated: true, completion: nil)
+                self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: {
+                    print("Present finished.")
+                })
             })
             
         } else {

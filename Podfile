@@ -12,5 +12,7 @@ target 'Pact-iOS' do
   pod 'Firebase/Storage'
   pod 'IQKeyboardManagerSwift'
   pod 'PageControls'
+  pod 'TransitionTreasury'
+  pod 'TransitionAnimation'
   
 end
