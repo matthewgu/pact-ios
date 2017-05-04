@@ -98,16 +98,24 @@ class VCHome: UIViewController, VProjectDelegate {
             }
         }
     }
-    
+
     func addPoints(steps: Int) {
-        let oldPoints = Int(self.pointsLabel.text!)
-        let currentPoints = oldPoints! + steps
+        var oldPoints = Int()
+        if let oldPointsOptional = Int((self.user?.points)!) {
+            oldPoints = oldPointsOptional
+        }
+        let currentPoints = oldPoints + steps
         let currentPointsStr = "\(currentPoints)"
+        
+        // update points
+        self.user?.points = currentPointsStr
         ref = FIRDatabase.database().reference()
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
         
-        fetchPoints()
+        if currentPoints != oldPoints {
+            countingLabel(start: oldPoints, end: currentPoints)
+        }
     }
     
     func fetchPoints() {
@@ -118,7 +126,6 @@ class VCHome: UIViewController, VProjectDelegate {
                 if let points = dictionary["points"] as? String {
                     self.user?.points = points
                 }
-                self.pointsLabel.text = self.user?.points
             }
             
         }, withCancel: nil)
@@ -202,6 +209,8 @@ class VCHome: UIViewController, VProjectDelegate {
             let pointsContributedString = "\(pointsContributed)"
             
             // updating new values
+            self.user?.points = pointsContributedString
+            
             ref = FIRDatabase.database().reference()
             let uid = FIRAuth.auth()?.currentUser?.uid
             self.ref?.child("users/\(uid!)/points").setValue(newPointsString)
@@ -287,8 +296,8 @@ class VCHome: UIViewController, VProjectDelegate {
         return view
     }()
     
-    let pointsLabel: UILabel = {
-        let label = UILabel()
+    let pointsLabel: CountingLabel = {
+        let label = CountingLabel()
         //label.backgroundColor = UIColor.blue
         label.textAlignment = .right
         label.textColor = UIColor.black
@@ -419,6 +428,12 @@ class VCHome: UIViewController, VProjectDelegate {
         sender.endRefreshing()
         fetchPoints()
         getStep()
+        self.pointsLabel.text = self.user?.points
+    }
+    
+    func countingLabel(start: Int, end: Int) {
+        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(VCHome.hideSplashView), userInfo: nil, repeats: false)
+        pointsLabel.count(fromValue: Float(start), to: Float(end), withDuration: 2.4, andAnimationType: .EaseOut, andCouterType: .Int)
     }
     
     func checkIfUserIsLoggedIn() {

@@ -27,6 +27,7 @@
 		816F6EBD1EB33ACC0037E256 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 816F6EBC1EB33ACC0037E256 /* HealthKit.framework */; };
 		816F6EC41EB36B3A0037E256 /* VCRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EC31EB36B3A0037E256 /* VCRegister.swift */; };
 		818759971EBAA504002EAD58 /* JTSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818759961EBAA504002EAD58 /* JTSplashView.swift */; };
+		818759991EBAA851002EAD58 /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818759981EBAA851002EAD58 /* CountingLabel.swift */; };
 		81C56EB71EB8121C009F2C3F /* IJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C56EB61EB8121C009F2C3F /* IJProgressView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		816F6EBC1EB33ACC0037E256 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		816F6EC31EB36B3A0037E256 /* VCRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCRegister.swift; sourceTree = "<group>"; };
 		818759961EBAA504002EAD58 /* JTSplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSplashView.swift; sourceTree = "<group>"; };
+		818759981EBAA851002EAD58 /* CountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingLabel.swift; sourceTree = "<group>"; };
 		81C56EB61EB8121C009F2C3F /* IJProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJProgressView.swift; sourceTree = "<group>"; };
 		A7638FCF2FC80C84A5CC85AF /* Pods_Pact_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pact_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0725B20C10C428169AFAC92 /* Pods-Pact-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pact-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pact-iOS/Pods-Pact-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		812CA78B1EB42D79002FD679 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				818759981EBAA851002EAD58 /* CountingLabel.swift */,
 				81C56EB61EB8121C009F2C3F /* IJProgressView.swift */,
 				818759961EBAA504002EAD58 /* JTSplashView.swift */,
 				813BFB7C1EB45AAA00766E12 /* CustomView.xib */,
@@ -309,6 +312,7 @@
 				813904D91EB7151600F35545 /* VCConfirm.swift in Sources */,
 				81C56EB71EB8121C009F2C3F /* IJProgressView.swift in Sources */,
 				812CA7931EB42EED002FD679 /* VCEnableHealth.swift in Sources */,
+				818759991EBAA851002EAD58 /* CountingLabel.swift in Sources */,
 				813BFB7F1EB45AFC00766E12 /* VProject.swift in Sources */,
 				812CA7901EB42D96002FD679 /* StorageUtil.swift in Sources */,
 				8106E6D41EB6BA7900A40F05 /* User.swift in Sources */,
