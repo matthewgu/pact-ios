@@ -119,14 +119,22 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
         
-        // animate points
-        if currentPoints != oldPoints {
-            self.countingLabel(start: oldPoints, end: currentPoints)
+        _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (Timer) in
+            // end refresh
+            self.refresh.endRefreshing()
+        })
+        
+        // animate points label after 1.7 s
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+            // animate points
+            if currentPoints != oldPoints {
+                self.countingLabel(start: oldPoints, end: currentPoints)
+                self.pointsLabel.text = self.user?.points
+            }
         }
-
     }
     
-    func fetchPoints() {
+    func fetchPoints(completion: @escaping (Bool) -> ()) {
         let uid = FIRAuth.auth()?.currentUser?.uid
         FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -135,7 +143,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                     self.user?.points = points
                 }
             }
-            
+        completion(true)
         }, withCancel: nil)
     }
     
@@ -183,7 +191,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                             let project = Project(projectNameID: projectNameID, title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, itemName: itemName, itemVerb: itemVerb, buttonText: buttonText)
                 
                             self.projects.append(project)
-                            print("VERB: \(project.itemVerb)")
                         }
                     }
                 }
@@ -437,18 +444,12 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     func handleRefresh() {
         loadRefreshControl()
-        fetchPoints()
-        getStep()
-        
-        _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (Timer) in
-            // end refresh
-            self.refresh.endRefreshing()
-            self.pointsLabel.text = self.user?.points
-        })
+        fetchPoints { (true) in
+            self.getStep()
+        }
     }
     
     func countingLabel(start: Int, end: Int) {
-        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(VCHome.hideSplashView), userInfo: nil, repeats: false)
         pointsLabel.count(fromValue: Float(start), to: Float(end), withDuration: 2.4, andAnimationType: .EaseOut, andCouterType: .Int)
     }
     
