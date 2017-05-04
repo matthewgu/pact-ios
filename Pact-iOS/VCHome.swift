@@ -118,12 +118,12 @@ class VCHome: UIViewController, VProjectDelegate {
         _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (Timer) in
             // end refresh
             self.refresh.endRefreshing()
-            
-            // animate points
-            if currentPoints != oldPoints {
-                self.countingLabel(start: oldPoints, end: currentPoints)
-            }
         })
+        
+        // animate points
+        if currentPoints != oldPoints {
+            self.countingLabel(start: oldPoints, end: currentPoints)
+        }
 
     }
     
@@ -482,8 +482,8 @@ class VCHome: UIViewController, VProjectDelegate {
         customLabel.textColor = UIColor.white
         
         UIView.animate(withDuration: 0.5 , delay: 0, options: [.autoreverse, .curveLinear, .repeat], animations: {
-            customView.backgroundColor = UIColor.red
-            customView.backgroundColor = UIColor.blue
+            customView.backgroundColor = UIColor.orange
+            customView.backgroundColor = UIColor.black
         }, completion: nil)
         
         self.refresh.addSubview(customView)
