@@ -55,12 +55,10 @@ class VProject: UIView {
         descriptionLabel.attributedText = attributedString
         
         // contribute button
-        let index = "0"
         contributeButton.setTitle(project.buttonText, for: .normal)
         contributeButton.layer.cornerRadius = 8
         contributeButton.layer.masksToBounds = true
-        contributeButton.backgroundColor = project.buttonColors[Int(index)!]
-        //project.buttonColour
+        contributeButton.backgroundColor = project.buttonColors[Int(project.buttonColorIndex)!]
         
         // images
         coverImage.layer.masksToBounds = true
