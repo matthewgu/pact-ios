@@ -56,10 +56,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         setupNavBar()
         
         // refresh control
-        loadRefreshControl()
         refresh.tintColor = UIColor.clear
         refresh.backgroundColor = UIColor.clear
         refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        //loadRefreshControl()
         scrollView.refreshControl = refresh
     }
     
@@ -118,12 +118,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         ref = FIRDatabase.database().reference()
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
-        
-        // refresh Timer
-        _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (Timer) in
-            // end refresh
-            self.refresh.endRefreshing()
-        })
         
         // animate points
         if currentPoints != oldPoints {
@@ -443,9 +437,15 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     // MARK: - Func
     
     func handleRefresh() {
+        loadRefreshControl()
         fetchPoints()
         getStep()
-        self.pointsLabel.text = self.user?.points
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (Timer) in
+            // end refresh
+            self.refresh.endRefreshing()
+            self.pointsLabel.text = self.user?.points
+        })
     }
     
     func countingLabel(start: Int, end: Int) {
