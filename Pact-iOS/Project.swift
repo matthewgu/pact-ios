@@ -22,7 +22,7 @@ class Project {
     private var _itemName: String!
     private var _itemVerb: String!
     private var _buttonText: String!
-    private var _buttonColour: UIColor = UIColor.blue
+    private var _buttonColorIndex: String!
     
     var projectNameID: String {
         return _projectNameID
@@ -69,11 +69,11 @@ class Project {
         return _buttonText
     }
     
-    var buttonColour: UIColor {
-        return _buttonColour
+    var buttonColorIndex: String {
+        return _buttonColorIndex
     }
     
-    init(projectNameID: String, title: String, description: String, pointsNeeded: String, contributeCount: String, coverImageName: String, sponsorImageName: String, itemName: String, itemVerb: String, buttonText: String) {
+    init(projectNameID: String, title: String, description: String, pointsNeeded: String, contributeCount: String, coverImageName: String, sponsorImageName: String, itemName: String, itemVerb: String, buttonText: String, buttonColorIndex: String) {
         _projectNameID = projectNameID
         _title = title
         _description = description
@@ -84,6 +84,7 @@ class Project {
         _itemName = itemName
         _itemVerb = itemVerb
         _buttonText = buttonText
+        _buttonColorIndex = buttonColorIndex
     }
 
 }
