@@ -236,11 +236,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                 
                 let vcConfirm = VCConfirm()
                 vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
-                vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
-                vcConfirm.contributeCountLabel.text = project.contributeCount
-                self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: {
-                    print("Present finished.")
-                })
+                //vcConfirm.sentenceLabel.text = "We planted 122 trees together!"
+                //vcConfirm.contributeCountLabel.text = project.contributeCount
+                vcConfirm.projectNameID = project.projectNameID
+                self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: nil)
             })
             
         } else {
@@ -460,7 +459,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         } else {
             fetchUser()
             fetchProject(completion: { (true) in
-                print("Project Count: \(self.projects.count)")
                 self.setupPagingView()
             })
         }
