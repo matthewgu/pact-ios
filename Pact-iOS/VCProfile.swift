@@ -45,6 +45,7 @@ class VCProfile: UIViewController {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
         navItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleDismiss))
         navBar.setItems([navItem], animated: false)
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
@@ -201,6 +202,10 @@ class VCProfile: UIViewController {
     // MARK: - Func
     func handleLogout()  {
     
+    }
+    
+    func handleDismiss() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func handleRefresh() {
