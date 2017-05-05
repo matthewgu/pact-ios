@@ -369,9 +369,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             // shawdow view
             let shadowView = UIView()
             shadowView.backgroundColor = UIColor.white
-            
             shadowView.layer.masksToBounds = false
-
             shadowView.layer.cornerRadius = 10
             shadowView.layer.shadowColor = UIColor.black.cgColor
             shadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)

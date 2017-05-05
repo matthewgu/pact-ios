@@ -17,7 +17,7 @@ class VCProfile: UIViewController {
         super.viewDidLoad()
 
         // view related
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.white
         view.addSubview(redView)
         view.addSubview(scrollView)
         view.addSubview(navBar)
@@ -36,7 +36,7 @@ class VCProfile: UIViewController {
     // MARK: - View
     let redView: UIScrollView = {
         let scrlv = UIScrollView()
-        scrlv.backgroundColor = UIColor.blue
+        scrlv.backgroundColor = UIColor.pactRed
         scrlv.translatesAutoresizingMaskIntoConstraints = false
         return scrlv
     }()
@@ -60,6 +60,28 @@ class VCProfile: UIViewController {
     let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let profileCardView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let profileCardShadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.layer.masksToBounds = false
+        view.layer.cornerRadius = 10
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        view.layer.shadowOpacity = 0.25
+        view.layer.shadowRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -99,6 +121,27 @@ class VCProfile: UIViewController {
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         contentView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -64).isActive = true
+        
+        contentView.addSubview(profileCardShadowView)
+        contentView.addSubview(profileCardView)
+        setupProfileCardShadowView()
+        setupProfileCardView()
+    }
+    
+    func setupProfileCardView() {
+        // need x, y, width and height constraints
+        profileCardView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9).isActive = true
+        profileCardView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
+        profileCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileCardView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+    }
+    
+    func setupProfileCardShadowView() {
+        // need x, y, width and height constraints
+        profileCardShadowView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9).isActive = true
+        profileCardShadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
+        profileCardShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileCardShadowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
     }
     
     // MARK: - Func
@@ -108,11 +151,7 @@ class VCProfile: UIViewController {
     
     func handleRefresh() {
         loadRefreshControl()
-        
-        // end refresh after 3s
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.refresh.endRefreshing()
-        }
+        self.refresh.endRefreshing()
 
     }
     
@@ -126,7 +165,7 @@ class VCProfile: UIViewController {
         customView.backgroundColor = UIColor.clear
         
         let customLabel = customView.viewWithTag(1) as! UILabel
-        customLabel.textColor = UIColor.black
+        customLabel.text = ""
         customLabel.backgroundColor = UIColor.clear
         
         self.refresh.addSubview(customView)

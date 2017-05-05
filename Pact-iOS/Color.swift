@@ -10,6 +10,12 @@ import UIKit
 
 extension UIColor {
     
+    class var pactRed:UIColor {
+        get {
+            return UIColor(red:233/255, green: 103/255, blue: 89/255, alpha: 1)
+        }
+    }
+    
     class var customBlue:UIColor {
         get {
             return UIColor(red:0.421593, green: 0.657718, blue: 0.972549, alpha: 1)
