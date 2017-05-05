@@ -48,7 +48,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         scrlv.delegate = self
         
         // view related
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.white
         view.addSubview(scrollView)
         view.addSubview(navBar)
         

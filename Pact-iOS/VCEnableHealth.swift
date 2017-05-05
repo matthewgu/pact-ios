@@ -38,12 +38,12 @@ class VCEnableHealth: UIViewController {
         
         let attributedString = NSMutableAttributedString(string: "Pact allows your to earn points by walking. You need to first allow Pact to read your fitness data from Apple Health")
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 3
+        paragraphStyle.lineSpacing = 10
         attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         label.attributedText = attributedString
-        label.backgroundColor = UIColor.black
+        label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = UIColor.darkGray
         return label
     }()
@@ -74,6 +74,7 @@ class VCEnableHealth: UIViewController {
     func setupSentenceLabel() {
         sentenceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sentenceLabel.topAnchor.constraint(equalTo: appleHealthLogo.bottomAnchor, constant: 60).isActive = true
+        sentenceLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
     }
     
     func setupEnableHealthKitButton() {
