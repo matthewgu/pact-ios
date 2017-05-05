@@ -66,9 +66,9 @@ class VCEnableHealth: UIViewController {
     func setupAppleHealthLogo() {
         // need x, y, width and height constraints
         appleHealthLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        appleHealthLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40).isActive = true
-        appleHealthLogo.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
-        appleHealthLogo.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        appleHealthLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -130).isActive = true
+        appleHealthLogo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
+        //appleHealthLogo.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
     func setupSentenceLabel() {
