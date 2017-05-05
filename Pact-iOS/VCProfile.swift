@@ -86,6 +86,24 @@ class VCProfile: UIViewController {
         return view
     }()
     
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "profileImage.png")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Rahul Jiresal"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.black
+        return label
+    }()
+    
     func setupRedView() {
         // need x, y, width and height constraints
         redView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6).isActive = true
@@ -134,6 +152,12 @@ class VCProfile: UIViewController {
         profileCardView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         profileCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileCardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
+        
+        profileCardView.addSubview(profileImageView)
+        profileCardView.addSubview(nameLabel)
+        
+        setupProfileImageView()
+        setupNameLabel()
     }
     
     func setupProfileCardShadowView() {
@@ -142,6 +166,19 @@ class VCProfile: UIViewController {
         profileCardShadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         profileCardShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileCardShadowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
+    }
+    
+    func setupProfileImageView() {
+        // need x, y, width and height constraints
+        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: profileCardView.topAnchor, constant: 30).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    }
+    
+    func setupNameLabel() {
+        nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30).isActive = true
     }
     
     // MARK: - Func
