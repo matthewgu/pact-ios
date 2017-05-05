@@ -104,6 +104,13 @@ class VCProfile: UIViewController {
         return label
     }()
     
+    let statsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.green
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     func setupRedView() {
         // need x, y, width and height constraints
         redView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6).isActive = true
@@ -158,6 +165,7 @@ class VCProfile: UIViewController {
         
         setupProfileImageView()
         setupNameLabel()
+        setupStatsView()
     }
     
     func setupProfileCardShadowView() {
@@ -172,13 +180,22 @@ class VCProfile: UIViewController {
         // need x, y, width and height constraints
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileImageView.topAnchor.constraint(equalTo: profileCardView.topAnchor, constant: 30).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
     func setupNameLabel() {
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30).isActive = true
+    }
+    
+    func setupStatsView() {
+        profileCardView.addSubview(statsView)
+        statsView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        statsView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30).isActive = true
+        statsView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        statsView.widthAnchor.constraint(equalTo: profileCardView.widthAnchor, multiplier: 0.9).isActive = true
+
     }
     
     // MARK: - Func
