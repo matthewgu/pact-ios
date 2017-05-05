@@ -26,6 +26,7 @@
 		816F6EB31EB33AB30037E256 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EB11EB33AB30037E256 /* LaunchScreen.storyboard */; };
 		816F6EBD1EB33ACC0037E256 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 816F6EBC1EB33ACC0037E256 /* HealthKit.framework */; };
 		816F6EC41EB36B3A0037E256 /* VCRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EC31EB36B3A0037E256 /* VCRegister.swift */; };
+		817D69C21EBC60BD00C45F62 /* VCProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817D69C11EBC60BD00C45F62 /* VCProfile.swift */; };
 		818759971EBAA504002EAD58 /* JTSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818759961EBAA504002EAD58 /* JTSplashView.swift */; };
 		818759991EBAA851002EAD58 /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818759981EBAA851002EAD58 /* CountingLabel.swift */; };
 		818759BB1EBABBB4002EAD58 /* VRefresh.xib in Resources */ = {isa = PBXBuildFile; fileRef = 818759BA1EBABBB4002EAD58 /* VRefresh.xib */; };
@@ -55,6 +56,7 @@
 		816F6EBA1EB33ACC0037E256 /* Pact-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pact-iOS.entitlements"; sourceTree = "<group>"; };
 		816F6EBC1EB33ACC0037E256 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		816F6EC31EB36B3A0037E256 /* VCRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCRegister.swift; sourceTree = "<group>"; };
+		817D69C11EBC60BD00C45F62 /* VCProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCProfile.swift; sourceTree = "<group>"; };
 		818759961EBAA504002EAD58 /* JTSplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSplashView.swift; sourceTree = "<group>"; };
 		818759981EBAA851002EAD58 /* CountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingLabel.swift; sourceTree = "<group>"; };
 		818759BA1EBABBB4002EAD58 /* VRefresh.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VRefresh.xib; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				816F6EC31EB36B3A0037E256 /* VCRegister.swift */,
 				812CA7921EB42EED002FD679 /* VCEnableHealth.swift */,
 				813904D81EB7151600F35545 /* VCConfirm.swift */,
+				817D69C11EBC60BD00C45F62 /* VCProfile.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				816F6EAB1EB33AB30037E256 /* VCHome.swift in Sources */,
 				816F6EC41EB36B3A0037E256 /* VCRegister.swift in Sources */,
 				816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */,
+				817D69C21EBC60BD00C45F62 /* VCProfile.swift in Sources */,
 				811B16AA1EB87F3E003589FB /* Color.swift in Sources */,
 				818759971EBAA504002EAD58 /* JTSplashView.swift in Sources */,
 				810A950D1EB3EEDA00E5A4DD /* Project.swift in Sources */,

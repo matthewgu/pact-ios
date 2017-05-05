@@ -263,13 +263,19 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     let navBar: UINavigationBar = {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
+        navItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         //navBar.tintColor = UIColor.white
         //navBar.barTintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         navBar.setItems([navItem], animated: false)
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
     }()
+    
+    func showProfile() {
+        let vcProfile = VCProfile()
+        self.present(vcProfile, animated: true, completion: nil)
+    }
     
     let scrollView: UIScrollView = {
         let scrlv = UIScrollView()
