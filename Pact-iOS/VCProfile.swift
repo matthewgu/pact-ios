@@ -44,8 +44,8 @@ class VCProfile: UIViewController {
     let navBar: UINavigationBar = {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleDismiss))
+        navItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .plain, target: self, action: #selector(handleDismiss))
         navBar.setItems([navItem], animated: false)
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
