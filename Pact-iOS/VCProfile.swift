@@ -133,15 +133,15 @@ class VCProfile: UIViewController {
         profileCardView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9).isActive = true
         profileCardView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         profileCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileCardView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        profileCardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
     }
     
     func setupProfileCardShadowView() {
         // need x, y, width and height constraints
-        profileCardShadowView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9).isActive = true
+        profileCardShadowView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8).isActive = true
         profileCardShadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         profileCardShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileCardShadowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        profileCardShadowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
     }
     
     // MARK: - Func
