@@ -1,4 +1,5 @@
 PODS:
+  - BEMCheckBox (1.4.0)
   - Firebase/Auth (3.15.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
@@ -53,6 +54,7 @@ PODS:
   - TransitionTreasury (4.0.0)
 
 DEPENDENCIES:
+  - BEMCheckBox
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -63,6 +65,7 @@ DEPENDENCIES:
   - TransitionTreasury
 
 SPEC CHECKSUMS:
+  BEMCheckBox: e18e4a148905b290bd03d98b767651c104f4eda3
   Firebase: 2b1cdfba1cda8589f32904a697cc753322bff9d8
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
@@ -77,6 +80,6 @@ SPEC CHECKSUMS:
   TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
   TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
 
-PODFILE CHECKSUM: 80ad7ddb54691f7a51ce1e6c989e5e0413c9b101
+PODFILE CHECKSUM: 79e8c9e5f18ab775d3619667e37104f7d6dba75b
 
 COCOAPODS: 1.2.0

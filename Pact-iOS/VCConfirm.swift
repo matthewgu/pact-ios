@@ -9,8 +9,11 @@
 import UIKit
 import Firebase
 import TransitionTreasury
+import BEMCheckBox
 
 class VCConfirm: UIViewController {
+    
+    let checkBox = BEMCheckBox()
     
     weak var modalDelegate: ModalViewControllerDelegate?
     
@@ -18,29 +21,50 @@ class VCConfirm: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundBeige
         
+    
+        view.addSubview(headerView)
+        view.addSubview(checkBox)
         view.addSubview(sentenceLabel)
         view.addSubview(contributeCountLabel)
         view.addSubview(byYouLabel)
         view.addSubview(dismissButton)
         
         setupHeaderView()
+        setupCheckMark()
         setupSentenceLabel()
         setupcontributeCountLabel()
         setupByYouLabel()
         setupDismissButton()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        perform(#selector(handleCheckMarkOn), with: nil, afterDelay: 0.3)
+    }
+    
     // MARK: - View
-
+    let headerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.pactRed
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let logoView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "pactLogo.png")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     var sentenceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "this is the confirmation sentence"
-        //label.backgroundColor = UIColor.black
+        label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.textDarkGrey
         return label
     }()
     
@@ -51,7 +75,7 @@ class VCConfirm: UIViewController {
         //label.backgroundColor = UIColor.black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 80)
-        label.textColor = UIColor.white
+        label.textColor = UIColor.textDarkGrey
         return label
     }()
     
@@ -59,10 +83,9 @@ class VCConfirm: UIViewController {
         let label = UILabel()
         label.text = "by you"
         label.translatesAutoresizingMaskIntoConstraints = false
-        //label.backgroundColor = UIColor.black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 40)
-        label.textColor = UIColor.white
+        label.textColor = UIColor.textDarkGrey
         return label
     }()
     
@@ -76,35 +99,57 @@ class VCConfirm: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleCheckMarkOff), for: .touchUpInside)
         return button
     }()
     
     func setupHeaderView() {
-        let v = UIView()
-        let vWidth: CGFloat = view.frame.size.width
-        let vHeight: CGFloat = view.frame.size.height * 0.4
-        v.backgroundColor = UIColor.pactRed
-        v.frame = CGRect(x: 0, y: 0, width: vWidth, height: vHeight)
-        view.addSubview(v)
+        headerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
+        headerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
-        //let logo = UIImage(named: "pactLogo.png")
+        headerView.addSubview(logoView)
         
+        setupLogoView()
+    }
+    
+    func setupLogoView() {
+        // need x, y, width and height constraints
+        logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        logoView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -200).isActive = true
+        logoView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+    
+    func setupCheckMark() {
+        checkBox.lineWidth = 3
+        checkBox.onAnimationType = BEMAnimationType.stroke
+        checkBox.offAnimationType = BEMAnimationType.oneStroke
+        checkBox.onTintColor = UIColor.white
+        checkBox.onFillColor = UIColor.pactRed
+        checkBox.offFillColor = UIColor.pactRed
+        checkBox.onCheckColor = UIColor.white
+        checkBox.animationDuration = 0.4
+        
+        let viewWidth: CGFloat = view.frame.size.width
+        checkBox.frame = CGRect(x: (viewWidth / 2) - 35, y: 120, width: 70, height: 70)
     }
     
     func setupSentenceLabel() {
         sentenceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        sentenceLabel.bottomAnchor.constraint(equalTo: contributeCountLabel.topAnchor, constant: -40).isActive = true
+        sentenceLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 30).isActive = true
+        sentenceLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
     }
     
     func setupcontributeCountLabel() {
         contributeCountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        contributeCountLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        contributeCountLabel.topAnchor.constraint(equalTo: sentenceLabel.bottomAnchor, constant: 30).isActive = true
     }
     
     func setupByYouLabel() {
         byYouLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        byYouLabel.bottomAnchor.constraint(equalTo: contributeCountLabel.bottomAnchor, constant: 70).isActive = true
+        byYouLabel.topAnchor.constraint(equalTo: contributeCountLabel.bottomAnchor, constant: 20).isActive = true
     }
     
     func setupDismissButton() {
@@ -116,6 +161,15 @@ class VCConfirm: UIViewController {
 
     
     // MARK: - Func
+    func handleCheckMarkOn() {
+        checkBox.setOn(true, animated: true)
+    }
+    
+    func handleCheckMarkOff() {
+        checkBox.setOn(false, animated: true)
+        perform(#selector(handleDismiss), with: nil, afterDelay: 0.4)
+    }
+    
     func handleDismiss() {
         modalDelegate?.modalViewControllerDismiss(callbackData: nil)
         //self.dismiss(animated: true, completion: nil)

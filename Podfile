@@ -14,5 +14,6 @@ target 'Pact-iOS' do
   pod 'PageControls'
   pod 'TransitionTreasury'
   pod 'TransitionAnimation'
+  pod 'BEMCheckBox'
   
 end

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '455D8B8349870D301123A55290E6032E'
-               BlueprintName = 'TransitionAnimation'
+               BlueprintIdentifier = 'BC19A72FB7D1DB0B2CC5F6C5CF2400F4'
+               BlueprintName = 'BEMCheckBox'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'TransitionAnimation.framework'>
+               BuildableName = 'BEMCheckBox.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

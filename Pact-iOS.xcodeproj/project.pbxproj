@@ -51,6 +51,7 @@
 		813BFB7E1EB45AFC00766E12 /* VProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VProject.swift; sourceTree = "<group>"; };
 		814D5A3B1EBD780F00F3FD27 /* Stats.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Stats.xib; sourceTree = "<group>"; };
 		814D5A3D1EBD78C400F3FD27 /* VStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VStats.swift; sourceTree = "<group>"; };
+		815FDCB11EBDEB2200AEA109 /* CheckMarkHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckMarkHeader.h; sourceTree = "<group>"; };
 		816F6EA51EB33AB30037E256 /* Pact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		816F6EA81EB33AB30037E256 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		816F6EAA1EB33AB30037E256 /* VCHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHome.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		812CA78B1EB42D79002FD679 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				815FDCB11EBDEB2200AEA109 /* CheckMarkHeader.h */,
 				818759981EBAA851002EAD58 /* CountingLabel.swift */,
 				817D69C51EBD59E400C45F62 /* DeviceUtil.swift */,
 				81C56EB61EB8121C009F2C3F /* IJProgressView.swift */,
