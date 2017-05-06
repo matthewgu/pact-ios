@@ -58,6 +58,8 @@ class VProject: UIView {
         contributeButton.setTitle(project.buttonText, for: .normal)
         contributeButton.layer.cornerRadius = 8
         contributeButton.layer.masksToBounds = true
+        sponsorImage.heightAnchor.constraint(equalToConstant: 57).isActive = true
+        sponsorImage.widthAnchor.constraint(equalToConstant: 56).isActive = true
         contributeButton.backgroundColor = project.buttonColors[Int(project.buttonColorIndex)!]
         
         // iphone 5
