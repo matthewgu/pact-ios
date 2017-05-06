@@ -84,8 +84,32 @@ class VProject: UIView {
             contributeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
             
             // sponsor image
-            sponsorImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
-            sponsorImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            //sponsorImage.heightAnchor.constraint(equalToConstant: 51).isActive = true
+            //sponsorImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        } else if DeviceUtil.height >= CGFloat(736.0) {
+            // points label
+            pointsNeededLabel.text = project.pointsNeeded + " pts"
+            pointsNeededLabel.font = UIFont.boldSystemFont(ofSize: 22)
+            
+            // title text
+            titleLabel.text = project.title
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+            
+            // description text
+            let attributedString = NSMutableAttributedString(string: project.description)
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 5
+            attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+            descriptionLabel.attributedText = attributedString
+            descriptionLabel.font = UIFont.systemFont(ofSize: 15)
+            
+            // contribute button
+            contributeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            //contributeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            
+            // sponsor image
+            sponsorImage.heightAnchor.constraint(equalToConstant: 66).isActive = true
+            sponsorImage.widthAnchor.constraint(equalToConstant: 65).isActive = true
             
         }
         
