@@ -101,7 +101,7 @@ class VProject: UIView {
             paragraphStyle.lineSpacing = 5
             attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
             descriptionLabel.attributedText = attributedString
-            descriptionLabel.font = UIFont.systemFont(ofSize: 15)
+            descriptionLabel.font = UIFont.systemFont(ofSize: 14)
             
             // contribute button
             contributeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -110,7 +110,8 @@ class VProject: UIView {
             // sponsor image
             sponsorImage.heightAnchor.constraint(equalToConstant: 66).isActive = true
             sponsorImage.widthAnchor.constraint(equalToConstant: 65).isActive = true
-            
+        } else {
+            // set up for iphone regular
         }
         
         
