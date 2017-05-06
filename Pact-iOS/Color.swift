@@ -12,19 +12,25 @@ extension UIColor {
     
     class var pactRed:UIColor {
         get {
-            return UIColor(red:233/255, green: 103/255, blue: 89/255, alpha: 1)
+            return buttonRed
         }
     }
     
-    class var customBlue:UIColor {
+    class var textDarkGrey:UIColor {
         get {
-            return UIColor(red:0.421593, green: 0.657718, blue: 0.972549, alpha: 1)
+            return UIColor(red:95/255, green: 104/255, blue: 112/255, alpha: 1)
         }
     }
     
-    class var lightBlue:UIColor {
+    class var textDarkBlue:UIColor {
         get {
-            return UIColor(red:0.700062, green: 0.817345, blue: 0.972549, alpha: 1)
+            return UIColor(red:45/255, green: 71/255, blue: 106/255, alpha: 1)
+        }
+    }
+    
+    class var backgroundBeige:UIColor {
+        get {
+            return UIColor(red:250/255, green: 248/255, blue: 246/255, alpha: 1)
         }
     }
     
@@ -37,6 +43,12 @@ extension UIColor {
     class var buttonRed:UIColor {
         get {
             return UIColor(red:233/255, green: 103/255, blue: 89/255, alpha: 1)
+        }
+    }
+    
+    class var buttonRedDark:UIColor {
+        get {
+            return UIColor(red:204/255, green: 79/255, blue: 65/255, alpha: 1)
         }
     }
     
