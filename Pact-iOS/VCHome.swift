@@ -24,7 +24,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     var projects = [Project]()
     var user: User?
     
-    let sampleProject = Project(projectNameID: "serveMeal", title: "Help Union Gospel Mission Serve a Meal" , description: "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", pointsNeeded: "3000", contributeCount: "0", coverImageName: "serveMeal.jpg", sponsorImageName: "telus.png", itemName: "meals", itemVerb: "served", buttonText: "SERVE A MEAL", buttonColorIndex: "0")
+    let sampleProject = Project(projectNameID: "serveMeal", title: "Help Union Gospel Mission Serve a Meal" , description: "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", pointsNeeded: "3000", contributeCount: "0", coverImageName: "serveMeal.jpg", sponsorImageName: "telus.png", projectIconName: "serveMealIcon.png", itemName: "meals", itemVerb: "served", buttonText: "SERVE A MEAL", buttonColorIndex: "0")
     
     // horizonta scroll view
     let scrlv = UIScrollView()
@@ -189,9 +189,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     if let dict = snap.value as? [String: Any] {
-                        if let projectNameID = dict["projectNameID"] as? String, let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let itemName = dict["itemName"] as? String, let itemVerb = dict["itemVerb"] as? String, let buttonText = dict["buttonText"] as? String, let buttonColorIndex = dict["buttonColorIndex"] as? String {
+                        if let projectNameID = dict["projectNameID"] as? String, let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let projectIconName = dict["projectIconName"] as? String, let itemName = dict["itemName"] as? String, let itemVerb = dict["itemVerb"] as? String, let buttonText = dict["buttonText"] as? String, let buttonColorIndex = dict["buttonColorIndex"] as? String {
                             
-                            let project = Project(projectNameID: projectNameID, title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, itemName: itemName, itemVerb: itemVerb, buttonText: buttonText, buttonColorIndex: buttonColorIndex)
+                            let project = Project(projectNameID: projectNameID, title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, projectIconName: projectIconName, itemName: itemName, itemVerb: itemVerb, buttonText: buttonText, buttonColorIndex: buttonColorIndex)
                             print(buttonColorIndex)
                             self.projects.append(project)
                         }

@@ -17,6 +17,7 @@ class Project {
     private var _description: String!
     private var _pointsNeeded: String!
     private var _contributeCount: String!
+    private var _projectIconName: String!
     private var _coverImageName: String!
     private var _sponsorImageName: String!
     private var _itemName: String!
@@ -57,6 +58,10 @@ class Project {
         return _sponsorImageName
     }
     
+    var projectIconName: String {
+        return _projectIconName
+    }
+    
     var itemName: String {
         return _itemName
     }
@@ -73,7 +78,7 @@ class Project {
         return _buttonColorIndex
     }
     
-    init(projectNameID: String, title: String, description: String, pointsNeeded: String, contributeCount: String, coverImageName: String, sponsorImageName: String, itemName: String, itemVerb: String, buttonText: String, buttonColorIndex: String) {
+    init(projectNameID: String, title: String, description: String, pointsNeeded: String, contributeCount: String, coverImageName: String, sponsorImageName: String, projectIconName: String, itemName: String, itemVerb: String, buttonText: String, buttonColorIndex: String) {
         _projectNameID = projectNameID
         _title = title
         _description = description
@@ -81,6 +86,7 @@ class Project {
         _contributeCount = contributeCount
         _coverImageName = coverImageName
         _sponsorImageName = sponsorImageName
+        _projectIconName = projectIconName
         _itemName = itemName
         _itemVerb = itemVerb
         _buttonText = buttonText
