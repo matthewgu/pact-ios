@@ -66,13 +66,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         checkIfUserIsLoggedInViewAppear()
-        if loadingData == false {
-            loadingData = true
-            fetchUser()
-            fetchProject(completion: { (true) in
-                self.setupPagingView()
-            })
-        }
     }
 
     // MARK: - Data
@@ -478,6 +471,14 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        } else {
+            if loadingData == false {
+                loadingData = true
+                fetchUser()
+                fetchProject(completion: { (true) in
+                    self.setupPagingView()
+                })
+            }
         }
     }
     
