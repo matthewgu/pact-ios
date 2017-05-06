@@ -13,4 +13,12 @@ class VStats: UIView {
     @IBOutlet weak var projectIcon: UIImageView!
     @IBOutlet weak var statsLabel: UILabel!
     
+    func updateStatsView(project: Project) {
+        //stats label
+        statsLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        // images
+        projectIcon.layer.masksToBounds = true
+    }
+    
 }

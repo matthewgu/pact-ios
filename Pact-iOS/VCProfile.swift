@@ -10,12 +10,17 @@ import UIKit
 
 class VCProfile: UIViewController {
 
+    var projects = [Project]()
+    let sampleProject = Project(projectNameID: "serveMeal", title: "Help Union Gospel Mission Serve a Meal" , description: "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", pointsNeeded: "3000", contributeCount: "0", coverImageName: "serveMeal.jpg", sponsorImageName: "telus.png", itemName: "meals", itemVerb: "served", buttonText: "SERVE A MEAL", buttonColorIndex: "0")
+    
     // refresh control
     let refresh = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        projects.append(sampleProject)
+        
         // view related
         view.backgroundColor = UIColor.white
         view.addSubview(redView)
@@ -198,10 +203,12 @@ class VCProfile: UIViewController {
         v.frame = CGRect(x: 0, y: 180, width: vWidth, height: view.frame.size.height)
         profileCardView.addSubview(v)
         
-        for i in 0..<3 {
+        for i in 0..<projects.count {
             if let statsView = UINib(nibName: "Stats", bundle: nil).instantiate(withOwner: self, options: nil).first as? VStats {
                 v.addSubview(statsView)
-                statsView.frame = CGRect(x: 15, y: 0 + (CGFloat(i)*50), width: vWidth - 30, height: 40)
+                let projectDetails: Project = projects[i]
+                statsView.updateStatsView(project: projectDetails)
+                statsView.frame = CGRect(x: 40, y: 0 + (CGFloat(i)*50), width: vWidth - 80, height: 40)
             }
         }
     }
