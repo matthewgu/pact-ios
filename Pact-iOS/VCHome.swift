@@ -267,7 +267,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         navItem.leftBarButtonItem = UIBarButtonItem(title: "Enable", style: .plain, target: self, action: #selector(showEnable))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
-        navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
         navBar.shadowImage = UIImage()
         navBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navBar.barTintColor = UIColor.pactRed
@@ -523,8 +523,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         customLabel.textColor = UIColor.white
         
         UIView.animate(withDuration: 0.5 , delay: 0, options: [.autoreverse, .curveLinear, .repeat], animations: {
-            customView.backgroundColor = UIColor.orange
-            customView.backgroundColor = UIColor.black
+            customView.backgroundColor = UIColor.pactRedDark
+            customView.backgroundColor = UIColor.pactRed
         }, completion: nil)
         
         self.refresh.addSubview(customView)
