@@ -12,7 +12,7 @@ class VCEnableHealth: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.backgroundBeige
         
         view.addSubview(enableHealthKitButton)
         view.addSubview(appleHealthLogo)
@@ -50,7 +50,7 @@ class VCEnableHealth: UIViewController {
     
     let enableHealthKitButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red: 183/255, green: 56/255, blue: 42/255, alpha: 1)
+        button.backgroundColor = UIColor.buttonRed
         button.setTitle("CONNECT TO APPLE HEALTH", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 8

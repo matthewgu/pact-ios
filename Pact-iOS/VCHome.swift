@@ -49,7 +49,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         scrlv.delegate = self
         
         // view related
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.backgroundBeige
         view.addSubview(scrollView)
         view.addSubview(navBar)
         
@@ -265,8 +265,12 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let navItem = UINavigationItem(title: "Pact")
         navItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
         navItem.leftBarButtonItem = UIBarButtonItem(title: "Enable", style: .plain, target: self, action: #selector(showEnable))
-        //navBar.tintColor = UIColor.white
-        //navBar.barTintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        navBar.tintColor = UIColor.white
+        navBar.isTranslucent = false
+        navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        navBar.shadowImage = UIImage()
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        navBar.barTintColor = UIColor.pactRed
         navBar.setItems([navItem], animated: false)
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
@@ -318,7 +322,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.black
+        label.textColor = UIColor.textDarkBlue
         return label
     }()
     
@@ -333,7 +337,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let label = CountingLabel()
         //label.backgroundColor = UIColor.blue
         label.textAlignment = .right
-        label.textColor = UIColor.black
+        label.textColor = UIColor.textDarkBlue
         label.font = UIFont.systemFont(ofSize: 70)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -360,7 +364,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             snakePageControl.pageCount = projects.count
             snakePageControl.indicatorPadding = 15
             snakePageControl.indicatorRadius = 6
-            snakePageControl.activeTint = UIColor(red: 8/255, green: 37/255, blue: 78/255, alpha: 1)
+            snakePageControl.activeTint = UIColor.textDarkBlue
             snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
         }
     

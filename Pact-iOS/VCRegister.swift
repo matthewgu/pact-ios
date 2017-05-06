@@ -19,7 +19,7 @@ class VCRegister: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        view.backgroundColor = UIColor.pactRed
         
         view.addSubview(logoView)
         view.addSubview(inputsContainerView)
@@ -114,7 +114,7 @@ class VCRegister: UIViewController {
     
     let loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red: 183/255, green: 56/255, blue: 42/255, alpha: 1)
+        button.backgroundColor = UIColor.buttonRedDark
         button.setTitle("REGISTER", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 8
