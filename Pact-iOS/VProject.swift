@@ -50,9 +50,10 @@ class VProject: UIView {
         // TODO: change text font 
         let attributedString = NSMutableAttributedString(string: project.description)
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 3
+        paragraphStyle.lineSpacing = 4
         attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         descriptionLabel.attributedText = attributedString
+        descriptionLabel.font = UIFont.systemFont(ofSize: 12)
         
         // contribute button
         contributeButton.setTitle(project.buttonText, for: .normal)

@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8p-eD-1tH">
-                    <rect key="frame" x="20" y="258" width="300" height="55"/>
+                    <rect key="frame" x="25" y="258" width="290" height="55"/>
                     <color key="backgroundColor" red="0.28627450980000002" green="0.78039215689999997" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="xwA-xe-xq5"/>
@@ -41,7 +41,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alB-FO-pYd">
-                    <rect key="frame" x="10" y="56.5" width="320" height="49"/>
+                    <rect key="frame" x="10" y="53.5" width="320" height="49"/>
                     <attributedString key="attributedText">
                         <fragment content="Help The Canopy Project Plant  a Tree">
                             <attributes>
@@ -55,7 +55,7 @@
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPu-dy-mg4">
-                    <rect key="frame" x="10" y="120.5" width="320" height="50"/>
+                    <rect key="frame" x="10" y="114.5" width="320" height="50"/>
                     <attributedString key="attributedText">
                         <fragment>
                             <string key="content">Since launching in 2010, The Canopy Project has planted over 1.5 million trees in 21 countries, focusing on areas most in need of reforestation.</string>
@@ -83,15 +83,15 @@
                 <constraint firstAttribute="trailing" secondItem="alB-FO-pYd" secondAttribute="trailing" constant="10" id="8Cs-am-AZ2"/>
                 <constraint firstItem="1vu-ir-fc8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="A4d-YZ-6a7"/>
                 <constraint firstItem="EPu-dy-mg4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="IcO-hq-plH"/>
-                <constraint firstItem="EPu-dy-mg4" firstAttribute="top" secondItem="alB-FO-pYd" secondAttribute="bottom" constant="15" id="Nua-c7-tsf"/>
+                <constraint firstItem="EPu-dy-mg4" firstAttribute="top" secondItem="alB-FO-pYd" secondAttribute="bottom" constant="12" id="Nua-c7-tsf"/>
                 <constraint firstItem="SFf-S8-tp2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OQw-qV-bCV"/>
-                <constraint firstItem="alB-FO-pYd" firstAttribute="top" secondItem="1vu-ir-fc8" secondAttribute="bottom" constant="15" id="UPv-sk-3QX"/>
+                <constraint firstItem="alB-FO-pYd" firstAttribute="top" secondItem="1vu-ir-fc8" secondAttribute="bottom" constant="12" id="UPv-sk-3QX"/>
                 <constraint firstItem="1vu-ir-fc8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aYL-0k-01O"/>
-                <constraint firstItem="R8p-eD-1tH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="evM-8Y-DjY"/>
+                <constraint firstItem="R8p-eD-1tH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="evM-8Y-DjY"/>
                 <constraint firstItem="SFf-S8-tp2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kI3-VZ-qJ4"/>
                 <constraint firstItem="SFf-S8-tp2" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.65" id="mXb-cv-8W9"/>
                 <constraint firstItem="alB-FO-pYd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="niu-pr-rkB"/>
-                <constraint firstAttribute="trailing" secondItem="R8p-eD-1tH" secondAttribute="trailing" constant="20" id="pYu-Hs-DFA"/>
+                <constraint firstAttribute="trailing" secondItem="R8p-eD-1tH" secondAttribute="trailing" constant="25" id="pYu-Hs-DFA"/>
                 <constraint firstAttribute="trailing" secondItem="EPu-dy-mg4" secondAttribute="trailing" constant="10" id="t0i-Il-5VO"/>
                 <constraint firstAttribute="trailing" secondItem="SFf-S8-tp2" secondAttribute="trailing" id="wjB-0H-Dxx"/>
                 <constraint firstAttribute="bottom" secondItem="R8p-eD-1tH" secondAttribute="bottom" constant="15" id="zxd-Sg-Lw4"/>

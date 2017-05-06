@@ -24,6 +24,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     var projects = [Project]()
     var user: User?
     
+    let sampleProject = Project(projectNameID: "serveMeal", title: "Help Union Gospel Mission Serve a Meal" , description: "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", pointsNeeded: "3000", contributeCount: "0", coverImageName: "serveMeal.jpg", sponsorImageName: "telus.png", itemName: "meals", itemVerb: "served", buttonText: "SERVE A MEAL", buttonColorIndex: "0")
+    
     // horizonta scroll view
     let scrlv = UIScrollView()
     @IBOutlet weak var snakePageControl: SnakePageControl!
@@ -35,6 +37,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         
         super.viewDidLoad()
         
+        projects.append(sampleProject)
         JTSplashView.splashViewWithBackgroundColor(nil, circleColor: nil, circleSize: nil)
         
         // Simulate state when we want to hide the splash view
@@ -471,9 +474,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
             fetchUser()
-            fetchProject(completion: { (true) in
-                self.setupPagingView()
-            })
+            self.setupPagingView()
+//            fetchProject(completion: { (true) in
+//                self.setupPagingView()
+//            })
         }
         
     }
