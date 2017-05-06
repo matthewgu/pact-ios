@@ -47,7 +47,6 @@ class VProject: UIView {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         
         // description text
-        // TODO: change text font 
         let attributedString = NSMutableAttributedString(string: project.description)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
@@ -60,6 +59,36 @@ class VProject: UIView {
         contributeButton.layer.cornerRadius = 8
         contributeButton.layer.masksToBounds = true
         contributeButton.backgroundColor = project.buttonColors[Int(project.buttonColorIndex)!]
+        
+        // iphone 5
+        if DeviceUtil.height <= CGFloat(568.0) {
+            
+            // points label
+            pointsNeededLabel.text = project.pointsNeeded + " pts"
+            pointsNeededLabel.font = UIFont.boldSystemFont(ofSize: 15)
+            
+            // title text
+            titleLabel.text = project.title
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+            
+            // description text
+            let attributedString = NSMutableAttributedString(string: project.description)
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 3
+            attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+            descriptionLabel.attributedText = attributedString
+            descriptionLabel.font = UIFont.systemFont(ofSize: 10)
+            
+            // contribute button
+            contributeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+            contributeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            
+            // sponsor image
+            sponsorImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            sponsorImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            
+        }
+        
         
         // images
         coverImage.layer.masksToBounds = true
