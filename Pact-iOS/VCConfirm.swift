@@ -16,15 +16,14 @@ class VCConfirm: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        view.backgroundColor = UIColor.backgroundBeige
         
-        view.addSubview(confirmImageView)
         view.addSubview(sentenceLabel)
         view.addSubview(contributeCountLabel)
         view.addSubview(byYouLabel)
         view.addSubview(dismissButton)
         
-        setupConfirmImageView()
+        setupHeaderView()
         setupSentenceLabel()
         setupcontributeCountLabel()
         setupByYouLabel()
@@ -32,13 +31,7 @@ class VCConfirm: UIViewController {
     }
     
     // MARK: - View
-    let confirmImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "pactConfirmLogo.png")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+
     
     var sentenceLabel: UILabel = {
         let label = UILabel()
@@ -87,12 +80,16 @@ class VCConfirm: UIViewController {
         return button
     }()
     
-    func setupConfirmImageView() {
-        // need x, y, width and height constraints
-        confirmImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        confirmImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        confirmImageView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
-        confirmImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    func setupHeaderView() {
+        let v = UIView()
+        let vWidth: CGFloat = view.frame.size.width
+        let vHeight: CGFloat = view.frame.size.height * 0.4
+        v.backgroundColor = UIColor.pactRed
+        v.frame = CGRect(x: 0, y: 0, width: vWidth, height: vHeight)
+        view.addSubview(v)
+        
+        //let logo = UIImage(named: "pactLogo.png")
+        
     }
     
     func setupSentenceLabel() {
