@@ -166,6 +166,7 @@ class VCProfile: UIViewController {
         
         setupProfileImageView()
         setupNameLabel()
+        setupStatsView()
         //setupStatsView()
     }
     
@@ -190,7 +191,22 @@ class VCProfile: UIViewController {
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30).isActive = true
     }
     
-//    func setupStatsView() {
+    func setupStatsView() {
+        let v = UIView()
+        let vWidth: CGFloat = view.frame.size.width * 0.9
+        v.backgroundColor = UIColor.blue
+        v.frame = CGRect(x: 0, y: 180, width: vWidth, height: view.frame.size.height)
+        profileCardView.addSubview(v)
+        
+        for i in 0..<3 {
+            if let statsView = UINib(nibName: "Stats", bundle: nil).instantiate(withOwner: self, options: nil).first as? VStats {
+                v.addSubview(statsView)
+                statsView.frame = CGRect(x: 15, y: 0 + (CGFloat(i)*50), width: vWidth - 30, height: 40)
+            }
+        }
+    }
+
+    //    func setupStatsView() {
 //        profileCardView.addSubview(statsView)
 //        statsView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 //        statsView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30).isActive = true

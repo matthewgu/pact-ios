@@ -19,6 +19,8 @@
 		813904D91EB7151600F35545 /* VCConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813904D81EB7151600F35545 /* VCConfirm.swift */; };
 		813BFB7D1EB45AAA00766E12 /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 813BFB7C1EB45AAA00766E12 /* CustomView.xib */; };
 		813BFB7F1EB45AFC00766E12 /* VProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813BFB7E1EB45AFC00766E12 /* VProject.swift */; };
+		814D5A3C1EBD780F00F3FD27 /* Stats.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814D5A3B1EBD780F00F3FD27 /* Stats.xib */; };
+		814D5A3E1EBD78C400F3FD27 /* VStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814D5A3D1EBD78C400F3FD27 /* VStats.swift */; };
 		816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EA81EB33AB30037E256 /* AppDelegate.swift */; };
 		816F6EAB1EB33AB30037E256 /* VCHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EAA1EB33AB30037E256 /* VCHome.swift */; };
 		816F6EAE1EB33AB30037E256 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EAC1EB33AB30037E256 /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		813904D81EB7151600F35545 /* VCConfirm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConfirm.swift; sourceTree = "<group>"; };
 		813BFB7C1EB45AAA00766E12 /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 		813BFB7E1EB45AFC00766E12 /* VProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VProject.swift; sourceTree = "<group>"; };
+		814D5A3B1EBD780F00F3FD27 /* Stats.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Stats.xib; sourceTree = "<group>"; };
+		814D5A3D1EBD78C400F3FD27 /* VStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VStats.swift; sourceTree = "<group>"; };
 		816F6EA51EB33AB30037E256 /* Pact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		816F6EA81EB33AB30037E256 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		816F6EAA1EB33AB30037E256 /* VCHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHome.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				817D69C51EBD59E400C45F62 /* DeviceUtil.swift */,
 				81C56EB61EB8121C009F2C3F /* IJProgressView.swift */,
 				818759961EBAA504002EAD58 /* JTSplashView.swift */,
+				814D5A3B1EBD780F00F3FD27 /* Stats.xib */,
 				818759BA1EBABBB4002EAD58 /* VRefresh.xib */,
 				813BFB7C1EB45AAA00766E12 /* CustomView.xib */,
 				812CA78C1EB42D96002FD679 /* HealthKitUtil.swift */,
@@ -174,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				813BFB7E1EB45AFC00766E12 /* VProject.swift */,
+				814D5A3D1EBD78C400F3FD27 /* VStats.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814D5A3C1EBD780F00F3FD27 /* Stats.xib in Resources */,
 				818759BB1EBABBB4002EAD58 /* VRefresh.xib in Resources */,
 				816F6EB31EB33AB30037E256 /* LaunchScreen.storyboard in Resources */,
 				813BFB7D1EB45AAA00766E12 /* CustomView.xib in Resources */,
@@ -336,6 +343,7 @@
 				813BFB7F1EB45AFC00766E12 /* VProject.swift in Sources */,
 				812CA7901EB42D96002FD679 /* StorageUtil.swift in Sources */,
 				8106E6D41EB6BA7900A40F05 /* User.swift in Sources */,
+				814D5A3E1EBD78C400F3FD27 /* VStats.swift in Sources */,
 				812CA7911EB42D96002FD679 /* UserAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
