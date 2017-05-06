@@ -68,8 +68,12 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xWN-Cs-5WB">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xWN-Cs-5WB">
                     <rect key="frame" x="142" y="185" width="56" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="56" id="UxL-vu-6xf"/>
+                        <constraint firstAttribute="height" constant="56" id="sBv-aM-TB7"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

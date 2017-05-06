@@ -105,12 +105,12 @@ class VCProfile: UIViewController {
         return label
     }()
     
-    let statsView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.green
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    let statsView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = UIColor.green
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
     
     func setupRedView() {
         // need x, y, width and height constraints
@@ -166,12 +166,12 @@ class VCProfile: UIViewController {
         
         setupProfileImageView()
         setupNameLabel()
-        setupStatsView()
+        //setupStatsView()
     }
     
     func setupProfileCardShadowView() {
         // need x, y, width and height constraints
-        profileCardShadowView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8).isActive = true
+        profileCardShadowView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7).isActive = true
         profileCardShadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         profileCardShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileCardShadowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
@@ -190,14 +190,14 @@ class VCProfile: UIViewController {
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30).isActive = true
     }
     
-    func setupStatsView() {
-        profileCardView.addSubview(statsView)
-        statsView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        statsView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30).isActive = true
-        statsView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        statsView.widthAnchor.constraint(equalTo: profileCardView.widthAnchor, multiplier: 0.9).isActive = true
-
-    }
+//    func setupStatsView() {
+//        profileCardView.addSubview(statsView)
+//        statsView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        statsView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30).isActive = true
+//        statsView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+//        statsView.widthAnchor.constraint(equalTo: profileCardView.widthAnchor, multiplier: 0.9).isActive = true
+//
+//    }
     
     // MARK: - Func
     func handleLogout()  {
