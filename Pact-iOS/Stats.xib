@@ -16,10 +16,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bvb-Sh-eDp">
-                    <rect key="frame" x="0.0" y="3.5" width="60" height="60"/>
+                    <rect key="frame" x="0.0" y="13.5" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="Ez6-ua-bFg"/>
-                        <constraint firstAttribute="height" constant="60" id="ouf-rs-av4"/>
+                        <constraint firstAttribute="width" constant="40" id="Ez6-ua-bFg"/>
+                        <constraint firstAttribute="height" constant="40" id="ouf-rs-av4"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ce7-hp-8qe">
@@ -29,7 +29,6 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.91667315019999995" blue="0.52390620639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Bvb-Sh-eDp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1UQ-Jj-h6O"/>
                 <constraint firstAttribute="trailing" secondItem="ce7-hp-8qe" secondAttribute="trailing" id="ZVJ-rL-tm7"/>

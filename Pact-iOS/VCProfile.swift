@@ -7,19 +7,18 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class VCProfile: UIViewController {
 
     var projects = [Project]()
-    let sampleProject = Project(projectNameID: "serveMeal", title: "Help Union Gospel Mission Serve a Meal" , description: "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", pointsNeeded: "3000", contributeCount: "0", coverImageName: "serveMeal.jpg", sponsorImageName: "telus.png", projectIconName: "serveMealIcon.png", itemName: "meals", itemVerb: "served", buttonText: "SERVE A MEAL", buttonColorIndex: "0")
     
     // refresh control
     let refresh = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        projects.append(sampleProject)
         
         // view related
         view.backgroundColor = UIColor.white
@@ -102,20 +101,12 @@ class VCProfile: UIViewController {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Rahul Jiresal"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.black
         return label
     }()
-    
-//    let statsView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = UIColor.green
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
     
     func setupRedView() {
         // need x, y, width and height constraints
@@ -172,7 +163,6 @@ class VCProfile: UIViewController {
         setupProfileImageView()
         setupNameLabel()
         setupStatsView()
-        //setupStatsView()
     }
     
     func setupProfileCardShadowView() {
@@ -199,8 +189,7 @@ class VCProfile: UIViewController {
     func setupStatsView() {
         let v = UIView()
         let vWidth: CGFloat = view.frame.size.width * 0.9
-        v.backgroundColor = UIColor.blue
-        v.frame = CGRect(x: 0, y: 180, width: vWidth, height: view.frame.size.height)
+        v.frame = CGRect(x: 0, y: 200, width: vWidth, height: view.frame.size.height)
         profileCardView.addSubview(v)
         
         for i in 0..<projects.count {
@@ -208,27 +197,24 @@ class VCProfile: UIViewController {
                 v.addSubview(statsView)
                 let projectDetails: Project = projects[i]
                 statsView.updateStatsView(project: projectDetails)
-                statsView.frame = CGRect(x: 35, y: 0 + (CGFloat(i)*75), width: vWidth - 70, height: 60)
+                statsView.frame = CGRect(x: 15, y: 0 + (CGFloat(i)*55), width: vWidth - 30, height: 40)
             }
         }
     }
-
-    //    func setupStatsView() {
-//        profileCardView.addSubview(statsView)
-//        statsView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        statsView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30).isActive = true
-//        statsView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-//        statsView.widthAnchor.constraint(equalTo: profileCardView.widthAnchor, multiplier: 0.9).isActive = true
-//
-//    }
     
     // MARK: - Func
-    func handleLogout()  {
-    
+    func handleLogout() {
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     func handleDismiss() {
         self.dismiss(animated: true, completion: nil)
+        self.present(VCRegister(), animated: true, completion: nil)
     }
     
     func handleRefresh() {

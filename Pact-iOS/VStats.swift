@@ -17,6 +17,9 @@ class VStats: UIView {
     
     func updateStatsView(project: Project) {
         //stats label
+        var statsText = project.itemVerb + " " + project.contributeCount + " " + project.itemName
+        statsText = statsText.uppercased()
+        statsLabel.text = statsText
         statsLabel.font = UIFont.systemFont(ofSize: 14)
         
         // images

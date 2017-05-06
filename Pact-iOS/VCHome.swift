@@ -23,8 +23,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     // userdata data
     var projects = [Project]()
     var user: User?
-    
-    let sampleProject = Project(projectNameID: "serveMeal", title: "Help Union Gospel Mission Serve a Meal" , description: "UGM works in the areas of poverty, homelessness, and addiction in Vancouver, serving over 300k meals and provided 28k shelter beds in 2016 year alone.", pointsNeeded: "3000", contributeCount: "0", coverImageName: "serveMeal.jpg", sponsorImageName: "telus.png", projectIconName: "serveMealIcon.png", itemName: "meals", itemVerb: "served", buttonText: "SERVE A MEAL", buttonColorIndex: "0")
+    var loadingData: Bool = false
     
     // horizonta scroll view
     let scrlv = UIScrollView()
@@ -37,7 +36,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         
         super.viewDidLoad()
         
-        projects.append(sampleProject)
         JTSplashView.splashViewWithBackgroundColor(nil, circleColor: nil, circleSize: nil)
         
         // Simulate state when we want to hide the splash view
@@ -67,7 +65,14 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        checkIfUserIsLoggedInViewAppear()
+        if loadingData == false {
+            loadingData = true
+            fetchUser()
+            fetchProject(completion: { (true) in
+                self.setupPagingView()
+            })
+        }
     }
 
     // MARK: - Data
@@ -192,7 +197,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                         if let projectNameID = dict["projectNameID"] as? String, let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let projectIconName = dict["projectIconName"] as? String, let itemName = dict["itemName"] as? String, let itemVerb = dict["itemVerb"] as? String, let buttonText = dict["buttonText"] as? String, let buttonColorIndex = dict["buttonColorIndex"] as? String {
                             
                             let project = Project(projectNameID: projectNameID, title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, projectIconName: projectIconName, itemName: itemName, itemVerb: itemVerb, buttonText: buttonText, buttonColorIndex: buttonColorIndex)
-                            print(buttonColorIndex)
                             self.projects.append(project)
                         }
                     }
@@ -277,6 +281,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     func showProfile() {
         let vcProfile = VCProfile()
+        vcProfile.projects = self.projects
+        vcProfile.nameLabel.text = (user?.name)!
         self.present(vcProfile, animated: true, completion: nil)
     }
     
@@ -468,18 +474,24 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         pointsLabel.count(fromValue: Float(start), to: Float(end), withDuration: 2.4, andAnimationType: .EaseOut, andCouterType: .Int)
     }
     
+    func checkIfUserIsLoggedInViewAppear() {
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            print("user not signed in")
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        }
+    }
+    
     func checkIfUserIsLoggedIn() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
+            loadingData = true
             fetchUser()
-            self.setupPagingView()
-//            fetchProject(completion: { (true) in
-//                self.setupPagingView()
-//            })
+            fetchProject(completion: { (true) in
+                self.setupPagingView()
+            })
         }
-        
     }
     
     func tappedContributeBtn(project: Project) {
