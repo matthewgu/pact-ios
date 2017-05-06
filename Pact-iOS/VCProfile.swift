@@ -208,7 +208,7 @@ class VCProfile: UIViewController {
                 v.addSubview(statsView)
                 let projectDetails: Project = projects[i]
                 statsView.updateStatsView(project: projectDetails)
-                statsView.frame = CGRect(x: 40, y: 0 + (CGFloat(i)*50), width: vWidth - 80, height: 40)
+                statsView.frame = CGRect(x: 35, y: 0 + (CGFloat(i)*75), width: vWidth - 70, height: 60)
             }
         }
     }

@@ -15,7 +15,7 @@ class VStats: UIView {
     
     func updateStatsView(project: Project) {
         //stats label
-        statsLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        statsLabel.font = UIFont.systemFont(ofSize: 14)
         
         // images
         projectIcon.layer.masksToBounds = true
