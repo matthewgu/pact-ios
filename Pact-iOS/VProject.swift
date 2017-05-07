@@ -83,7 +83,7 @@ class VProject: UIView {
             
             // contribute button
             contributeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-            contributeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            //contributeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
             
             // sponsor image
             //sponsorImage.heightAnchor.constraint(equalToConstant: 51).isActive = true
