@@ -26,7 +26,14 @@ class VProject: UIView {
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var sponsorImage: UIImageView!
     @IBOutlet weak var contributeButton: UIButton!
-
+    
+    // constraints outlet
+    @IBOutlet weak var pointsLabelTopCons: NSLayoutConstraint!
+    @IBOutlet weak var titleLabeltopCons: NSLayoutConstraint!
+    
+    @IBOutlet weak var sponsorImageYCons: NSLayoutConstraint!
+    
+    
     @IBAction func contributeBtnPressed(_ sender: Any) {
         if let project = projectOptional {
             delegate?.tappedContributeBtn(project: project)
@@ -83,11 +90,14 @@ class VProject: UIView {
             
             // contribute button
             contributeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-            //contributeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
             
-            // sponsor image
-            //sponsorImage.heightAnchor.constraint(equalToConstant: 51).isActive = true
-            //sponsorImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            // update constraints
+            DispatchQueue.main.async {
+                self.pointsLabelTopCons.constant = 5
+                self.titleLabeltopCons.constant = 5
+                self.sponsorImageYCons.constant = 0
+            }
+            
         } else if DeviceUtil.height >= CGFloat(736.0) {
             // points label
             pointsNeededLabel.text = project.pointsNeeded + " pts"

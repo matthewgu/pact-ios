@@ -101,11 +101,14 @@
                 <outlet property="contributeButton" destination="R8p-eD-1tH" id="dTB-rl-LVd"/>
                 <outlet property="coverImage" destination="SFf-S8-tp2" id="HDG-sa-EyG"/>
                 <outlet property="descriptionLabel" destination="EPu-dy-mg4" id="r37-5B-QUC"/>
+                <outlet property="pointsLabelTopCons" destination="A4d-YZ-6a7" id="EYK-5x-Ugt"/>
                 <outlet property="pointsNeededLabel" destination="1vu-ir-fc8" id="Wts-dV-Dqv"/>
                 <outlet property="sponsorImage" destination="xWN-Cs-5WB" id="HRb-F3-fHs"/>
+                <outlet property="sponsorImageYCons" destination="2pY-xi-pxX" id="XTf-uj-mok"/>
                 <outlet property="titleLabel" destination="alB-FO-pYd" id="24a-9Q-56a"/>
+                <outlet property="titleLabeltopCons" destination="UPv-sk-3QX" id="IrH-hi-XDv"/>
             </connections>
-            <point key="canvasLocation" x="53" y="-127"/>
+            <point key="canvasLocation" x="-864" y="2476"/>
         </view>
     </objects>
 </document>
