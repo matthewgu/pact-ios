@@ -19,6 +19,7 @@ class VCConfirm: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor.backgroundBeige
         
     
@@ -63,7 +64,7 @@ class VCConfirm: UIViewController {
         label.text = "this is the confirmation sentence"
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor.textDarkGrey
         return label
     }()
@@ -72,10 +73,9 @@ class VCConfirm: UIViewController {
         let label = UILabel()
         label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
-        //label.backgroundColor = UIColor.black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 80)
-        label.textColor = UIColor.textDarkGrey
+        label.textColor = UIColor.pactRed
         return label
     }()
     
@@ -95,6 +95,7 @@ class VCConfirm: UIViewController {
         button.setTitle("DISMISS", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 8
+        button.backgroundColor = UIColor.pactRed
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -127,8 +128,6 @@ class VCConfirm: UIViewController {
         checkBox.onAnimationType = BEMAnimationType.stroke
         checkBox.offAnimationType = BEMAnimationType.oneStroke
         checkBox.onTintColor = UIColor.white
-        checkBox.onFillColor = UIColor.pactRed
-        checkBox.offFillColor = UIColor.pactRed
         checkBox.onCheckColor = UIColor.white
         checkBox.animationDuration = 0.4
         

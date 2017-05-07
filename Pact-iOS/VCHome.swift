@@ -238,12 +238,16 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             fetchContriuteCount(project: project, completion: { (true) in
                 _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
                     IJProgressView.shared.hideProgressView()
-                    
+                    let color: UIColor = project.buttonColors[Int(project.buttonColorIndex)!]
                     let vcConfirm = VCConfirm()
                     vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
                     vcConfirm.sentenceLabel.text = "Thank you for backing this project! Togeteher we planted 122 trees!"
                     vcConfirm.contributeCountLabel.text = project.contributeCount
-                    //vcConfirm.view.backgroundColor = project.buttonColors[Int(project.buttonColorIndex)!]
+                    vcConfirm.headerView.backgroundColor = color
+                    vcConfirm.contributeCountLabel.textColor = color
+                    vcConfirm.dismissButton.backgroundColor = color
+                    vcConfirm.checkBox.onFillColor = color
+                    vcConfirm.checkBox.offFillColor = color
                     self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: nil)
                 })
             })
