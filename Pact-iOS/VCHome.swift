@@ -36,19 +36,21 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         
         super.viewDidLoad()
         
+        // animated splash screen
         JTSplashView.splashViewWithBackgroundColor(nil, circleColor: nil, circleSize: nil)
-        
         // Simulate state when we want to hide the splash view
         Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(VCHome.hideSplashView), userInfo: nil, repeats: false)
+    
+        // status bar color
+        UIApplication.shared.statusBarStyle = .lightContent
         
-        // TODO: need to avoid loading duplicate projects
-        // self.projects.removeAll()
+        // check if user logged in
         self.checkIfUserIsLoggedIn()
         
+        // view related
         scrlv.isPagingEnabled = true
         scrlv.delegate = self
         
-        // view related
         view.backgroundColor = UIColor.backgroundBeige
         view.addSubview(scrollView)
         view.addSubview(navBar)
@@ -60,17 +62,17 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         refresh.tintColor = UIColor.clear
         refresh.backgroundColor = UIColor.clear
         refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        //loadRefreshControl()
         scrollView.refreshControl = refresh
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        // check if user logged in & project data loaded
         checkIfUserIsLoggedInViewAppear()
     }
 
     // MARK: - Data
     func getStep() {
-        // Check Authorization
+        // check Authorization
         HealthKitUtil.shared.checkAuthorization { (authorized) in
             
             if authorized
@@ -386,7 +388,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             let shadowView = UIView()
             shadowView.backgroundColor = UIColor.white
             shadowView.layer.masksToBounds = false
-            shadowView.layer.cornerRadius = 10
+            shadowView.layer.cornerRadius = 12
             shadowView.layer.shadowColor = UIColor.black.cgColor
             shadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
             shadowView.layer.shadowOpacity = 0.25
@@ -398,7 +400,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             // project view
             if let project = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: self, options: nil).first as? VProject {
                 project.delegate = self
-                project.layer.cornerRadius = 10
+                project.layer.cornerRadius = 12
                 project.layer.masksToBounds = true
                 let projectDetails: Project = projects[i]
                 project.updateProjectView(project: projectDetails)

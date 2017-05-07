@@ -137,7 +137,7 @@ class VCConfirm: UIViewController {
         checkBox.animationDuration = 0.4
         
         let viewWidth: CGFloat = view.frame.size.width
-        checkBox.frame = CGRect(x: (viewWidth / 2) - 35, y: 120, width: 70, height: 70)
+        checkBox.frame = CGRect(x: (viewWidth / 2) - 35, y: 110, width: 70, height: 70)
     }
     
     func setupSentenceLabel() {
@@ -158,9 +158,17 @@ class VCConfirm: UIViewController {
     
     func setupDismissButton() {
         dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44).isActive = true
         dismissButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48).isActive = true
         dismissButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        
+        // dismiss button bottom anchor adjustment
+        var dismissButtonBottomAnchor = dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44)
+        dismissButtonBottomAnchor.isActive = true
+        if DeviceUtil.height <= CGFloat(568.0) {
+            dismissButtonBottomAnchor.isActive = false
+            dismissButtonBottomAnchor = dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+            dismissButtonBottomAnchor.isActive = true
+        }
     }
 
     

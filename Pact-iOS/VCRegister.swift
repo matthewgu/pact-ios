@@ -189,9 +189,17 @@ class VCRegister: UIViewController {
     
     func setuploginRegisterButton() {
         loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginRegisterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44).isActive = true
         loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        
+        // enable login button bottom anchor adjustment
+        var logintButtonBottomAnchor = loginRegisterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44)
+        logintButtonBottomAnchor.isActive = true
+        if DeviceUtil.height <= CGFloat(568.0) {
+            logintButtonBottomAnchor.isActive = false
+            logintButtonBottomAnchor = loginRegisterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+            logintButtonBottomAnchor.isActive = true
+        }
         
     }
     

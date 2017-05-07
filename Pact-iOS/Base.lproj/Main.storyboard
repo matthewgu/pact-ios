@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yh-1Q-A8w" customClass="SnakePageControl" customModule="PageControls">
-                                <rect key="frame" x="139.5" y="280" width="96" height="387"/>
+                                <rect key="frame" x="139.5" y="300" width="96" height="367"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="pageCount">
                                         <integer key="value" value="3"/>
@@ -48,7 +48,7 @@
                         <constraints>
                             <constraint firstItem="4yh-1Q-A8w" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3B1-c9-hLO"/>
                             <constraint firstAttribute="bottomMargin" secondItem="4yh-1Q-A8w" secondAttribute="bottom" id="8pk-Xn-BC9"/>
-                            <constraint firstItem="4yh-1Q-A8w" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.58" id="hwr-v9-982"/>
+                            <constraint firstItem="4yh-1Q-A8w" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.55" id="hwr-v9-982"/>
                         </constraints>
                     </view>
                     <connections>

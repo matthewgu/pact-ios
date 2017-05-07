@@ -30,7 +30,7 @@ extension UIColor {
     
     class var textDarkBlue:UIColor {
         get {
-            return UIColor(red:45/255, green: 71/255, blue: 106/255, alpha: 1)
+            return UIColor(red:28/255, green: 52/255, blue:  86/255, alpha: 1)
         }
     }
     
