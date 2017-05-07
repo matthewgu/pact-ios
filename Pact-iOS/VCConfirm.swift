@@ -61,7 +61,12 @@ class VCConfirm: UIViewController {
     var sentenceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "this is the confirmation sentence"
+        
+        let attributedString = NSMutableAttributedString(string: "Thank you for backing this project! Togeteher we planted 122 trees!")
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 14
+        attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        label.attributedText = attributedString
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
@@ -84,7 +89,7 @@ class VCConfirm: UIViewController {
         label.text = "by you"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 40)
+        label.font = UIFont.systemFont(ofSize: 30)
         label.textColor = UIColor.textDarkGrey
         return label
     }()
@@ -118,7 +123,7 @@ class VCConfirm: UIViewController {
     func setupLogoView() {
         // need x, y, width and height constraints
         logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        logoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
         logoView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -200).isActive = true
         logoView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
@@ -138,12 +143,12 @@ class VCConfirm: UIViewController {
     func setupSentenceLabel() {
         sentenceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sentenceLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 30).isActive = true
-        sentenceLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        sentenceLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90).isActive = true
     }
     
     func setupcontributeCountLabel() {
         contributeCountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        contributeCountLabel.topAnchor.constraint(equalTo: sentenceLabel.bottomAnchor, constant: 30).isActive = true
+        contributeCountLabel.topAnchor.constraint(equalTo: sentenceLabel.bottomAnchor, constant: 35).isActive = true
     }
     
     func setupByYouLabel() {

@@ -38,12 +38,12 @@ class VCEnableHealth: UIViewController {
         
         let attributedString = NSMutableAttributedString(string: "Pact allows your to earn points by walking. You need to first allow Pact to read your fitness data from Apple Health")
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 10
+        paragraphStyle.lineSpacing = 14
         attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         label.attributedText = attributedString
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor.darkGray
         return label
     }()

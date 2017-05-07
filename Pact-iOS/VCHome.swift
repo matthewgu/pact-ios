@@ -248,6 +248,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                     vcConfirm.dismissButton.backgroundColor = color
                     vcConfirm.checkBox.onFillColor = color
                     vcConfirm.checkBox.offFillColor = color
+                    vcConfirm.byYouLabel.text = project.itemName.localizedCapitalized + " By You"
                     self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: nil)
                 })
             })
