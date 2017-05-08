@@ -30,8 +30,11 @@ class VProject: UIView {
     // constraints outlet
     @IBOutlet weak var pointsLabelTopCons: NSLayoutConstraint!
     @IBOutlet weak var titleLabeltopCons: NSLayoutConstraint!
-    
+    @IBOutlet weak var descriptionLabelTopCons: NSLayoutConstraint!
+    @IBOutlet weak var sponsorImageWidthConst: NSLayoutConstraint!
+    @IBOutlet weak var sponsorImageHeightConst: NSLayoutConstraint!
     @IBOutlet weak var sponsorImageYCons: NSLayoutConstraint!
+    @IBOutlet weak var contributeButtonHeightCons: NSLayoutConstraint!
     
     
     @IBAction func contributeBtnPressed(_ sender: Any) {
@@ -65,8 +68,6 @@ class VProject: UIView {
         contributeButton.setTitle(project.buttonText, for: .normal)
         contributeButton.layer.cornerRadius = 8
         contributeButton.layer.masksToBounds = true
-//        sponsorImage.heightAnchor.constraint(equalToConstant: 57).isActive = true
-//        sponsorImage.widthAnchor.constraint(equalToConstant: 56).isActive = true
         contributeButton.backgroundColor = project.buttonColors[Int(project.buttonColorIndex)!]
         
         // iphone 5
@@ -83,19 +84,24 @@ class VProject: UIView {
             // description text
             let attributedString = NSMutableAttributedString(string: project.description)
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 3
+            paragraphStyle.lineSpacing = 4
             attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
             descriptionLabel.attributedText = attributedString
             descriptionLabel.font = UIFont.systemFont(ofSize: 10)
+            descriptionLabel.numberOfLines = 3
             
             // contribute button
             contributeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
             
             // update constraints
             DispatchQueue.main.async {
-                self.pointsLabelTopCons.constant = 5
-                self.titleLabeltopCons.constant = 5
-                self.sponsorImageYCons.constant = 0
+                self.pointsLabelTopCons.constant = 10
+                self.titleLabeltopCons.constant = 8
+                self.descriptionLabelTopCons.constant = 8
+                self.sponsorImageWidthConst.constant = 48
+                self.sponsorImageHeightConst.constant = 48
+                self.sponsorImageYCons.constant = 24
+                self.contributeButtonHeightCons.constant = 45
             }
             
         } else if DeviceUtil.height >= CGFloat(736.0) {
