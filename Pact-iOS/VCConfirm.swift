@@ -91,6 +91,9 @@ class VCConfirm: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 30)
         label.textColor = UIColor.textDarkGrey
+        if DeviceUtil.height <= CGFloat(568.0) {
+            label.font = UIFont.systemFont(ofSize: 25)
+        }
         return label
     }()
     
