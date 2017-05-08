@@ -21,6 +21,7 @@ class VStats: UIView {
         statsText = statsText.capitalizeFirst()
         statsLabel.text = statsText
         statsLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        statsLabel.textColor = UIColor.textDarkGrey
         
         // images
         projectIcon.layer.masksToBounds = true

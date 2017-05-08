@@ -19,6 +19,7 @@ class VCProfile: UIViewController {
         
         view.addSubview(headerView)
         view.addSubview(navBar)
+        view.addSubview(statsCardShadowView)
         view.addSubview(statsCardView)
         view.addSubview(impactLabel)
         view.addSubview(buildWithLabel)
@@ -26,6 +27,7 @@ class VCProfile: UIViewController {
         setupHeaderView()
         setupNavBar()
         setupStatsCardView()
+        setupStatsCardShadowView()
         setupImpactLabel()
         setupBuildWithtLabel()
     }
@@ -35,7 +37,7 @@ class VCProfile: UIViewController {
     let navBar: UINavigationBar = {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "")
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(handleDismiss))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "x", style: .plain, target: self, action: #selector(handleDismiss))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
@@ -67,8 +69,18 @@ class VCProfile: UIViewController {
         label.text = "Matthew Gu"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = UIColor.white
+        return label
+    }()
+    
+    let emailLabel: UILabel = {
+        let label = UILabel()
+        label.text = "matt@gmail.com"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.65)
         return label
     }()
     
@@ -77,7 +89,7 @@ class VCProfile: UIViewController {
         label.text = "YOUR IMPACT"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 11)
+        label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textColor = UIColor.textDarkBeige
         return label
     }()
@@ -86,6 +98,19 @@ class VCProfile: UIViewController {
         let view = UIView()
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let statsCardShadowView: UIView = {
+        let view = UIView()
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        view.layer.shadowOpacity = 0.15
+        view.layer.shadowRadius = 1
+        view.layer.cornerRadius = 10
+        view.backgroundColor = UIColor.white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -115,9 +140,11 @@ class VCProfile: UIViewController {
         
         headerView.addSubview(profileImageView)
         headerView.addSubview(nameLabel)
+        headerView.addSubview(emailLabel)
         
         setupProfileImageView()
         setupNameLabel()
+        setupEmailLabel()
     }
     
     func setupProfileImageView() {
@@ -131,6 +158,11 @@ class VCProfile: UIViewController {
     func setupNameLabel() {
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 15).isActive = true
+    }
+    
+    func setupEmailLabel() {
+        emailLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
     }
     
     func setupImpactLabel() {
@@ -154,6 +186,14 @@ class VCProfile: UIViewController {
         
     }
     
+    func setupStatsCardShadowView() {
+        // need x, y, width and height constraints
+        statsCardShadowView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
+        statsCardShadowView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.93).isActive = true
+        statsCardShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        statsCardShadowView.bottomAnchor.constraint(equalTo: statsCardView.bottomAnchor).isActive = true
+    }
+    
     func setupStatsView() {
         let v = UIView()
         v.backgroundColor = UIColor.white
@@ -166,7 +206,6 @@ class VCProfile: UIViewController {
                 
                 v.addSubview(statsView)
                 let projectDetails: Project = projects[i]
-                statsView.statsLabel.textColor = UIColor.textDarkGrey
                 statsView.updateStatsView(project: projectDetails)
                 statsView.frame = CGRect(x: 15, y: 20 + (CGFloat(i)*60), width: vWidth - 30, height: 40)
             }
