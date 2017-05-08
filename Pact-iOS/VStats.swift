@@ -20,7 +20,7 @@ class VStats: UIView {
         var statsText = project.itemVerb + " " + project.contributeCount + " " + project.itemName
         statsText = statsText.capitalizeFirst()
         statsLabel.text = statsText
-        statsLabel.font = UIFont.systemFont(ofSize: 14)
+        statsLabel.font = UIFont.boldSystemFont(ofSize: 13)
         
         // images
         projectIcon.layer.masksToBounds = true

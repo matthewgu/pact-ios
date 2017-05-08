@@ -20,11 +20,14 @@ class VCProfile: UIViewController {
         view.addSubview(headerView)
         view.addSubview(navBar)
         view.addSubview(statsCardView)
+        view.addSubview(impactLabel)
+        view.addSubview(buildWithLabel)
         
         setupHeaderView()
         setupNavBar()
         setupStatsCardView()
-
+        setupImpactLabel()
+        setupBuildWithtLabel()
     }
     
 
@@ -32,7 +35,7 @@ class VCProfile: UIViewController {
     let navBar: UINavigationBar = {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "")
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .plain, target: self, action: #selector(handleDismiss))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(handleDismiss))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
@@ -69,12 +72,32 @@ class VCProfile: UIViewController {
         return label
     }()
     
+    let impactLabel: UILabel = {
+        let label = UILabel()
+        label.text = "YOUR IMPACT"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 11)
+        label.textColor = UIColor.textDarkBeige
+        return label
+    }()
+    
     let statsCardView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    let buildWithLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Pact Beta. Build with ❤️ in Vancouver"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 11)
+        label.textColor = UIColor.textDarkBeige
+        return label
     }()
     
     func setupNavBar() {
@@ -108,6 +131,16 @@ class VCProfile: UIViewController {
     func setupNameLabel() {
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 15).isActive = true
+    }
+    
+    func setupImpactLabel() {
+        impactLabel.leftAnchor.constraint(equalTo: statsCardView.leftAnchor).isActive = true
+        impactLabel.bottomAnchor.constraint(equalTo: statsCardView.topAnchor, constant: -10).isActive = true
+    }
+    
+    func setupBuildWithtLabel() {
+        buildWithLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        buildWithLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
     }
     
     func setupStatsCardView() {

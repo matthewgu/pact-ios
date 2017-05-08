@@ -34,6 +34,12 @@ extension UIColor {
         }
     }
     
+    class var textDarkBeige:UIColor {
+        get {
+            return UIColor(red:210/255, green: 206/255, blue: 199/255, alpha: 1)
+        }
+    }
+    
     class var backgroundBeige:UIColor {
         get {
             return UIColor(red:250/255, green: 248/255, blue: 246/255, alpha: 1)
