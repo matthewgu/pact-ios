@@ -1,92 +1,52 @@
 //
-//  VCProfile.swift
+//  VCProfile2.swift
 //  Pact-iOS
 //
-//  Created by matt on 2017-05-05.
+//  Created by matt on 2017-05-08.
 //  Copyright © 2017 matt. All rights reserved.
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
 
 class VCProfile: UIViewController {
 
     var projects = [Project]()
     
-    // refresh control
-    let refresh = UIRefreshControl()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = UIColor.backgroundBeige
         
-        // view related
-        view.backgroundColor = UIColor.white
-        view.addSubview(redView)
-        view.addSubview(scrollView)
+        view.addSubview(headerView)
         view.addSubview(navBar)
+        view.addSubview(statsCardView)
         
-        setupRedView()
-        setupScrlv()
+        setupHeaderView()
         setupNavBar()
-        
-        // refresh control
-        refresh.tintColor = UIColor.clear
-        refresh.backgroundColor = UIColor.clear
-        refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        scrollView.refreshControl = refresh
+        setupStatsCardView()
+
     }
     
+
     // MARK: - View
-    let redView: UIScrollView = {
-        let scrlv = UIScrollView()
-        scrlv.backgroundColor = UIColor.pactRed
-        scrlv.translatesAutoresizingMaskIntoConstraints = false
-        return scrlv
-    }()
-    
     let navBar: UINavigationBar = {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
-        navItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .plain, target: self, action: #selector(handleDismiss))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(handleDismiss))
+        navBar.tintColor = UIColor.white
+        navBar.isTranslucent = false
+        navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
+        navBar.shadowImage = UIImage()
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        navBar.barTintColor = UIColor.pactRed
         navBar.setItems([navItem], animated: false)
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
     }()
     
-    let scrollView: UIScrollView = {
-        let scrlv = UIScrollView()
-        scrlv.backgroundColor = UIColor.clear
-        scrlv.translatesAutoresizingMaskIntoConstraints = false
-        return scrlv
-    }()
-    
-    let contentView: UIView = {
+    let headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let profileCardView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        view.layer.cornerRadius = 10
-        view.layer.masksToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let profileCardShadowView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        view.layer.masksToBounds = false
-        view.layer.cornerRadius = 10
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        view.layer.shadowOpacity = 0.25
-        view.layer.shadowRadius = 10
+        view.backgroundColor = UIColor.pactRed
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -101,6 +61,7 @@ class VCProfile: UIViewController {
     
     let nameLabel: UILabel = {
         let label = UILabel()
+        label.text = "Matthew Gu"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
@@ -108,13 +69,14 @@ class VCProfile: UIViewController {
         return label
     }()
     
-    func setupRedView() {
-        // need x, y, width and height constraints
-        redView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6).isActive = true
-        redView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        redView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        redView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
+    let statsCardView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.green
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     func setupNavBar() {
         navBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -123,120 +85,64 @@ class VCProfile: UIViewController {
         navBar.heightAnchor.constraint(equalToConstant: 64).isActive = true
     }
     
-    func setupScrlv() {
-        // need x, y, width and height constraints
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
+    func setupHeaderView() {
+        headerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
+        headerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
-        // content view
-        scrollView.addSubview(contentView)
-        setupContentView()
-    }
-    
-    func setupContentView() {
-        // need x, y, width and height constraints
-        contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -64).isActive = true
-        
-        contentView.addSubview(profileCardShadowView)
-        contentView.addSubview(profileCardView)
-        setupProfileCardShadowView()
-        setupProfileCardView()
-    }
-    
-    func setupProfileCardView() {
-        // need x, y, width and height constraints
-        profileCardView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9).isActive = true
-        profileCardView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        profileCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileCardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
-        
-        profileCardView.addSubview(profileImageView)
-        profileCardView.addSubview(nameLabel)
+        headerView.addSubview(profileImageView)
+        headerView.addSubview(nameLabel)
         
         setupProfileImageView()
         setupNameLabel()
-        setupStatsView()
-    }
-    
-    func setupProfileCardShadowView() {
-        // need x, y, width and height constraints
-        profileCardShadowView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7).isActive = true
-        profileCardShadowView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        profileCardShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileCardShadowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
     }
     
     func setupProfileImageView() {
         // need x, y, width and height constraints
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: profileCardView.topAnchor, constant: 30).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 80).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     func setupNameLabel() {
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 15).isActive = true
+    }
+    
+    func setupStatsCardView() {
+        // need x, y, width and height constraints
+        statsCardView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
+        statsCardView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.93).isActive = true
+        statsCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        statsCardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        
+        setupStatsView()
+        
     }
     
     func setupStatsView() {
         let v = UIView()
-        let vWidth: CGFloat = view.frame.size.width * 0.9
-        v.frame = CGRect(x: 0, y: 200, width: vWidth, height: view.frame.size.height)
-        profileCardView.addSubview(v)
+        v.backgroundColor = UIColor.red
+        let vWidth: CGFloat = view.frame.size.width * 0.93
+        v.frame = CGRect(x: 0, y: 0, width: vWidth, height: view.frame.size.height)
+        statsCardView.addSubview(v)
         
         for i in 0..<projects.count {
             if let statsView = UINib(nibName: "Stats", bundle: nil).instantiate(withOwner: self, options: nil).first as? VStats {
+                statsView.backgroundColor = UIColor.blue
                 v.addSubview(statsView)
                 let projectDetails: Project = projects[i]
                 statsView.updateStatsView(project: projectDetails)
-                statsView.frame = CGRect(x: 15, y: 0 + (CGFloat(i)*55), width: vWidth - 30, height: 40)
+                statsView.frame = CGRect(x: 15, y: 20 + (CGFloat(i)*60), width: vWidth - 30, height: 40)
             }
         }
     }
     
     // MARK: - Func
-    func handleLogout() {
-        do {
-            try FIRAuth.auth()?.signOut()
-        } catch let logoutError {
-            print(logoutError)
-        }
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-    }
-    
     func handleDismiss() {
+        //modalDelegate?.modalViewControllerDismiss(callbackData: nil)
         self.dismiss(animated: true, completion: nil)
-        self.present(VCRegister(), animated: true, completion: nil)
     }
-    
-    func handleRefresh() {
-        loadRefreshControl()
-        self.refresh.endRefreshing()
-
-    }
-    
-    // MARK: - Support
-    func loadRefreshControl() {
-        let refreshContents = UINib(nibName: "VRefresh", bundle: nil).instantiate(withOwner: self, options: nil)
-        
-        let customView = refreshContents[0] as! UIView
-        
-        customView.frame = refresh.bounds
-        customView.backgroundColor = UIColor.clear
-        
-        let customLabel = customView.viewWithTag(1) as! UILabel
-        customLabel.text = ""
-        customLabel.backgroundColor = UIColor.clear
-        
-        self.refresh.addSubview(customView)
-    }
-
 }

@@ -276,7 +276,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
         navItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
-        navItem.leftBarButtonItem = UIBarButtonItem(title: "Profile2", style: .plain, target: self, action: #selector(showProfile2))
+        navItem.leftBarButtonItem = UIBarButtonItem(title: "Profile2", style: .plain, target: self, action: #selector(showProfile3))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
@@ -295,8 +295,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         self.present(vcProfile, animated: true, completion: nil)
     }
     
-    func showProfile2() {
-        let vcProfile = VCProfile2()
+    func showProfile3() {
+        let vcProfile = VCProfile3()
         self.present(vcProfile, animated: true, completion: nil)
     }
     
