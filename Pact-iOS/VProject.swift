@@ -35,7 +35,7 @@ class VProject: UIView {
     @IBOutlet weak var sponsorImageHeightConst: NSLayoutConstraint!
     @IBOutlet weak var sponsorImageYCons: NSLayoutConstraint!
     @IBOutlet weak var contributeButtonHeightCons: NSLayoutConstraint!
-    
+    @IBOutlet weak var coverImageHeightCons: NSLayoutConstraint!
     
     @IBAction func contributeBtnPressed(_ sender: Any) {
         if let project = projectOptional {
@@ -123,11 +123,19 @@ class VProject: UIView {
             
             // contribute button
             contributeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            //contributeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
             
-            // sponsor image
-//            sponsorImage.heightAnchor.constraint(equalToConstant: 66).isActive = true
-//            sponsorImage.widthAnchor.constraint(equalToConstant: 65).isActive = true
+            // update constraints
+            DispatchQueue.main.async {
+                self.pointsLabelTopCons.constant = 20
+                self.titleLabeltopCons.constant = 15
+                self.descriptionLabelTopCons.constant = 15
+                self.sponsorImageWidthConst.constant = 64
+                self.sponsorImageHeightConst.constant = 64
+                self.sponsorImageYCons.constant = 32
+                self.contributeButtonHeightCons.constant = 60
+                self.coverImageHeightCons.constant = 10
+            }
+            
         } else {
             // set up for iphone regular
         }

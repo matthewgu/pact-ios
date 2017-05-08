@@ -101,6 +101,7 @@
                 <outlet property="contributeButton" destination="R8p-eD-1tH" id="dTB-rl-LVd"/>
                 <outlet property="contributeButtonHeightCons" destination="xwA-xe-xq5" id="c71-ch-Rzl"/>
                 <outlet property="coverImage" destination="SFf-S8-tp2" id="HDG-sa-EyG"/>
+                <outlet property="coverImageHeightCons" destination="mXb-cv-8W9" id="zNm-8o-qCh"/>
                 <outlet property="descriptionLabel" destination="EPu-dy-mg4" id="r37-5B-QUC"/>
                 <outlet property="descriptionLabelTopCons" destination="Nua-c7-tsf" id="DzI-mr-T6X"/>
                 <outlet property="pointsLabelTopCons" destination="A4d-YZ-6a7" id="EYK-5x-Ugt"/>
