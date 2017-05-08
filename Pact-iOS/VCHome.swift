@@ -519,7 +519,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     func updatePagingHeight() {
         if DeviceUtil.height >= CGFloat(736.0) {
             DispatchQueue.main.async {
-                self.pagingHeightCons.constant = 25
+                self.pagingHeightCons.constant = 5
                 self.view.layoutIfNeeded()
             }
         }
