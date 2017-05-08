@@ -24,6 +24,7 @@ class VStats: UIView {
         
         // images
         projectIcon.layer.masksToBounds = true
+        projectIcon.layer.cornerRadius = projectIcon.frame.size.height / 2
         
         // firebase storageRef
         let storage = FIRStorage.storage()
