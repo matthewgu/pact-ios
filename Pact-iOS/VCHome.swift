@@ -378,6 +378,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             snakePageControl.indicatorRadius = 6
             snakePageControl.activeTint = UIColor.textDarkBlue
             snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+            if DeviceUtil.height >= CGFloat(736.0) {
+                snakePageControl.indicatorRadius = 7
+            }
         }
     
         var x = 0 as CGFloat
