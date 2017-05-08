@@ -17,6 +17,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
+    @IBOutlet weak var pagingHeightCons: NSLayoutConstraint!
+    
     // firebase ref
     var ref: FIRDatabaseReference?
     
@@ -57,6 +59,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         
         setupScrlv()
         setupNavBar()
+        
+        // update paging cons
+        updatePagingHeight()
         
         // refresh control
         refresh.tintColor = UIColor.clear
@@ -509,6 +514,22 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     func tappedContributeBtn(project: Project) {
         // TODO: Pull user and project data before
         handleProjectContribution(project: project)
+    }
+    
+    func updatePagingHeight() {
+        if DeviceUtil.height >= CGFloat(736.0) {
+            DispatchQueue.main.async {
+                self.pagingHeightCons.constant = 25
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        if DeviceUtil.height <= CGFloat(568.0) {
+            DispatchQueue.main.async {
+                self.pagingHeightCons.constant = -5
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     // MARK: - Support
