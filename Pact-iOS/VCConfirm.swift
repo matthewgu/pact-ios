@@ -20,9 +20,11 @@ class VCConfirm: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // status bar color
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         view.backgroundColor = UIColor.backgroundBeige
         
-    
         view.addSubview(headerView)
         view.addSubview(checkBox)
         view.addSubview(sentenceLabel)
@@ -71,6 +73,9 @@ class VCConfirm: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor.textDarkGrey
+        if DeviceUtil.height >= CGFloat(736.0) {
+            label.font = UIFont.systemFont(ofSize: 18)
+        }
         return label
     }()
     
@@ -81,6 +86,9 @@ class VCConfirm: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 80)
         label.textColor = UIColor.pactRed
+        if DeviceUtil.height >= CGFloat(736.0) {
+            label.font = UIFont.systemFont(ofSize: 90)
+        }
         return label
     }()
     
@@ -140,18 +148,46 @@ class VCConfirm: UIViewController {
         checkBox.animationDuration = 0.4
         
         let viewWidth: CGFloat = view.frame.size.width
-        checkBox.frame = CGRect(x: (viewWidth / 2) - 35, y: 110, width: 70, height: 70)
+        if DeviceUtil.height >= CGFloat(736.0) { //iPhone +
+            checkBox.frame = CGRect(x: (viewWidth / 2) - 40, y: 140, width: 80, height: 80)
+        } else if DeviceUtil.height <= CGFloat(568.0) { //iPhone SE
+            checkBox.frame = CGRect(x: (viewWidth / 2) - 32, y: 110, width: 64, height: 64)
+        } else {
+            checkBox.frame = CGRect(x: (viewWidth / 2) - 35, y: 125, width: 70, height: 70)
+        }
+        
     }
     
     func setupSentenceLabel() {
         sentenceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        sentenceLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 30).isActive = true
         sentenceLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90).isActive = true
+        
+        // setence label top anchor adjustment
+        var sentenceLabelTopAnchor = sentenceLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 40)
+        
+        sentenceLabelTopAnchor.isActive = true
+        
+        if DeviceUtil.height >= CGFloat(736.0) {
+            sentenceLabelTopAnchor.isActive = false
+            sentenceLabelTopAnchor = sentenceLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 50)
+            sentenceLabelTopAnchor.isActive = true
+        }
+        
     }
     
     func setupcontributeCountLabel() {
         contributeCountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        contributeCountLabel.topAnchor.constraint(equalTo: sentenceLabel.bottomAnchor, constant: 35).isActive = true
+        
+        // contribute count top anchor adjustment
+        var contributeCountLabelTopAnchor = contributeCountLabel.topAnchor.constraint(equalTo: sentenceLabel.bottomAnchor, constant: 35)
+        contributeCountLabelTopAnchor.isActive = true
+        
+        if DeviceUtil.height <= CGFloat(568.0) {
+            contributeCountLabelTopAnchor.isActive = false
+            contributeCountLabelTopAnchor = contributeCountLabel.topAnchor.constraint(equalTo: sentenceLabel.bottomAnchor, constant: 20)
+            contributeCountLabelTopAnchor.isActive = true
+        }
+        
     }
     
     func setupByYouLabel() {

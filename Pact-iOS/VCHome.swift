@@ -352,6 +352,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         label.textColor = UIColor.textDarkBlue
         label.font = UIFont.systemFont(ofSize: 70)
         label.translatesAutoresizingMaskIntoConstraints = false
+        if DeviceUtil.height >= CGFloat(736.0) {
+            label.font = UIFont.systemFont(ofSize: 80)
+        }
         return label
     }()
     

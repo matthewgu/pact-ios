@@ -46,6 +46,9 @@ class VCEnableHealth: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.darkGray
+        if DeviceUtil.height >= CGFloat(736.0) {
+            label.font = UIFont.systemFont(ofSize: 18)
+        }
         return label
     }()
     
