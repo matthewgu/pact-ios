@@ -31,8 +31,8 @@ class VCProfile: UIViewController {
     // MARK: - View
     let navBar: UINavigationBar = {
         let navBar = UINavigationBar()
-        let navItem = UINavigationItem(title: "Pact")
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(handleDismiss))
+        let navItem = UINavigationItem(title: "")
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .plain, target: self, action: #selector(handleDismiss))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
@@ -64,8 +64,8 @@ class VCProfile: UIViewController {
         label.text = "Matthew Gu"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.black
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor.white
         return label
     }()
     
@@ -101,7 +101,7 @@ class VCProfile: UIViewController {
     func setupProfileImageView() {
         // need x, y, width and height constraints
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 80).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 65).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }

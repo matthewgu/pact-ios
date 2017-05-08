@@ -296,8 +296,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     }
     
     func showProfile3() {
-        let vcProfile = VCProfile3()
-        self.present(vcProfile, animated: true, completion: nil)
+//        let vcProfile = VCProfile2()
+//        self.present(vcProfile, animated: true, completion: nil)
     }
     
     let scrollView: UIScrollView = {
