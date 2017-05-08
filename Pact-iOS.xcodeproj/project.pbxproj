@@ -16,6 +16,7 @@
 		812CA7911EB42D96002FD679 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CA78E1EB42D96002FD679 /* UserAccount.swift */; };
 		812CA7931EB42EED002FD679 /* VCEnableHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CA7921EB42EED002FD679 /* VCEnableHealth.swift */; };
 		812CA7951EB441F6002FD679 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 812CA7941EB441F6002FD679 /* GoogleService-Info.plist */; };
+		812D59741EC0188100669B06 /* VCProfile2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812D59731EC0188100669B06 /* VCProfile2.swift */; };
 		813904D91EB7151600F35545 /* VCConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813904D81EB7151600F35545 /* VCConfirm.swift */; };
 		813BFB7D1EB45AAA00766E12 /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 813BFB7C1EB45AAA00766E12 /* CustomView.xib */; };
 		813BFB7F1EB45AFC00766E12 /* VProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813BFB7E1EB45AFC00766E12 /* VProject.swift */; };
@@ -46,6 +47,7 @@
 		812CA78E1EB42D96002FD679 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		812CA7921EB42EED002FD679 /* VCEnableHealth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCEnableHealth.swift; sourceTree = "<group>"; };
 		812CA7941EB441F6002FD679 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		812D59731EC0188100669B06 /* VCProfile2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCProfile2.swift; sourceTree = "<group>"; };
 		813904D81EB7151600F35545 /* VCConfirm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConfirm.swift; sourceTree = "<group>"; };
 		813BFB7C1EB45AAA00766E12 /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 		813BFB7E1EB45AFC00766E12 /* VProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VProject.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				812CA7921EB42EED002FD679 /* VCEnableHealth.swift */,
 				813904D81EB7151600F35545 /* VCConfirm.swift */,
 				817D69C11EBC60BD00C45F62 /* VCProfile.swift */,
+				812D59731EC0188100669B06 /* VCProfile2.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				812CA78F1EB42D96002FD679 /* HealthKitUtil.swift in Sources */,
+				812D59741EC0188100669B06 /* VCProfile2.swift in Sources */,
 				816F6EAB1EB33AB30037E256 /* VCHome.swift in Sources */,
 				816F6EC41EB36B3A0037E256 /* VCRegister.swift in Sources */,
 				816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */,

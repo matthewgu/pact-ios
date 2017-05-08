@@ -276,7 +276,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
         navItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
-        navItem.leftBarButtonItem = UIBarButtonItem(title: "Enable", style: .plain, target: self, action: #selector(showEnable))
+        navItem.leftBarButtonItem = UIBarButtonItem(title: "Profile2", style: .plain, target: self, action: #selector(showProfile2))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
@@ -295,9 +295,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         self.present(vcProfile, animated: true, completion: nil)
     }
     
-    func showEnable() {
-        let vcEnableHealth = VCEnableHealth()
-        self.present(vcEnableHealth, animated: true, completion: nil)
+    func showProfile2() {
+        let vcProfile = VCProfile2()
+        self.present(vcProfile, animated: true, completion: nil)
     }
     
     let scrollView: UIScrollView = {
