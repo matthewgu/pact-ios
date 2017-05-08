@@ -52,6 +52,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="pagingHeightCons" destination="hwr-v9-982" id="IoW-hk-aQI"/>
                         <outlet property="snakePageControl" destination="4yh-1Q-A8w" id="Vfb-0r-p36"/>
                     </connections>
                 </viewController>
