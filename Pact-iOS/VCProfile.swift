@@ -37,7 +37,7 @@ class VCProfile: UIViewController {
     let navBar: UINavigationBar = {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "")
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "x", style: .plain, target: self, action: #selector(handleDismiss))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(handleDismiss))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
