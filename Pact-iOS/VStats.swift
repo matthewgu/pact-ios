@@ -18,7 +18,7 @@ class VStats: UIView {
     func updateStatsView(project: Project) {
         //stats label
         var statsText = project.itemVerb + " " + project.contributeCount + " " + project.itemName
-        statsText = statsText.uppercased()
+        statsText = statsText.capitalizeFirst()
         statsLabel.text = statsText
         statsLabel.font = UIFont.systemFont(ofSize: 14)
         
@@ -60,4 +60,11 @@ class VStats: UIView {
         
     }
     
+}
+
+extension String {
+    func capitalizeFirst() -> String {
+        let firstIndex = self.index(startIndex, offsetBy: 1)
+        return self.substring(to: firstIndex).capitalized + self.substring(from: firstIndex).lowercased()
+    }
 }

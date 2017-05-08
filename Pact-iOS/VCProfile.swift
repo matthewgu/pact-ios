@@ -71,7 +71,6 @@ class VCProfile: UIViewController {
     
     let statsCardView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.green
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -116,7 +115,7 @@ class VCProfile: UIViewController {
         statsCardView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
         statsCardView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.93).isActive = true
         statsCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        statsCardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        statsCardView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 45).isActive = true
         
         setupStatsView()
         
@@ -124,16 +123,17 @@ class VCProfile: UIViewController {
     
     func setupStatsView() {
         let v = UIView()
-        v.backgroundColor = UIColor.red
+        v.backgroundColor = UIColor.white
         let vWidth: CGFloat = view.frame.size.width * 0.93
         v.frame = CGRect(x: 0, y: 0, width: vWidth, height: view.frame.size.height)
         statsCardView.addSubview(v)
         
         for i in 0..<projects.count {
             if let statsView = UINib(nibName: "Stats", bundle: nil).instantiate(withOwner: self, options: nil).first as? VStats {
-                statsView.backgroundColor = UIColor.blue
+                
                 v.addSubview(statsView)
                 let projectDetails: Project = projects[i]
+                statsView.statsLabel.textColor = UIColor.textDarkGrey
                 statsView.updateStatsView(project: projectDetails)
                 statsView.frame = CGRect(x: 15, y: 20 + (CGFloat(i)*60), width: vWidth - 30, height: 40)
             }
