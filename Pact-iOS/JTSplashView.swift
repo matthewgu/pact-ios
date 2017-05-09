@@ -17,8 +17,8 @@ class JTSplashView: UIView {
     let duration = 0.3
     let borderWidth : CGFloat = 10.0
     
-    var bgColor = UIColor(red: 231.0 / 255.0, green: 76.0 / 255.0, blue: 60.0 / 255.0, alpha: 1.0)
-    var circleColor = UIColor(red: 252.0 / 255.0, green: 252 / 255.0, blue: 252 / 255.0, alpha: 1.0)
+    var bgColor = UIColor.pactRed
+    var circleColor = UIColor.white
     var vibrateAgain = true
     var completionBlock:(() -> Void)?
     
