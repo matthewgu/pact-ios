@@ -100,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				815FDCB11EBDEB2200AEA109 /* CheckMarkHeader.h */,
-				818759981EBAA851002EAD58 /* CountingLabel.swift */,
 				817D69C51EBD59E400C45F62 /* DeviceUtil.swift */,
 				81C56EB61EB8121C009F2C3F /* IJProgressView.swift */,
 				818759961EBAA504002EAD58 /* JTSplashView.swift */,
@@ -195,6 +194,7 @@
 				812CA78D1EB42D96002FD679 /* StorageUtil.swift */,
 				812CA78E1EB42D96002FD679 /* UserAccount.swift */,
 				811B16A91EB87F3E003589FB /* Color.swift */,
+				818759981EBAA851002EAD58 /* CountingLabel.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";

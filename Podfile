@@ -10,6 +10,7 @@ target 'Pact-iOS' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Mixpanel-swift'
   pod 'IQKeyboardManagerSwift'
   pod 'PageControls'
   pod 'TransitionTreasury'

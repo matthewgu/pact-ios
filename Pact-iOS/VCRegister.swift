@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import Mixpanel
 
 class VCRegister: UIViewController {
     
@@ -301,6 +302,11 @@ class VCRegister: UIViewController {
                         print(err as Any)
                         return
                     }
+                    // mixpanel
+                    Mixpanel.mainInstance().people.set(property: "Name",
+                                                       to: name)
+                    Mixpanel.mainInstance().people.set(property: "Email",
+                                                       to: email)
                     
                     IJProgressView.shared.hideProgressView()
                     self.present(VCEnableHealth(), animated: true, completion: nil)

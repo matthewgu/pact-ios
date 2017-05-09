@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Mixpanel
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        Mixpanel.initialize(token: "02c8366ee9e90fe43ae4bbb9b049e837")
         IQKeyboardManager.sharedManager().enable = true
         return true
     }

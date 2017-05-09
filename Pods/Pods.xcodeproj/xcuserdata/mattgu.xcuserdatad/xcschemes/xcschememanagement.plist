@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Mixpanel-swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PageControls.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,7 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>455D8B8349870D301123A55290E6032E</key>
+		<key>1CD933C1C92D837826871FACE7383A17</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E1DB39CD422DE5C91291D01624B1ED0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,17 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6CB64478814DB036E85BBC7825FF2935</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>76505123C887D46DCD79F94CDB6E89F8</key>
+		<key>5082C0A3F98D49041210858D20F85B87</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>97381A438117BA97EB5A505EA91C8C73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CE32C1570A326395DF2AF406AEAEDD9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

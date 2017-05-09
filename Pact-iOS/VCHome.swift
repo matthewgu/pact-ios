@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import Mixpanel
 import PageControls
 import TransitionTreasury
 import TransitionAnimation
@@ -121,6 +122,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let currentPoints = oldPoints + steps
         let currentPointsStr = "\(currentPoints)"
         
+        // mixpanel 
+        Mixpanel.mainInstance().track(event: "Points Added",
+                                      properties: ["Points" : "\(steps)"])
         // update points
         self.user?.points = currentPointsStr
         ref = FIRDatabase.database().reference()
