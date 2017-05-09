@@ -22,19 +22,26 @@ class VCProfile: UIViewController {
         
         
         view.addSubview(buildWithLabel)
+        view.addSubview(headerView)
         
         setupBuildWithtLabel()
+        setupHeaderView()
         
         fetchUser()
         fetchProject(completion: { (true) in
-            self.view.addSubview(self.headerView)
+            
             self.view.addSubview(self.statsCardShadowView)
             self.view.addSubview(self.statsCardView)
+            self.headerView.addSubview(self.profileImageView)
+            self.headerView.addSubview(self.nameLabel)
+            self.headerView.addSubview(self.emailLabel)
             self.view.addSubview(self.impactLabel)
             
-            self.setupHeaderView()
             self.setupStatsCardView()
             self.setupStatsCardShadowView()
+            self.setupProfileImageView()
+            self.setupNameLabel()
+            self.setupEmailLabel()
             self.setupImpactLabel()
         })
     }
@@ -136,7 +143,7 @@ class VCProfile: UIViewController {
         navBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         navBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         navBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        navBar.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        navBar.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     func setupHeaderView() {
@@ -144,14 +151,6 @@ class VCProfile: UIViewController {
         headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
         headerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        
-        headerView.addSubview(profileImageView)
-        headerView.addSubview(nameLabel)
-        headerView.addSubview(emailLabel)
-        
-        setupProfileImageView()
-        setupNameLabel()
-        setupEmailLabel()
     }
     
     func setupProfileImageView() {
