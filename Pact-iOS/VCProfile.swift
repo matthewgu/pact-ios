@@ -62,13 +62,13 @@ class VCProfile: UIViewController {
     }()
     
     let dismissButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("DISMISS", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
+        let image = UIImage(named: "dismissIcon.png") as UIImage?
+        let button = UIButton(type: UIButtonType.custom) as UIButton
+        button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+        button.setImage(image, for: .normal)
         button.layer.masksToBounds = true
+        button.backgroundColor = UIColor.green
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-        
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         return button
     }()
