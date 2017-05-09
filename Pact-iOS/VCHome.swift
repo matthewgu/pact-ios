@@ -276,7 +276,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
         navItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
-        navItem.leftBarButtonItem = UIBarButtonItem(title: "Profile2", style: .plain, target: self, action: #selector(showProfile3))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
@@ -293,11 +292,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         self.present(vcProfile, animated: true, completion: nil)
     }
     
-    func showProfile3() {
-//        let vcProfile = VCProfile2()
-//        self.present(vcProfile, animated: true, completion: nil)
-    }
-    
     let scrollView: UIScrollView = {
         let scrlv = UIScrollView()
         scrlv.backgroundColor = UIColor(red: 250/255, green: 248/255, blue: 246/255, alpha: 1)
@@ -307,28 +301,24 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     let contentView: UIView = {
         let view = UIView()
-        //view.backgroundColor = UIColor.gray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     let pointsContainerView: UIStackView = {
         let view = UIStackView()
-        //view.backgroundColor = UIColor.red
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     let pointsStackView: UIStackView = {
         let sView = UIStackView()
-        //sView.backgroundColor = UIColor.blue
         sView.translatesAutoresizingMaskIntoConstraints = false
         return sView
     }()
     
     let ptsLabel: UILabel = {
         let label = UILabel()
-        //label.backgroundColor = UIColor.orange
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 20)
@@ -338,14 +328,12 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     let pointsSeparatorView: UIView = {
         let view = UIView()
-        //view.backgroundColor = UIColor.black
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     let pointsLabel: CountingLabel = {
         let label = CountingLabel()
-        //label.backgroundColor = UIColor.blue
         label.textAlignment = .right
         label.textColor = UIColor.textDarkBlue
         label.font = UIFont.systemFont(ofSize: 70)

@@ -107,7 +107,6 @@ class VCConfirm: UIViewController {
     
     let dismissButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
         button.setTitle("DISMISS", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 8

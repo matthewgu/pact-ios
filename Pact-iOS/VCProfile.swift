@@ -23,9 +23,13 @@ class VCProfile: UIViewController {
         
         view.addSubview(buildWithLabel)
         view.addSubview(headerView)
+        view.addSubview(dismissButton)
+        view.addSubview(logoutButton)
         
         setupBuildWithtLabel()
         setupHeaderView()
+        setupDismissButton()
+        setupLogoutButton()
         
         fetchUser()
         fetchProject(completion: { (true) in
@@ -48,26 +52,23 @@ class VCProfile: UIViewController {
     
 
     // MARK: - View
-    let navBar: UINavigationBar = {
-        let navBar = UINavigationBar()
-        let navItem = UINavigationItem(title: "")
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(handleDismiss))
-        navBar.tintColor = UIColor.white
-        navBar.isTranslucent = false
-        navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
-        navBar.shadowImage = UIImage()
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navBar.barTintColor = UIColor.pactRed
-        navBar.setItems([navItem], animated: false)
-        navBar.translatesAutoresizingMaskIntoConstraints = false
-        return navBar
-    }()
-    
     let headerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.pactRed
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    let dismissButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("DISMISS", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        
+        button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+        return button
     }()
     
     let profileImageView: UIImageView = {
@@ -129,6 +130,18 @@ class VCProfile: UIViewController {
         return view
     }()
     
+    let logoutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("LOGOUT", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        
+        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
+        return button
+    }()
+    
     let buildWithLabel: UILabel = {
         let label = UILabel()
         label.text = "Pact Beta. Build with ❤️ in Vancouver"
@@ -139,18 +152,16 @@ class VCProfile: UIViewController {
         return label
     }()
     
-    func setupNavBar() {
-        navBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        navBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        navBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        navBar.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
-    
     func setupHeaderView() {
         headerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
         headerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    }
+    
+    func setupDismissButton() {
+        dismissButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -18).isActive = true
+        dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 35).isActive = true
     }
     
     func setupProfileImageView() {
@@ -175,6 +186,12 @@ class VCProfile: UIViewController {
         impactLabel.leftAnchor.constraint(equalTo: statsCardView.leftAnchor).isActive = true
         impactLabel.bottomAnchor.constraint(equalTo: statsCardView.topAnchor, constant: -10).isActive = true
     }
+    
+    func setupLogoutButton() {
+        logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoutButton.bottomAnchor.constraint(equalTo: buildWithLabel.bottomAnchor, constant: 20).isActive = true
+    }
+    
     
     func setupBuildWithtLabel() {
         buildWithLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -222,6 +239,15 @@ class VCProfile: UIViewController {
     func handleDismiss() {
         //modalDelegate?.modalViewControllerDismiss(callbackData: nil)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func handleLogout() {
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     func fetchUser() {
