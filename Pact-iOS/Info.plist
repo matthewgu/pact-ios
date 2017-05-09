@@ -41,5 +41,7 @@
 	<false/>
 	<key>CFBundleDisplayName</key>
 	<string>Pact</string>
+	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+	<string>YES</string>
 </dict>
 </plist>
