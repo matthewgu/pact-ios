@@ -20,16 +20,17 @@ class VCProfile: UIViewController {
 
         view.backgroundColor = UIColor.backgroundBeige
         
-        
-        view.addSubview(buildWithLabel)
         view.addSubview(headerView)
-        view.addSubview(dismissButton)
+        view.addSubview(navBar)
+        view.addSubview(buildWithLabel)
+        //view.addSubview(dismissButton)
         view.addSubview(logoutView)
         view.addSubview(logoutButton)
         
-        setupBuildWithtLabel()
         setupHeaderView()
-        setupDismissButton()
+        setupNavBar()
+        setupBuildWithtLabel()
+        //setupDismissButton()
         setupLogOutView()
         setupLogoutButton()
         
@@ -60,17 +61,22 @@ class VCProfile: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    let dismissButton: UIButton = {
-        let image = UIImage(named: "dismissIcon.png") as UIImage?
-        let button = UIButton(type: UIButtonType.custom) as UIButton
-        button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-        button.setImage(image, for: .normal)
-        button.layer.masksToBounds = true
-        button.backgroundColor = UIColor.green
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-        return button
+
+    let navBar: UINavigationBar = {
+        let navBar = UINavigationBar()
+        let navItem = UINavigationItem(title: "")
+        var image = UIImage(named: "dismissIcon.png")
+        image = image?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        navItem.rightBarButtonItem = UIBarButtonItem(image:image , style: UIBarButtonItemStyle.plain, target: self, action: #selector(handleDismiss))
+        navBar.tintColor = UIColor.white
+        navBar.isTranslucent = false
+        navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
+        navBar.shadowImage = UIImage()
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        navBar.barTintColor = UIColor.pactRed
+        navBar.setItems([navItem], animated: false)
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        return navBar
     }()
     
     let profileImageView: UIImageView = {
@@ -161,6 +167,13 @@ class VCProfile: UIViewController {
         return label
     }()
     
+    func setupNavBar() {
+        navBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        navBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        navBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        navBar.heightAnchor.constraint(equalToConstant: 64).isActive = true
+    }
+    
     func setupHeaderView() {
         headerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
@@ -168,15 +181,10 @@ class VCProfile: UIViewController {
         headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
-    func setupDismissButton() {
-        dismissButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -18).isActive = true
-        dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 35).isActive = true
-    }
-    
     func setupProfileImageView() {
         // need x, y, width and height constraints
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 65).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 64).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
