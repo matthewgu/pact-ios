@@ -39,5 +39,7 @@
 	<string>Yes</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleDisplayName</key>
+	<string>Pact</string>
 </dict>
 </plist>
