@@ -546,8 +546,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         customLabel.textColor = UIColor.white
         
         UIView.animate(withDuration: 0.5 , delay: 0, options: [.autoreverse, .curveLinear, .repeat], animations: {
-            customView.backgroundColor = UIColor.pactRedDark
             customView.backgroundColor = UIColor.pactRed
+            customView.backgroundColor = UIColor.backgroundBeige
         }, completion: nil)
         
         self.refresh.addSubview(customView)
