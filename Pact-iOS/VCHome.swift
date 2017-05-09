@@ -290,9 +290,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     func showProfile() {
         let vcProfile = VCProfile()
-        vcProfile.projects = self.projects
-        
-        vcProfile.nameLabel.text = (user?.name)!
         self.present(vcProfile, animated: true, completion: nil)
     }
     

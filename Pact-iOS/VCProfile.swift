@@ -7,29 +7,36 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class VCProfile: UIViewController {
 
     var projects = [Project]()
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.backgroundBeige
         
-        view.addSubview(headerView)
-        view.addSubview(navBar)
-        view.addSubview(statsCardShadowView)
-        view.addSubview(statsCardView)
-        view.addSubview(impactLabel)
+        
         view.addSubview(buildWithLabel)
         
-        setupHeaderView()
-        setupNavBar()
-        setupStatsCardView()
-        setupStatsCardShadowView()
-        setupImpactLabel()
         setupBuildWithtLabel()
+        
+        fetchUser()
+        fetchProject(completion: { (true) in
+            self.view.addSubview(self.headerView)
+            self.view.addSubview(self.statsCardShadowView)
+            self.view.addSubview(self.statsCardView)
+            self.view.addSubview(self.impactLabel)
+            
+            self.setupHeaderView()
+            self.setupStatsCardView()
+            self.setupStatsCardShadowView()
+            self.setupImpactLabel()
+        })
     }
     
 
@@ -216,5 +223,43 @@ class VCProfile: UIViewController {
     func handleDismiss() {
         //modalDelegate?.modalViewControllerDismiss(callbackData: nil)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func fetchUser() {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let name = dictionary["name"] as! String
+                let email = dictionary["email"] as! String
+                let points = dictionary["points"] as! String
+                let pointsContributed = dictionary["pointsContributed"] as! String
+                
+                self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed)
+                // show pts label only when points is loaded
+                self.nameLabel.text = name
+                self.emailLabel.text = email
+                
+            }
+        }, withCancel: nil)
+    }
+    
+    func fetchProject(completion: @escaping (Bool) -> ()) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let dict = snap.value as? [String: Any] {
+                        if let projectNameID = dict["projectNameID"] as? String, let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let projectIconName = dict["projectIconName"] as? String, let itemName = dict["itemName"] as? String, let itemVerb = dict["itemVerb"] as? String, let buttonText = dict["buttonText"] as? String, let buttonColorIndex = dict["buttonColorIndex"] as? String {
+                            
+                            let project = Project(projectNameID: projectNameID, title: title, description: description, pointsNeeded: pointsNeeded, contributeCount: contributeCount, coverImageName: coverImageName, sponsorImageName: sponsorImageName, projectIconName: projectIconName, itemName: itemName, itemVerb: itemVerb, buttonText: buttonText, buttonColorIndex: buttonColorIndex)
+                            self.projects.append(project)
+                        }
+                    }
+                }
+            }
+            completion(true)
+        })
     }
 }
