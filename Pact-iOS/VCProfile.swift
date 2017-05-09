@@ -94,8 +94,11 @@ class VCProfile: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = UIColor.white
-        if DeviceUtil.height >= CGFloat(667.0) {
+        if DeviceUtil.height == CGFloat(667.0) {
             label.font = UIFont.boldSystemFont(ofSize: 18)
+        }
+        if DeviceUtil.height >= CGFloat(736.0) {
+            label.font = UIFont.boldSystemFont(ofSize: 20)
         }
         return label
     }()
@@ -107,8 +110,11 @@ class VCProfile: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 13)
         label.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.65)
-        if DeviceUtil.height >= CGFloat(667.0) {
+        if DeviceUtil.height == CGFloat(667.0) {
             label.font = UIFont.boldSystemFont(ofSize: 15)
+        }
+        if DeviceUtil.height >= CGFloat(736.0) {
+            label.font = UIFont.boldSystemFont(ofSize: 17)
         }
         return label
     }()
@@ -202,7 +208,7 @@ class VCProfile: UIViewController {
         profileImageViewHeight.isActive = true
         profileImageViewWidth.isActive = true
         
-        if DeviceUtil.height >= CGFloat(667.0) {
+        if DeviceUtil.height == CGFloat(667.0) {
             profileImageViewHeight.isActive = false
             profileImageViewWidth.isActive = false
             
@@ -212,6 +218,19 @@ class VCProfile: UIViewController {
             profileImageViewHeight.isActive = true
             profileImageViewWidth.isActive = true
         }
+        
+        if DeviceUtil.height >= CGFloat(736.0) {
+            profileImageViewHeight.isActive = false
+            profileImageViewWidth.isActive = false
+            
+            profileImageViewHeight = profileImageView.heightAnchor.constraint(equalToConstant: 85)
+            profileImageViewWidth = profileImageView.widthAnchor.constraint(equalToConstant: 85)
+            
+            profileImageViewHeight.isActive = true
+            profileImageViewWidth.isActive = true
+        }
+        
+        
     }
     
     func setupNameLabel() {
