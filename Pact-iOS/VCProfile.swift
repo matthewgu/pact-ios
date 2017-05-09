@@ -24,11 +24,13 @@ class VCProfile: UIViewController {
         view.addSubview(buildWithLabel)
         view.addSubview(headerView)
         view.addSubview(dismissButton)
+        view.addSubview(logoutView)
         view.addSubview(logoutButton)
         
         setupBuildWithtLabel()
         setupHeaderView()
         setupDismissButton()
+        setupLogOutView()
         setupLogoutButton()
         
         fetchUser()
@@ -133,13 +135,20 @@ class VCProfile: UIViewController {
     let logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("LOGOUT", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.textDarkBeige, for: .normal)
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         return button
+    }()
+    
+    let logoutView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.textDarkBeige
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     let buildWithLabel: UILabel = {
@@ -189,9 +198,15 @@ class VCProfile: UIViewController {
     
     func setupLogoutButton() {
         logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoutButton.bottomAnchor.constraint(equalTo: buildWithLabel.bottomAnchor, constant: 20).isActive = true
+        logoutButton.bottomAnchor.constraint(equalTo: logoutView.topAnchor, constant: 2).isActive = true
     }
     
+    func setupLogOutView() {
+        logoutView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        logoutView.heightAnchor.constraint(equalToConstant: 1.5).isActive = true
+        logoutView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoutView.bottomAnchor.constraint(equalTo: buildWithLabel.topAnchor, constant: -20).isActive = true
+    }
     
     func setupBuildWithtLabel() {
         buildWithLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
