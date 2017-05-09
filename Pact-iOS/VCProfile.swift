@@ -202,8 +202,8 @@ class VCProfile: UIViewController {
     }
     
     func setupLogOutView() {
-        logoutView.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        logoutView.heightAnchor.constraint(equalToConstant: 1.5).isActive = true
+        logoutView.widthAnchor.constraint(equalToConstant: 58).isActive = true
+        logoutView.heightAnchor.constraint(equalToConstant: 1.8).isActive = true
         logoutView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoutView.bottomAnchor.constraint(equalTo: buildWithLabel.topAnchor, constant: -20).isActive = true
     }

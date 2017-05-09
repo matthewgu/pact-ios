@@ -275,7 +275,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     let navBar: UINavigationBar = {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem(title: "Pact")
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
+        
+        var image = UIImage(named: "profileIcon.png")
+        image = image?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        navItem.rightBarButtonItem = UIBarButtonItem(image:image , style: UIBarButtonItemStyle.plain, target: self, action: #selector(showProfile))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
