@@ -292,7 +292,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     func showProfile() {
         let vcProfile = VCProfile()
-        self.present(vcProfile, animated: true, completion: nil)
+        vcProfile.modalDelegate = self // Don't forget to set modalDelegate
+        self.tr_presentViewController(vcProfile, method: TRPresentTransitionMethod.twitter, completion: nil)
+        //self.present(vcProfile, animated: true, completion: nil)
     }
     
     let scrollView: UIScrollView = {
@@ -548,6 +550,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         UIView.animate(withDuration: 0.5 , delay: 0, options: [.autoreverse, .curveLinear, .repeat], animations: {
             customView.backgroundColor = UIColor.pactRed
             customView.backgroundColor = UIColor.backgroundBeige
+            
         }, completion: nil)
         
         self.refresh.addSubview(customView)

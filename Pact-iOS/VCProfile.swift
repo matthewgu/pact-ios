@@ -9,11 +9,14 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import TransitionTreasury
 
 class VCProfile: UIViewController {
 
     var projects = [Project]()
     var user: User?
+    
+    weak var modalDelegate: ModalViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -304,8 +307,8 @@ class VCProfile: UIViewController {
     
     // MARK: - Func
     func handleDismiss() {
-        //modalDelegate?.modalViewControllerDismiss(callbackData: nil)
-        self.dismiss(animated: true, completion: nil)
+        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     func handleLogout() {
