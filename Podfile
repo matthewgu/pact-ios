@@ -16,5 +16,6 @@ target 'Pact-iOS' do
   pod 'TransitionTreasury'
   pod 'TransitionAnimation'
   pod 'BEMCheckBox'
+  pod 'NotificationBannerSwift'
   
 end

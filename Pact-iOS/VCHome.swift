@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import Mixpanel
 import PageControls
+import NotificationBannerSwift
 import TransitionTreasury
 import TransitionAnimation
 
@@ -140,6 +141,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
             // animate points
             if currentPoints != oldPoints {
+                let banner = StatusBarNotificationBanner(title: "", subtitle: "Added \(steps) steps!", style: .success)
+                banner.show()
+                
                 self.countingLabel(start: oldPoints, end: currentPoints)
                 self.pointsLabel.text = self.user?.points
             }

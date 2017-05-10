@@ -93,8 +93,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MarqueeLabel/MarqueeLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Mixpanel-swift/Mixpanel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/NotificationBannerSwift/NotificationBannerSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PageControls/PageControls.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TransitionAnimation/TransitionAnimation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TransitionTreasury/TransitionTreasury.framework"
 fi
@@ -103,8 +106,11 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MarqueeLabel/MarqueeLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Mixpanel-swift/Mixpanel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/NotificationBannerSwift/NotificationBannerSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PageControls/PageControls.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TransitionAnimation/TransitionAnimation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TransitionTreasury/TransitionTreasury.framework"
 fi

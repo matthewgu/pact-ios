@@ -24,7 +24,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MarqueeLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Mixpanel-swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NotificationBannerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -35,6 +45,11 @@
 			<false/>
 		</dict>
 		<key>Pods-Pact-iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,12 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CD933C1C92D837826871FACE7383A17</key>
+		<key>120EF956E0CEAA31BC7F9F67B69519A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E1DB39CD422DE5C91291D01624B1ED0</key>
+		<key>1BF0536359CBEB941B3932B12AD75BA6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>320AD47B0C6BA014D301395D3BFC8FB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +97,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>89FDCAAAE5BF066C0478DA8952D0E717</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>97381A438117BA97EB5A505EA91C8C73</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9CE32C1570A326395DF2AF406AEAEDD9</key>
+		<key>AC685998D6660A768B8E35B6662B859E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AEFC260D4B0912D774835D70CD16E21B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

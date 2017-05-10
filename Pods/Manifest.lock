@@ -40,7 +40,11 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
   - IQKeyboardManagerSwift (4.0.9)
+  - MarqueeLabel/Swift (3.0.4)
   - Mixpanel-swift (2.1.5)
+  - NotificationBannerSwift (1.1.0):
+    - MarqueeLabel/Swift
+    - SnapKit (~> 3.2.0)
   - PageControls (1.0.1):
     - PageControls/FilledPageControl (= 1.0.1)
     - PageControls/PillPageControl (= 1.0.1)
@@ -50,6 +54,7 @@ PODS:
   - PageControls/PillPageControl (1.0.1)
   - PageControls/ScrollingPageControl (1.0.1)
   - PageControls/SnakePageControl (1.0.1)
+  - SnapKit (3.2.0)
   - TransitionAnimation (4.0.0):
     - TransitionTreasury (~> 4.0)
   - TransitionTreasury (4.0.0)
@@ -62,6 +67,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - IQKeyboardManagerSwift
   - Mixpanel-swift
+  - NotificationBannerSwift
   - PageControls
   - TransitionAnimation
   - TransitionTreasury
@@ -78,11 +84,14 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
+  MarqueeLabel: 9dbd9aeaa01dd73dbc4b986b2cc945007bb480d5
   Mixpanel-swift: bcf863981f72c3bb2a51549292da61f13043d944
+  NotificationBannerSwift: a80965dd87c39a15edc38a3adba352c4aa778088
   PageControls: fc2436c93e79419521a6de5d46d84722593e2949
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
   TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
 
-PODFILE CHECKSUM: ce76f0c8712a49d96aeaf6c55c48c3a6f885bbe2
+PODFILE CHECKSUM: 06ced1b88c9c6f6eb99a366acc30e7c1502e0413
 
 COCOAPODS: 1.2.0
