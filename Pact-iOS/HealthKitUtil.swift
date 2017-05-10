@@ -90,6 +90,56 @@ class HealthKitUtil
         healthStore.execute(query)
     }
     
+    func getTodaysStep(completion: @escaping (_ success: Bool, _ totalSteps: Int) -> Void)
+    {
+        // Define the Step Quantity Type
+        guard let qualityType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) else {
+            completion(false, 0)
+            return
+        }
+        
+        // Set end date (=now)
+        let endDt = Date()
+        
+        // Set start date
+        let startDt = Calendar.current.startOfDay(for: Date())
+        
+        // Set the Predicates & Interval
+        let predicate = HKQuery.predicateForSamples(withStart: startDt, end: endDt, options: .strictStartDate)
+        let interval: NSDateComponents = NSDateComponents()
+        interval.day = 1
+        
+        // Perform the Query
+        let query = HKStatisticsCollectionQuery(quantityType: qualityType, quantitySamplePredicate: predicate, options: [.cumulativeSum], anchorDate: startDt, intervalComponents:interval as DateComponents)
+        
+        // Result handler
+        query.initialResultsHandler = { query, results, error in
+            
+            if error != nil {
+                completion(false, 0)
+                return
+            }
+            
+            var steps = 0 as Double
+            if let rst = results {
+                rst.enumerateStatistics(from: startDt, to: endDt) {
+                    statistics, stop in
+                    
+                    if let quantity = statistics.sumQuantity()
+                    {
+                        // Get total steps
+                        steps = quantity.doubleValue(for: HKUnit.count())
+                        print("\(steps) pts from \(statistics.startDate) to \(statistics.endDate).")
+                        
+                    }
+                }
+            }
+            
+            completion(true, Int(steps))
+        }
+        
+        healthStore.execute(query)
+    }
     
     // MARK: - Suppport
     private func getDateComponent(fromDate: Date, toDate: Date) -> DateComponents

@@ -84,24 +84,37 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             
             if authorized
             {
-                // get step
-                HealthKitUtil.shared.getStep(completion: { (success, newSteps) in
+                // get today's steps
+                HealthKitUtil.shared.getTodaysStep(completion: { (success, steps) in
                     if success
                     {
-                        // get past steps and new steps
-                        DispatchQueue.main.async {
-                            
-                            // add steups
-                            self.addPoints(steps: newSteps)
-                            
-                            // save steps
-                            UserAccount.shared.totalSteps += newSteps
-                        }
+                        let stepsToday = steps
+                        // get step
+                        HealthKitUtil.shared.getStep(completion: { (success, newSteps) in
+                            if success
+                            {
+                                // get past steps and new steps
+                                DispatchQueue.main.async {
+                                    
+                                    // add steups
+                                    self.addPoints(steps: newSteps, stepsToday: stepsToday)
+                                    
+                                    // save steps
+                                    UserAccount.shared.totalSteps += newSteps
+                                }
+                            }
+                            else
+                            {
+                                DispatchQueue.main.async {
+                                    print("Failed to get steps")
+                                }
+                            }
+                        })
                     }
                     else
                     {
                         DispatchQueue.main.async {
-                            print("Failed to get steps")
+                            print("Failed to get today's steps")
                         }
                     }
                 })
@@ -115,7 +128,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         }
     }
 
-    func addPoints(steps: Int) {
+    func addPoints(steps: Int, stepsToday: Int) {
         var oldPoints = Int()
         if let oldPointsOptional = Int((self.user?.points)!) {
             oldPoints = oldPointsOptional
@@ -146,9 +159,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = NumberFormatter.Style.decimal
                 let stepsWithComma =  numberFormatter.string(from: NSNumber(value: steps))
+                let stepsTodayWithComma = numberFormatter.string(from: NSNumber(value: stepsToday))
                 
                 // notifcation banner
-                let banner = StatusBarNotificationBanner(title: "You walked \(stepsWithComma!) steps!", style: .success)
+                let banner = StatusBarNotificationBanner(title: "You walked \(stepsTodayWithComma!) steps! Points Added: \(stepsWithComma!)", style: .success)
                 banner.show()
                 
                 // step counter
