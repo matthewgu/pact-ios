@@ -263,8 +263,13 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                     IJProgressView.shared.hideProgressView()
                     let color: UIColor = project.buttonColors[Int(project.buttonColorIndex)!]
                     let vcConfirm = VCConfirm()
+                    
+                    // total contribute count formula 
+                    let count = Int(project.contributeCount)!
+                    let total = (count^2 + Int(arc4random_uniform(3)) * count)
+                    
                     vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
-                    vcConfirm.sentenceLabel.text = "Thank you for backing this project! Togeteher we planted 122 trees!"
+                    vcConfirm.sentenceLabel.text = "Thank you for backing \(project.title). Togeteher we \(project.itemVerb) \(total) \(project.itemName)!"
                     vcConfirm.contributeCountLabel.text = project.contributeCount
                     vcConfirm.headerView.backgroundColor = color
                     vcConfirm.contributeCountLabel.textColor = color
