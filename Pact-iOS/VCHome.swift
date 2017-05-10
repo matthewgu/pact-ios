@@ -264,6 +264,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                 })
             })
             
+            // mixpanel
+            Mixpanel.mainInstance().track(event: "Contribute Project",
+                                          properties: ["Project Name" : "\(project.title)"])
+            
             print("Project Title: \(project.title), Contribute Count: \(project.contributeCount) \(project.itemName), Points Contributed: \(user?.pointsContributed ?? "0") points")
             
         } else {

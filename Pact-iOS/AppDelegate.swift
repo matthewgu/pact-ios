@@ -18,12 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UIApplication.shared.statusBarStyle = .lightContent
         FIRApp.configure()
-        Mixpanel.initialize(token: "02c8366ee9e90fe43ae4bbb9b049e837")
+        initializeMixpanel()
         IQKeyboardManager.sharedManager().enable = true
         return true
     }
 
+    func initializeMixpanel() {
+        Mixpanel.initialize(token: "02c8366ee9e90fe43ae4bbb9b049e837")
+        Mixpanel.mainInstance().flushInterval = 10
+        Mixpanel.mainInstance().track(event: "App Launched")
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

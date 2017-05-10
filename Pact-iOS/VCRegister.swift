@@ -268,7 +268,9 @@ class VCRegister: UIViewController {
     func handleRegister() {
         
         guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
+            
             print("form is not valid")
+            
             IJProgressView.shared.hideProgressView()
             return
         }
@@ -303,9 +305,11 @@ class VCRegister: UIViewController {
                         return
                     }
                     // mixpanel
-                    Mixpanel.mainInstance().people.set(property: "Name",
+                    let mixpanelID = email
+                    Mixpanel.mainInstance().identify(distinctId: mixpanelID)
+                    Mixpanel.mainInstance().people.set(property: "$name",
                                                        to: name)
-                    Mixpanel.mainInstance().people.set(property: "Email",
+                    Mixpanel.mainInstance().people.set(property: "$email",
                                                        to: email)
                     
                     IJProgressView.shared.hideProgressView()
