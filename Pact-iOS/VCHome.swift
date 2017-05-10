@@ -266,7 +266,18 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                     
                     // total contribute count formula 
                     let count = Int(project.contributeCount)!
-                    let total = (count^2 + Int(arc4random_uniform(3)) * count)
+                    var total = 0
+                    if count < 6 {
+                        total = count * 20 + Int(arc4random_uniform(10))
+                        // min = 20
+                        // max = 90
+                    } else if count < 11 {
+                        total = count * 30 + Int(arc4random_uniform(20))
+                        // min = 190
+                        // max = 310
+                    } else {
+                        total = count * 35 + Int(arc4random_uniform(30))
+                    }
                     
                     vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
                     vcConfirm.sentenceLabel.text = "Thank you for backing \(project.title). Togeteher we \(project.itemVerb) \(total) \(project.itemName)!"
