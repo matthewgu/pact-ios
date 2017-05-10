@@ -150,21 +150,24 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             self.refresh.endRefreshing()
         })
         
-        // delay methods by 1.7s
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+        // delay banner notification by 1.5s
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            // format steps to have a comma
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            let stepsWithComma =  numberFormatter.string(from: NSNumber(value: steps))
+            let stepsTodayWithComma = numberFormatter.string(from: NSNumber(value: stepsToday))
+            
+            // notifcation banner
+            let banner = StatusBarNotificationBanner(title: "You walked \(stepsTodayWithComma!) steps today! Points Added: \(stepsWithComma!)", style: .success)
+            banner.show()
+        }
+        
+        // delay label counter by 1.5s
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             // animate points
             if currentPoints != oldPoints {
-                
-                // format steps to have a comma
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = NumberFormatter.Style.decimal
-                let stepsWithComma =  numberFormatter.string(from: NSNumber(value: steps))
-                let stepsTodayWithComma = numberFormatter.string(from: NSNumber(value: stepsToday))
-                
-                // notifcation banner
-                let banner = StatusBarNotificationBanner(title: "You walked \(stepsTodayWithComma!) steps! Points Added: \(stepsWithComma!)", style: .success)
-                banner.show()
-                
+
                 // step counter
                 self.countingLabel(start: oldPoints, end: currentPoints)
                 self.pointsLabel.text = self.user?.points
