@@ -137,13 +137,21 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             self.refresh.endRefreshing()
         })
         
-        // animate points label after 1.7 s
+        // delay methods by 1.7s
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
             // animate points
             if currentPoints != oldPoints {
-                let banner = StatusBarNotificationBanner(title: "", subtitle: "Added \(steps) steps!", style: .success)
+                
+                // format steps to have a comma
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = NumberFormatter.Style.decimal
+                let stepsWithComma =  numberFormatter.string(from: NSNumber(value: steps))
+                
+                // notifcation banner
+                let banner = StatusBarNotificationBanner(title: "You walked \(stepsWithComma!) steps!", style: .success)
                 banner.show()
                 
+                // step counter
                 self.countingLabel(start: oldPoints, end: currentPoints)
                 self.pointsLabel.text = self.user?.points
             }
