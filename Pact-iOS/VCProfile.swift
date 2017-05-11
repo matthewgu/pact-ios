@@ -60,6 +60,8 @@ class VCProfile: UIViewController {
             self.setupNameLabel()
             self.setupEmailLabel()
             self.setupImpactLabel()
+            
+            self.downloadProfileImage()
         })
     }
     
@@ -334,6 +336,10 @@ class VCProfile: UIViewController {
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
+    func downloadProfileImage() {
+
+    }
+    
     func fetchUser() {
         let uid = FIRAuth.auth()?.currentUser?.uid
         FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -343,8 +349,9 @@ class VCProfile: UIViewController {
                 let email = dictionary["email"] as! String
                 let points = dictionary["points"] as! String
                 let pointsContributed = dictionary["pointsContributed"] as! String
+                let profileImageURL = dictionary["profileImageURL"] as! String
                 
-                self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed)
+                self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed, profileImageURL: profileImageURL)
                 // show pts label only when points is loaded
                 self.nameLabel.text = name
                 self.emailLabel.text = email

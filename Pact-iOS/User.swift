@@ -12,6 +12,7 @@ class User {
     
     private var _name: String!
     private var _email: String!
+    private var _profileImageURL: String!
     private var _points: String!
     private var _pointsContributed: String!
     
@@ -21,6 +22,10 @@ class User {
     
     var email: String {
         return _email
+    }
+    
+    var profileImageURL: String {
+        return _profileImageURL
     }
     
     var points: String {
@@ -36,9 +41,10 @@ class User {
         return _pointsContributed
     }
     
-    init(name: String, email: String, points: String, pointsContributed: String) {
+    init(name: String, email: String, points: String, pointsContributed: String, profileImageURL: String) {
         _name = name
         _email = email
+        _profileImageURL = profileImageURL
         _points = points
         _pointsContributed = pointsContributed
     }
