@@ -34,6 +34,8 @@ extension VCProfile: UIImagePickerControllerDelegate, UINavigationControllerDele
 
         if let selectedImage = selectedImageFromPicker {
             profileImageView.image = selectedImage
+            profileImageView.layer.masksToBounds = true
+            profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
             uploadProfileImage()
         }
         
