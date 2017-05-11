@@ -297,7 +297,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                     }
                     
                     vcConfirm.modalDelegate = self // Don't forget to set modalDelegate
-                    vcConfirm.sentenceLabel.text = "Thank you for making an impact. Togeteher, we \(project.itemVerb) \(total) \(project.itemName)!"
+                    vcConfirm.sentenceLabel.text = "Thank you for making an impact. Together, we \(project.itemVerb) \(total) \(project.itemName)!"
                     vcConfirm.contributeCountLabel.text = project.contributeCount
                     vcConfirm.headerView.backgroundColor = color
                     vcConfirm.contributeCountLabel.textColor = color
