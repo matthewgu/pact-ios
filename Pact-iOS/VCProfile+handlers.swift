@@ -41,7 +41,8 @@ extension VCProfile: UIImagePickerControllerDelegate, UINavigationControllerDele
     }
     
     func uploadProfileImage() {
-        let storageRef = FIRStorage.storage().reference().child("myImage2.png")
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("profileImages").child("\(imageName).png")
         if let uploadData = UIImagePNGRepresentation(profileImageView.image!) {
             storageRef.put(uploadData, metadata: nil, completion: { (metaData, error) in
                 if error != nil {
