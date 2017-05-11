@@ -13,6 +13,9 @@ import TransitionTreasury
 
 class VCProfile: UIViewController {
     
+    // firebase ref
+    var ref: FIRDatabaseReference?
+    
     var projects = [Project]()
     var user: User?
     
@@ -91,6 +94,9 @@ class VCProfile: UIViewController {
         imageView.image = UIImage(named: "profileImage.png")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageView.frame.size.height / 2
         
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
         imageView.isUserInteractionEnabled = true

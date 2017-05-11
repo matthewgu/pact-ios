@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension VCProfile: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -33,9 +34,30 @@ extension VCProfile: UIImagePickerControllerDelegate, UINavigationControllerDele
 
         if let selectedImage = selectedImageFromPicker {
             profileImageView.image = selectedImage
+            uploadProfileImage()
         }
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    func uploadProfileImage() {
+        let storageRef = FIRStorage.storage().reference().child("myImage2.png")
+        if let uploadData = UIImagePNGRepresentation(profileImageView.image!) {
+            storageRef.put(uploadData, metadata: nil, completion: { (metaData, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                // uploading image to profile
+                self.ref = FIRDatabase.database().reference()
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
+                if let profileImageURL = metaData?.downloadURL()?.absoluteString {
+                    self.ref?.child("users/\(uid!)/profileImageURL").setValue(profileImageURL)
+                }
+            })
+        }
     }
     
 }
