@@ -36,5 +36,7 @@
 	<string>1:248893722269:ios:5afee6c594dfddf4</string>
 	<key>DATABASE_URL</key>
 	<string>https://pact-b85d1.firebaseio.com</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Upload profile image</string>
 </dict>
 </plist>

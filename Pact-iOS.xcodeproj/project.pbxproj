@@ -35,6 +35,7 @@
 		818759991EBAA851002EAD58 /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818759981EBAA851002EAD58 /* CountingLabel.swift */; };
 		818759BB1EBABBB4002EAD58 /* VRefresh.xib in Resources */ = {isa = PBXBuildFile; fileRef = 818759BA1EBABBB4002EAD58 /* VRefresh.xib */; };
 		81C56EB71EB8121C009F2C3F /* IJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C56EB61EB8121C009F2C3F /* IJProgressView.swift */; };
+		81F809F41EC457EE00546D16 /* VCProfile+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F809F31EC457EE00546D16 /* VCProfile+handlers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		818759981EBAA851002EAD58 /* CountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingLabel.swift; sourceTree = "<group>"; };
 		818759BA1EBABBB4002EAD58 /* VRefresh.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VRefresh.xib; sourceTree = "<group>"; };
 		81C56EB61EB8121C009F2C3F /* IJProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJProgressView.swift; sourceTree = "<group>"; };
+		81F809F31EC457EE00546D16 /* VCProfile+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VCProfile+handlers.swift"; sourceTree = "<group>"; };
 		A7638FCF2FC80C84A5CC85AF /* Pods_Pact_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pact_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0725B20C10C428169AFAC92 /* Pods-Pact-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pact-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pact-iOS/Pods-Pact-iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +177,7 @@
 				813904D81EB7151600F35545 /* VCConfirm.swift */,
 				817D69C11EBC60BD00C45F62 /* VCProfile3.swift */,
 				812D59731EC0188100669B06 /* VCProfile.swift */,
+				81F809F31EC457EE00546D16 /* VCProfile+handlers.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				813BFB7F1EB45AFC00766E12 /* VProject.swift in Sources */,
 				812CA7901EB42D96002FD679 /* StorageUtil.swift in Sources */,
 				8106E6D41EB6BA7900A40F05 /* User.swift in Sources */,
+				81F809F41EC457EE00546D16 /* VCProfile+handlers.swift in Sources */,
 				814D5A3E1EBD78C400F3FD27 /* VStats.swift in Sources */,
 				812CA7911EB42D96002FD679 /* UserAccount.swift in Sources */,
 			);

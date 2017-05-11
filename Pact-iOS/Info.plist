@@ -43,5 +43,7 @@
 	<string>Pact</string>
 	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
 	<string>YES</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Upload user photo</string>
 </dict>
 </plist>
