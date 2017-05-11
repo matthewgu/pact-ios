@@ -145,13 +145,13 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         let uid = FIRAuth.auth()?.currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
         
-        _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (Timer) in
+        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
             // end refresh
             self.refresh.endRefreshing()
         })
         
         // delay banner notification by 1.5s
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
             // format steps to have a comma
             let numberFormatter = NumberFormatter()
             numberFormatter.numberStyle = NumberFormatter.Style.decimal
@@ -164,7 +164,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         }
         
         // delay label counter by 1.5s
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
             // animate points
             if currentPoints != oldPoints {
 
