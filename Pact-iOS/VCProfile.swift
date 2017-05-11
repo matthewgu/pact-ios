@@ -26,8 +26,6 @@ class VCProfile: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(appInfo)
-        
         view.backgroundColor = UIColor.backgroundBeige
         
         view.addSubview(headerView)
