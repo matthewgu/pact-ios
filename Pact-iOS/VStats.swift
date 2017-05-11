@@ -27,37 +27,39 @@ class VStats: UIView {
         projectIcon.layer.masksToBounds = true
         projectIcon.layer.cornerRadius = projectIcon.frame.size.height / 2
         
-        // firebase storageRef
-        let storage = FIRStorage.storage()
-        let storageRef = storage.reference()
+        projectIcon.loadProjectIconUsingCacheWithImageName(imageName: project.projectIconName)
         
-        // download project icon
-        let iconName = project.projectIconName
-        let iconImageRef = storageRef.child(iconName)
-        
-        iconImageRef.downloadURL(completion: { (url, error) in
-            
-            if error != nil {
-                print(error?.localizedDescription as Any)
-                return
-            }
-            
-            URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                guard let imageData = UIImage(data: data!) else { return }
-                
-                DispatchQueue.main.async {
-                    self.projectIcon.image = imageData
-                }
-                
-            }).resume()
-            
-        })
+//        // firebase storageRef
+//        let storage = FIRStorage.storage()
+//        let storageRef = storage.reference()
+//        
+//        // download project icon
+//        let iconName = project.projectIconName
+//        let iconImageRef = storageRef.child(iconName)
+//        
+//        iconImageRef.downloadURL(completion: { (url, error) in
+//            
+//            if error != nil {
+//                print(error?.localizedDescription as Any)
+//                return
+//            }
+//            
+//            URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+//                
+//                if error != nil {
+//                    print(error!)
+//                    return
+//                }
+//                
+//                guard let imageData = UIImage(data: data!) else { return }
+//                
+//                DispatchQueue.main.async {
+//                    self.projectIcon.image = imageData
+//                }
+//                
+//            }).resume()
+//            
+//        })
         
     }
     
