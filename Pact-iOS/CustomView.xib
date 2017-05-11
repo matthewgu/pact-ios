@@ -22,7 +22,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="xwA-xe-xq5"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                     <state key="normal" title="PLANT A TREE">
                         <color key="titleColor" red="0.98039215690000003" green="0.97254901959999995" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
