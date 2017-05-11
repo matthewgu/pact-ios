@@ -17,7 +17,8 @@ extension UIImageView {
         // check cachedImage
         if let cachedImage = imageCache.object(forKey: imageName as NSString) {
             self.layer.masksToBounds = true
-            self.layer.cornerRadius = self.frame.size.height / 2
+            self.layer.cornerRadius = 20
+                //self.frame.size.height / 2
             self.image = cachedImage
         } else { // otherwise fireoff firebase
             // firebase storageRef
