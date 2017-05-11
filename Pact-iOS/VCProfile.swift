@@ -340,41 +340,47 @@ class VCProfile: UIViewController {
     func downloadProfileImage() {
         if let profileImageName = user?.profileImageName {
             if profileImageName != "nil" {
-                // firebase storageRef
-                let storage = FIRStorage.storage()
-                let storageRef = storage.reference()
-                
-                // download profile image
-                let coverImageRef = storageRef.child("profileImages").child(profileImageName)
-                
-                coverImageRef.downloadURL(completion: { (url, error) in
-                    
-                    if error != nil {
-                        print(error?.localizedDescription as Any)
-                        return
-                    }
-                    
-                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                        
-                        if error != nil {
-                            print(error!)
-                            return
-                        }
-                        
-                        guard let imageData = UIImage(data: data!) else { return }
-                        
-                        DispatchQueue.main.async {
-                            self.profileImageView.image = imageData
-                            self.profileImageView.layer.masksToBounds = true
-                            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2
-                        }
-                        
-                    }).resume()
-                    
-                })
-
-            }
+                profileImageView.loadImageUsingCacheWithImageName(imageName: profileImageName)
         }
+    }
+            
+//        if let profileImageName = user?.profileImageName {
+//            if profileImageName != "nil" {
+//                // firebase storageRef
+//                let storage = FIRStorage.storage()
+//                let storageRef = storage.reference()
+//                
+//                // download profile image
+//                let coverImageRef = storageRef.child("profileImages").child(profileImageName)
+//                
+//                coverImageRef.downloadURL(completion: { (url, error) in
+//                    
+//                    if error != nil {
+//                        print(error?.localizedDescription as Any)
+//                        return
+//                    }
+//                    
+//                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+//                        
+//                        if error != nil {
+//                            print(error!)
+//                            return
+//                        }
+//                        
+//                        guard let imageData = UIImage(data: data!) else { return }
+//                        
+//                        DispatchQueue.main.async {
+//                            self.profileImageView.image = imageData
+//                            self.profileImageView.layer.masksToBounds = true
+//                            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2
+//                        }
+//                        
+//                    }).resume()
+//                    
+//                })
+//
+//            }
+//        }
     }
     
     func fetchUser(completion: @escaping (Bool) -> ()) {
