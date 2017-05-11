@@ -142,7 +142,7 @@ class VProject: UIView {
         
         
         // images
-        coverImage.layer.masksToBounds = true
+        coverImage.layer.masksToBounds = true 
         sponsorImage.layer.masksToBounds = true
         
         // firebase storageRef

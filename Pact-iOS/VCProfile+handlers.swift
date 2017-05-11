@@ -55,10 +55,7 @@ extension VCProfile: UIImagePickerControllerDelegate, UINavigationControllerDele
                 // uploading image to profile
                 self.ref = FIRDatabase.database().reference()
                 let uid = FIRAuth.auth()?.currentUser?.uid
-                
-                if let profileImageURL = metaData?.downloadURL()?.absoluteString {
-                    self.ref?.child("users/\(uid!)/profileImageURL").setValue(profileImageURL)
-                }
+                self.ref?.child("users/\(uid!)/profileImageURL").setValue("\(imageName).png")
             })
         }
     }

@@ -291,7 +291,7 @@ class VCRegister: UIViewController {
             //successfully authenticated user
             self.ref = FIRDatabase.database().reference()
             let userReference = self.ref?.child("users").child(uid)
-            let values = ["name": name, "email": email, "points": "0", "pointsContributed": "0", "profileImageURL": "nil"] as [String : Any]
+            let values = ["name": name, "email": email, "points": "0", "pointsContributed": "0", "profileImageName": "nil"] as [String : Any]
             userReference?.updateChildValues(values, withCompletionBlock: { (err, ref) in
                 if err != nil {
                     print(err as Any)

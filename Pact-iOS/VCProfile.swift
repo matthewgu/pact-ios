@@ -1,5 +1,5 @@
 //
-//  VCProfile2.swift
+//  VCProfile.swift
 //  Pact-iOS
 //
 //  Created by matt on 2017-05-08.
@@ -44,7 +44,10 @@ class VCProfile: UIViewController {
         setupLogOutView()
         setupLogoutButton()
         
-        fetchUser()
+        fetchUser { (true) in
+            self.downloadProfileImage()
+        }
+    
         fetchProject(completion: { (true) in
             
             self.view.addSubview(self.statsCardShadowView)
@@ -60,8 +63,6 @@ class VCProfile: UIViewController {
             self.setupNameLabel()
             self.setupEmailLabel()
             self.setupImpactLabel()
-            
-            self.downloadProfileImage()
         })
     }
     
@@ -337,10 +338,46 @@ class VCProfile: UIViewController {
     }
     
     func downloadProfileImage() {
+        if let profileImageName = user?.profileImageName {
+            if profileImageName != "nil" {
+                // firebase storageRef
+                let storage = FIRStorage.storage()
+                let storageRef = storage.reference()
+                
+                // download profile image
+                let coverImageRef = storageRef.child("profileImages").child(profileImageName)
+                
+                coverImageRef.downloadURL(completion: { (url, error) in
+                    
+                    if error != nil {
+                        print(error?.localizedDescription as Any)
+                        return
+                    }
+                    
+                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                        
+                        if error != nil {
+                            print(error!)
+                            return
+                        }
+                        
+                        guard let imageData = UIImage(data: data!) else { return }
+                        
+                        DispatchQueue.main.async {
+                            self.profileImageView.image = imageData
+                            self.profileImageView.layer.masksToBounds = true
+                            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2
+                        }
+                        
+                    }).resume()
+                    
+                })
 
+            }
+        }
     }
     
-    func fetchUser() {
+    func fetchUser(completion: @escaping (Bool) -> ()) {
         let uid = FIRAuth.auth()?.currentUser?.uid
         FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -349,15 +386,16 @@ class VCProfile: UIViewController {
                 let email = dictionary["email"] as! String
                 let points = dictionary["points"] as! String
                 let pointsContributed = dictionary["pointsContributed"] as! String
-                let profileImageURL = dictionary["profileImageURL"] as! String
+                let profileImageName = dictionary["profileImageName"] as! String
                 
-                self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed, profileImageURL: profileImageURL)
+                self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed, profileImageName: profileImageName)
                 // show pts label only when points is loaded
                 self.nameLabel.text = name
                 self.emailLabel.text = email
                 
             }
-        }, withCancel: nil)
+            completion(true)
+        })
     }
     
     func fetchProject(completion: @escaping (Bool) -> ()) {

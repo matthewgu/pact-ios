@@ -210,9 +210,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                 let email = dictionary["email"] as! String
                 let points = dictionary["points"] as! String
                 let pointsContributed = dictionary["pointsContributed"] as! String
-                let profileImageURL = dictionary["profileImageURL"] as! String
+                let profileImageName = dictionary["profileImageName"] as! String
                 
-                self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed, profileImageURL: profileImageURL)
+                self.user = User(name: name, email: email, points: points, pointsContributed: pointsContributed, profileImageName: profileImageName)
                 // show pts label only when points is loaded
                 self.ptsLabel.text = "pts"
                 self.pointsLabel.text = points
