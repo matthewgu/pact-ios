@@ -15,7 +15,7 @@ import NotificationBannerSwift
 import TransitionTreasury
 import TransitionAnimation
 
-class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
+class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOutDelegate {
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
@@ -28,6 +28,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     var projects = [Project]()
     var user: User?
     var loadingData: Bool = false
+    var isLoggedOut: Bool = false
     
     // horizonta scroll view
     let scrlv = UIScrollView()
@@ -346,6 +347,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     func showProfile() {
         let vcProfile = VCProfile()
+        vcProfile.delegate = self
         vcProfile.modalDelegate = self // Don't forget to set modalDelegate
         self.tr_presentViewController(vcProfile, method: TRPresentTransitionMethod.twitter, statusBarStyle: .lightContent, completion: nil)
         //self.present(vcProfile, animated: true, completion: nil)
@@ -530,6 +532,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         }
     }
     
+    func userDidLogOut() {
+        isLoggedOut = true
+    }
+    
     func countingLabel(start: Int, end: Int) {
         pointsLabel.count(fromValue: Float(start), to: Float(end), withDuration: 2.4, andAnimationType: .EaseOut, andCouterType: .Int)
     }
@@ -602,8 +608,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         customLabel.textColor = UIColor.white
         
         UIView.animate(withDuration: 0.5 , delay: 0, options: [.autoreverse, .curveLinear, .repeat], animations: {
-            customView.backgroundColor = UIColor.pactRed
-            customView.backgroundColor = UIColor.backgroundBeige
+            customView.backgroundColor = UIColor.blue
+            customView.backgroundColor = UIColor.purple
             
         }, completion: nil)
         
