@@ -305,7 +305,7 @@ class VCRegister: UIViewController {
                         return
                     }
                     // mixpanel
-                    let mixpanelID = email
+                    let mixpanelID = uid
                     Mixpanel.mainInstance().identify(distinctId: mixpanelID)
                     Mixpanel.mainInstance().people.set(property: "$name",
                                                        to: name)
