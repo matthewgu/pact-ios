@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "205DF0B4E8A84D6FCBFF274CF3C6C112"
-               BuildableName = "Pods_Pact_iOS.framework"
-               BlueprintName = "Pods-Pact-iOS"
+               BlueprintIdentifier = "436DD5906B4E1B432C3F41AB48B014DF"
+               BuildableName = "paper_onboarding.framework"
+               BlueprintName = "paper-onboarding"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "205DF0B4E8A84D6FCBFF274CF3C6C112"
-            BuildableName = "Pods_Pact_iOS.framework"
-            BlueprintName = "Pods-Pact-iOS"
+            BlueprintIdentifier = "436DD5906B4E1B432C3F41AB48B014DF"
+            BuildableName = "paper_onboarding.framework"
+            BlueprintName = "paper-onboarding"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

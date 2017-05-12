@@ -22,6 +22,8 @@
 		813BFB7F1EB45AFC00766E12 /* VProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813BFB7E1EB45AFC00766E12 /* VProject.swift */; };
 		814D5A3C1EBD780F00F3FD27 /* Stats.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814D5A3B1EBD780F00F3FD27 /* Stats.xib */; };
 		814D5A3E1EBD78C400F3FD27 /* VStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814D5A3D1EBD78C400F3FD27 /* VStats.swift */; };
+		815E202C1EC5FC78005A1E11 /* VOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E202B1EC5FC78005A1E11 /* VOnboarding.swift */; };
+		815E202E1EC5FD17005A1E11 /* VCOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E202D1EC5FD17005A1E11 /* VCOnboarding.swift */; };
 		816F6EA91EB33AB30037E256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EA81EB33AB30037E256 /* AppDelegate.swift */; };
 		816F6EAB1EB33AB30037E256 /* VCHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F6EAA1EB33AB30037E256 /* VCHome.swift */; };
 		816F6EAE1EB33AB30037E256 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F6EAC1EB33AB30037E256 /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		813BFB7E1EB45AFC00766E12 /* VProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VProject.swift; sourceTree = "<group>"; };
 		814D5A3B1EBD780F00F3FD27 /* Stats.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Stats.xib; sourceTree = "<group>"; };
 		814D5A3D1EBD78C400F3FD27 /* VStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VStats.swift; sourceTree = "<group>"; };
+		815E202B1EC5FC78005A1E11 /* VOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOnboarding.swift; sourceTree = "<group>"; };
+		815E202D1EC5FD17005A1E11 /* VCOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCOnboarding.swift; sourceTree = "<group>"; };
 		815FDCB11EBDEB2200AEA109 /* CheckMarkHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckMarkHeader.h; sourceTree = "<group>"; };
 		816F6EA51EB33AB30037E256 /* Pact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		816F6EA81EB33AB30037E256 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 				813904D81EB7151600F35545 /* VCConfirm.swift */,
 				812D59731EC0188100669B06 /* VCProfile.swift */,
 				81F809F31EC457EE00546D16 /* VCProfile+handlers.swift */,
+				815E202D1EC5FD17005A1E11 /* VCOnboarding.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			children = (
 				813BFB7E1EB45AFC00766E12 /* VProject.swift */,
 				814D5A3D1EBD78C400F3FD27 /* VStats.swift */,
+				815E202B1EC5FC78005A1E11 /* VOnboarding.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -351,7 +357,9 @@
 				817D69C61EBD59E400C45F62 /* DeviceUtil.swift in Sources */,
 				811B16AA1EB87F3E003589FB /* Color.swift in Sources */,
 				818759971EBAA504002EAD58 /* JTSplashView.swift in Sources */,
+				815E202C1EC5FC78005A1E11 /* VOnboarding.swift in Sources */,
 				810A950D1EB3EEDA00E5A4DD /* Project.swift in Sources */,
+				815E202E1EC5FD17005A1E11 /* VCOnboarding.swift in Sources */,
 				813904D91EB7151600F35545 /* VCConfirm.swift in Sources */,
 				81C56EB71EB8121C009F2C3F /* IJProgressView.swift in Sources */,
 				812CA7931EB42EED002FD679 /* VCEnableHealth.swift in Sources */,

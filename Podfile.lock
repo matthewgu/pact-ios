@@ -54,6 +54,7 @@ PODS:
   - PageControls/PillPageControl (1.0.1)
   - PageControls/ScrollingPageControl (1.0.1)
   - PageControls/SnakePageControl (1.0.1)
+  - paper-onboarding (2.0.1)
   - SnapKit (3.2.0)
   - TransitionAnimation (4.0.0):
     - TransitionTreasury (~> 4.0)
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - Mixpanel-swift
   - NotificationBannerSwift
   - PageControls
+  - paper-onboarding (~> 2.0.1)
   - TransitionAnimation
   - TransitionTreasury
 
@@ -88,10 +90,11 @@ SPEC CHECKSUMS:
   Mixpanel-swift: bcf863981f72c3bb2a51549292da61f13043d944
   NotificationBannerSwift: a80965dd87c39a15edc38a3adba352c4aa778088
   PageControls: fc2436c93e79419521a6de5d46d84722593e2949
+  paper-onboarding: a8e001214d9ce9decf78e160b3823f396dbd51ac
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
   TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
 
-PODFILE CHECKSUM: 06ced1b88c9c6f6eb99a366acc30e7c1502e0413
+PODFILE CHECKSUM: f2699771c2491c53a72dbe587c6310fa282337c0
 
 COCOAPODS: 1.2.0

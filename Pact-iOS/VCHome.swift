@@ -335,6 +335,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         var image = UIImage(named: "profileIcon.png")
         image = image?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         navItem.rightBarButtonItem = UIBarButtonItem(image:image , style: UIBarButtonItemStyle.plain, target: self, action: #selector(showProfile))
+        navItem.leftBarButtonItem = UIBarButtonItem(image:image , style: UIBarButtonItemStyle.plain, target: self, action: #selector(showOnboarding))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
@@ -345,6 +346,11 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
     }()
+    
+    func showOnboarding() {
+        let vcOnboarding = VCOnboarding()
+        self.present(vcOnboarding, animated: true, completion: nil)
+    }
     
     func showProfile() {
         let vcProfile = VCProfile()
@@ -558,9 +564,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
-            print("this should run")
             if shoudlLoadData == true {
-                print("this should not run")
                 shoudlLoadData = false
                 fetchUser()
                 fetchProject(completion: { (true) in

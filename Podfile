@@ -17,5 +17,6 @@ target 'Pact-iOS' do
   pod 'TransitionAnimation'
   pod 'BEMCheckBox'
   pod 'NotificationBannerSwift'
+  pod 'paper-onboarding', '~> 2.0.1'
   
 end
