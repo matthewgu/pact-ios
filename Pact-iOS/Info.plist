@@ -36,7 +36,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Yes</string>
+	<string>$(PRODUCT_NAME) Add points/ steps</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleDisplayName</key>
@@ -44,6 +44,6 @@
 	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
 	<string>YES</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Upload user photo</string>
+	<string>$(PRODUCT_NAME) Upload user photo</string>
 </dict>
 </plist>
