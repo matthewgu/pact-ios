@@ -36,14 +36,14 @@ class VCOnboarding: UIViewController, PaperOnboardingDataSource, PaperOnboarding
     
     let dismissButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("DISMISS", for: .normal)
+        button.setTitle("GET STARTED", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 8
         button.alpha = 0
-        button.backgroundColor = UIColor.green
+        //button.backgroundColor = UIColor.green
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         
         button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         return button
@@ -63,9 +63,9 @@ class VCOnboarding: UIViewController, PaperOnboardingDataSource, PaperOnboarding
     
     func setupDismissButton() {
         dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        dismissButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48).isActive = true
+        //dismissButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48).isActive = true
         dismissButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44).isActive = true
+        dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
     }
     
     func onboardingItemsCount() -> Int {
@@ -73,17 +73,22 @@ class VCOnboarding: UIViewController, PaperOnboardingDataSource, PaperOnboarding
     }
     
     func onboardingItemAtIndex(_ index: Int) -> OnboardingItemInfo {
-        let backgroundColorOne = UIColor.red
-        let backgroundColorTwo = UIColor.blue
-        let backgroundColorThree = UIColor.purple
+        let backgroundColorOne = UIColor.buttonGreen
+        let backgroundColorTwo = UIColor.buttonBlue
+        let backgroundColorThree = UIColor.buttonRed
         
-        let titleFont = UIFont.systemFont(ofSize: 15)
-        let descriptionFont = UIFont.systemFont(ofSize: 12)
+        let descriptionOne = "Your phone automatically tracks the number of steps your take. Walk as you would."
+        let descriptionTwo = "Earn points by walking and contribute points to causes you advocate. 1 step = 1 point"
+        let descriptionThree = "Based on your contribution, our sponsors will donate money on your behalf to the causes you care about."
+        
+        
+        let titleFont = UIFont.boldSystemFont(ofSize: 17)
+        let descriptionFont = UIFont.boldSystemFont(ofSize: 14)
         
         return [
-            ("rocket", "this is a title", "this is a description", "", backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
-            ("brush", "this is a title", "this is a description", "", backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
-            ("notification", "this is a title", "this is a description", "", backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)
+            ("track", "TRACK", descriptionOne, "", backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
+            ("walk", "WALK", descriptionTwo, "", backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
+            ("earn", "EARN", descriptionThree, "", backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)
             
             ][index]
     }
