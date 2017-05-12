@@ -413,6 +413,25 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         navBar.heightAnchor.constraint(equalToConstant: 64).isActive = true
     }
     
+    func setupPagingControl() {
+        //page control
+        if projects.count == 1 {
+            snakePageControl.alpha = 0
+        }
+        if projects.count > 1 {
+            contentView.addSubview(snakePageControl)
+            snakePageControl.alpha = 1
+            snakePageControl.pageCount = projects.count
+            snakePageControl.indicatorPadding = 15
+            snakePageControl.indicatorRadius = 6
+            snakePageControl.activeTint = UIColor.textDarkBlue
+            snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+            if DeviceUtil.height >= CGFloat(736.0) {
+                snakePageControl.indicatorRadius = 7
+            }
+        }
+    }
+    
     func setupPagingView() {
         // Scroll View
         let scrlvHeight: CGFloat = ((self.view.frame.size.height - 64) * 0.65)
@@ -420,19 +439,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         scrlv.bounces = true
         scrlv.isScrollEnabled = true
         self.contentView.addSubview(scrlv)
-        
-        // page control
-//        if projects.count > 1 {
-//            scrlv.addSubview(snakePageControl)
-//            snakePageControl.pageCount = projects.count
-//            snakePageControl.indicatorPadding = 15
-//            snakePageControl.indicatorRadius = 6
-//            snakePageControl.activeTint = UIColor.textDarkBlue
-//            snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
-//            if DeviceUtil.height >= CGFloat(736.0) {
-//                snakePageControl.indicatorRadius = 7
-//            }
-//        }
     
         var x = 0 as CGFloat
         for i in 0..<projects.count
@@ -558,6 +564,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
                 shoudlLoadData = false
                 fetchUser()
                 fetchProject(completion: { (true) in
+                    self.setupPagingControl()
                     self.setupPagingView()
                 })
             }
@@ -573,6 +580,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
             shoudlLoadData = false
             fetchUser()
             fetchProject(completion: { (true) in
+                self.setupPagingControl()
                 self.setupPagingView()
             })
         }
