@@ -285,6 +285,7 @@ class VCRegister: UIViewController {
                 return
             }
             guard let uid = user?.uid else {
+                // for some reason uid is nil
                 return
             }
             
