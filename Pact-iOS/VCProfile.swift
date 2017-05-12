@@ -11,14 +11,7 @@ import Firebase
 import FirebaseAuth
 import TransitionTreasury
 
-protocol LogOutDelegate: class {
-    func userDidLogOut()
-}
 class VCProfile: UIViewController {
-    
-    // delegate
-    weak var delegate: LogOutDelegate?
-    weak var modalDelegate: ModalViewControllerDelegate?
     
     // firebase ref
     var ref: FIRDatabaseReference?
@@ -27,6 +20,8 @@ class VCProfile: UIViewController {
     var user: User?
     
     var appInfo = "\(Bundle.main.appName) v \(Bundle.main.versionNumber) (Build \(Bundle.main.buildNumber))"
+    
+    weak var modalDelegate: ModalViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -337,7 +332,6 @@ class VCProfile: UIViewController {
         } catch let logoutError {
             print(logoutError)
         }
-        delegate?.userDidLogOut()
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
