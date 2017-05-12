@@ -306,7 +306,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
                     vcConfirm.checkBox.onFillColor = color
                     vcConfirm.checkBox.offFillColor = color
                     vcConfirm.byYouLabel.text = project.itemName.localizedCapitalized + " By You"
-                    self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, completion: nil)
+                    self.tr_presentViewController(vcConfirm, method: TRPresentTransitionMethod.twitter, statusBarStyle: .lightContent, completion: nil)
                 })
             })
             
@@ -347,7 +347,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     func showProfile() {
         let vcProfile = VCProfile()
         vcProfile.modalDelegate = self // Don't forget to set modalDelegate
-        self.tr_presentViewController(vcProfile, method: TRPresentTransitionMethod.twitter, completion: nil)
+        self.tr_presentViewController(vcProfile, method: TRPresentTransitionMethod.twitter, statusBarStyle: .lightContent, completion: nil)
         //self.present(vcProfile, animated: true, completion: nil)
     }
     
