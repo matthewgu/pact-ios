@@ -27,7 +27,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     // userdata data
     var projects = [Project]()
     var user: User?
-    var loadingData: Bool = false
+    var shoudlLoadData: Bool = false
     var isLoggedOut: Bool = false
     
     // horizonta scroll view
@@ -78,6 +78,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         checkIfUserIsLoggedInViewAppear()
     }
 
+    
     // MARK: - Data
     func getStep() {
         // check Authorization
@@ -421,17 +422,17 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         self.contentView.addSubview(scrlv)
         
         // page control
-        if projects.count > 1 {
-            scrlv.addSubview(snakePageControl)
-            snakePageControl.pageCount = projects.count
-            snakePageControl.indicatorPadding = 15
-            snakePageControl.indicatorRadius = 6
-            snakePageControl.activeTint = UIColor.textDarkBlue
-            snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
-            if DeviceUtil.height >= CGFloat(736.0) {
-                snakePageControl.indicatorRadius = 7
-            }
-        }
+//        if projects.count > 1 {
+//            scrlv.addSubview(snakePageControl)
+//            snakePageControl.pageCount = projects.count
+//            snakePageControl.indicatorPadding = 15
+//            snakePageControl.indicatorRadius = 6
+//            snakePageControl.activeTint = UIColor.textDarkBlue
+//            snakePageControl.inactiveTint = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+//            if DeviceUtil.height >= CGFloat(736.0) {
+//                snakePageControl.indicatorRadius = 7
+//            }
+//        }
     
         var x = 0 as CGFloat
         for i in 0..<projects.count
@@ -533,7 +534,13 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     func userDidLogOut() {
-        isLoggedOut = true
+        shoudlLoadData = true
+        let subViews = self.scrlv.subviews
+        for subview in subViews {
+            subview.removeFromSuperview()
+        }
+        projects.removeAll()
+        print("should loading data = \(shoudlLoadData), projects.count = \(projects.count)")
     }
     
     func countingLabel(start: Int, end: Int) {
@@ -545,8 +552,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
-            if loadingData == false {
-                loadingData = true
+            print("this should run")
+            if shoudlLoadData == true {
+                print("this should not run")
+                shoudlLoadData = false
                 fetchUser()
                 fetchProject(completion: { (true) in
                     self.setupPagingView()
@@ -555,12 +564,13 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         }
     }
     
+    
     func checkIfUserIsLoggedIn() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
-            loadingData = true
+            shoudlLoadData = false
             fetchUser()
             fetchProject(completion: { (true) in
                 self.setupPagingView()
