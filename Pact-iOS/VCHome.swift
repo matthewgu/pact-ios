@@ -15,7 +15,7 @@ import NotificationBannerSwift
 import TransitionTreasury
 import TransitionAnimation
 
-class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
+class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOutDelegate {
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
@@ -76,7 +76,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         // check if user logged in & project data loaded
         checkIfUserIsLoggedInViewAppear()
     }
-
+    
     // MARK: - Data
     func getStep() {
         // check Authorization
@@ -182,6 +182,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 if let points = dictionary["points"] as? String {
                     self.user?.points = points
+                    
                 }
             }
         completion(true)
@@ -346,6 +347,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
     
     func showProfile() {
         let vcProfile = VCProfile()
+        vcProfile.delegate = self
         vcProfile.modalDelegate = self // Don't forget to set modalDelegate
         self.tr_presentViewController(vcProfile, method: TRPresentTransitionMethod.twitter, statusBarStyle: .lightContent, completion: nil)
         //self.present(vcProfile, animated: true, completion: nil)
@@ -530,6 +532,20 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         }
     }
     
+    func userDidLogOut() {
+        print("sent data")
+        for view in pointsStackView.subviews{
+            view.removeFromSuperview()
+        }
+        
+//        for view in scrlv.subviews{
+//            view.removeFromSuperview()
+//        }
+        
+        projects.removeAll()
+        loadingData = false
+    }
+    
     func countingLabel(start: Int, end: Int) {
         pointsLabel.count(fromValue: Float(start), to: Float(end), withDuration: 2.4, andAnimationType: .EaseOut, andCouterType: .Int)
     }
@@ -542,6 +558,12 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
             if loadingData == false {
                 loadingData = true
                 fetchUser()
+                fetchPoints(completion: { (true) in
+                    self.pointsStackView.addArrangedSubview(self.pointsLabel)
+                    self.pointsStackView.addArrangedSubview(self.pointsSeparatorView)
+                    self.pointsStackView.addArrangedSubview(self.ptsLabel)
+                    
+                })
                 fetchProject(completion: { (true) in
                     self.setupPagingView()
                 })
@@ -556,6 +578,11 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate {
         } else {
             loadingData = true
             fetchUser()
+            fetchPoints(completion: { (true) in
+                self.pointsStackView.addArrangedSubview(self.pointsLabel)
+                self.pointsStackView.addArrangedSubview(self.pointsSeparatorView)
+                self.pointsStackView.addArrangedSubview(self.ptsLabel)
+            })
             fetchProject(completion: { (true) in
                 self.setupPagingView()
             })
