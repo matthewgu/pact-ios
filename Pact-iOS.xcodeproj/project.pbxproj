@@ -251,7 +251,7 @@
 				TargetAttributes = {
 					816F6EA41EB33AB30037E256 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = NA985JN7DN;
+						DevelopmentTeam = 73F26942QL;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
@@ -497,10 +497,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pact-iOS/Pact-iOS.entitlements";
-				DEVELOPMENT_TEAM = NA985JN7DN;
+				DEVELOPMENT_TEAM = 73F26942QL;
 				INFOPLIST_FILE = "Pact-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joinpact.Pact-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.joinpact.pact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -512,10 +512,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pact-iOS/Pact-iOS.entitlements";
-				DEVELOPMENT_TEAM = NA985JN7DN;
+				DEVELOPMENT_TEAM = 73F26942QL;
 				INFOPLIST_FILE = "Pact-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joinpact.Pact-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.joinpact.pact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
