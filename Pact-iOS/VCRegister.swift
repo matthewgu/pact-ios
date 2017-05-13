@@ -314,7 +314,12 @@ class VCRegister: UIViewController {
                                                        to: email)
                     
                     IJProgressView.shared.hideProgressView()
-                    self.present(VCEnableHealth(), animated: true, completion: nil)
+                    
+                    // present VCOnboarding
+                    let vcOnboarding = VCOnboarding()
+                    self.present(vcOnboarding, animated: true, completion: nil)
+                    
+                    
                     self.nameTextField.text = ""
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""

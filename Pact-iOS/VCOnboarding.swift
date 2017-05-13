@@ -38,10 +38,7 @@ class VCOnboarding: UIViewController, PaperOnboardingDataSource, PaperOnboarding
         let button = UIButton(type: .system)
         button.setTitle("GET STARTED", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = 8
         button.alpha = 0
-        //button.backgroundColor = UIColor.green
-        button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         
@@ -50,7 +47,8 @@ class VCOnboarding: UIViewController, PaperOnboardingDataSource, PaperOnboarding
     }()
     
     func handleNext() {
-        print("handle next")
+        let vcEnableHealth = VCEnableHealth()
+        self.present(vcEnableHealth, animated: true, completion: nil)
     }
     
     func setupOnboardingVieww() {
@@ -77,9 +75,9 @@ class VCOnboarding: UIViewController, PaperOnboardingDataSource, PaperOnboarding
         let backgroundColorTwo = UIColor.buttonBlue
         let backgroundColorThree = UIColor.buttonRed
         
-        let descriptionOne = "Your phone automatically tracks the number of steps your take. Walk as you would."
-        let descriptionTwo = "Earn points by walking and contribute points to causes you advocate. 1 step = 1 point"
-        let descriptionThree = "Based on your contribution, our sponsors will donate money on your behalf to the causes you care about."
+        let descriptionOne =    "Your phone tracks the number of steps your walk & run."
+        let descriptionTwo =    "Earn 1 point for every step you take. Walk & run as you would."
+        let descriptionThree =  "Use points to make an impact for causes you advocate for."
         
         
         let titleFont = UIFont.boldSystemFont(ofSize: 17)
@@ -88,7 +86,7 @@ class VCOnboarding: UIViewController, PaperOnboardingDataSource, PaperOnboarding
         return [
             ("track", "TRACK", descriptionOne, "", backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
             ("walk", "WALK", descriptionTwo, "", backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
-            ("earn", "EARN", descriptionThree, "", backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)
+            ("impact", "IMPACT", descriptionThree, "", backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)
             
             ][index]
     }
@@ -109,7 +107,7 @@ class VCOnboarding: UIViewController, PaperOnboardingDataSource, PaperOnboarding
     
     func onboardingDidTransitonToIndex(_ index: Int) {
         if index == 2 {
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.dismissButton.alpha = 1
             })
         }

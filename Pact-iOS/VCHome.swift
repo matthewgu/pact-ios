@@ -335,7 +335,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         var image = UIImage(named: "profileIcon.png")
         image = image?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         navItem.rightBarButtonItem = UIBarButtonItem(image:image , style: UIBarButtonItemStyle.plain, target: self, action: #selector(showProfile))
-        navItem.leftBarButtonItem = UIBarButtonItem(image:image , style: UIBarButtonItemStyle.plain, target: self, action: #selector(showOnboarding))
         navBar.tintColor = UIColor.white
         navBar.isTranslucent = false
         navBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default) // set border to transparent
@@ -346,19 +345,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
     }()
-    
-    func showOnboarding() {
-        let vcOnboarding = VCOnboarding()
-        self.present(vcOnboarding, animated: true, completion: nil)
-    }
-    
-    func showProfile() {
-        let vcProfile = VCProfile()
-        vcProfile.delegate = self
-        vcProfile.modalDelegate = self // Don't forget to set modalDelegate
-        self.tr_presentViewController(vcProfile, method: TRPresentTransitionMethod.twitter, statusBarStyle: .lightContent, completion: nil)
-        //self.present(vcProfile, animated: true, completion: nil)
-    }
     
     let scrollView: UIScrollView = {
         let scrlv = UIScrollView()
@@ -537,7 +523,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     // MARK: - Func
-    
     func handleRefresh() {
         loadRefreshControl()
         fetchPoints { (true) in
@@ -609,6 +594,14 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
                 self.view.layoutIfNeeded()
             }
         }
+    }
+    
+    func showProfile() {
+        let vcProfile = VCProfile()
+        vcProfile.delegate = self
+        vcProfile.modalDelegate = self // Don't forget to set modalDelegate
+        self.tr_presentViewController(vcProfile, method: TRPresentTransitionMethod.twitter, statusBarStyle: .lightContent, completion: nil)
+        //self.present(vcProfile, animated: true, completion: nil)
     }
     
     // MARK: - Support
