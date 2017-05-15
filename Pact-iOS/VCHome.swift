@@ -161,7 +161,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
             let stepsTodayWithComma = numberFormatter.string(from: NSNumber(value: stepsToday))
             
             // notifcation banner
-            let banner = StatusBarNotificationBanner(title: "You walked \(stepsTodayWithComma!) steps today! Points Added: \(stepsWithComma!)", style: .success)
+            let banner = StatusBarNotificationBanner(title: "You walked \(stepsTodayWithComma!) steps today! New Points Added: \(stepsWithComma!)", style: .success)
             banner.show()
         }
         
@@ -537,6 +537,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
             subview.removeFromSuperview()
         }
         projects.removeAll()
+        pointsLabel.text = ""
+        ptsLabel.text = ""
+        shoudlLoadData = true
         print("should loading data = \(shoudlLoadData), projects.count = \(projects.count)")
     }
     
@@ -563,6 +566,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     
     func checkIfUserIsLoggedIn() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
+            // user not signed in so should load data at next view did appear
+            shoudlLoadData = true
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
