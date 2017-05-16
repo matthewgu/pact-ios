@@ -52,6 +52,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         // check if user logged in
         self.checkIfUserIsLoggedIn()
         
+        
         // view related
         scrlv.isPagingEnabled = true
         scrlv.delegate = self
@@ -219,7 +220,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
                 self.ptsLabel.text = "pts"
                 self.pointsLabel.text = points
                 
-                //TODO: Set up tooltip
                 self.contentView.addSubview(self.toolTipView)
                 self.setupToolTipView()
                 
@@ -366,6 +366,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.clear
         return view
     }()
     
@@ -556,14 +557,16 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     // MARK: - Func
     func handleRefresh() {
         loadRefreshControl()
-        fetchPoints { (true) in
-            
-            // set tooltip alpha to 0
-            UIView.animate(withDuration: 0.2, animations: {
-                self.toolTipView.alpha = 0
-            })
-            
-            self.getStep()
+        if user != nil {
+            fetchPoints { (true) in
+                
+                // set tooltip alpha to 0
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.toolTipView.alpha = 0
+                })
+                
+                self.getStep()
+            }
         }
     }
     
@@ -618,7 +621,6 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     func tappedContributeBtn(project: Project) {
-        // TODO: Pull user and project data before
         handleProjectContribution(project: project)
     }
     
