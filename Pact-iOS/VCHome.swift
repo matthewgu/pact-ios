@@ -557,8 +557,12 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     func handleRefresh() {
         loadRefreshControl()
         fetchPoints { (true) in
+            
             // set tooltip alpha to 0
-            self.toolTipView.alpha = 0
+            UIView.animate(withDuration: 0.2, animations: {
+                self.toolTipView.alpha = 0
+            })
+            
             self.getStep()
         }
     }
@@ -643,12 +647,9 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     func handleToolTip() {
-        print("hello")
-        for subview in contentView.subviews {
-            if subview.tag == 10 {
-                subview.alpha = 0
-            }
-        }
+        UIView.animate(withDuration: 0.2, animations: {
+            self.toolTipView.alpha = 0
+        })
     }
     
     // MARK: - Support
