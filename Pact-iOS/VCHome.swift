@@ -219,6 +219,16 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
                 self.ptsLabel.text = "pts"
                 self.pointsLabel.text = points
                 
+                //TODO: Set up tooltip
+                self.contentView.addSubview(self.toolTipView)
+                self.setupToolTipView()
+                
+                if self.pointsLabel.text == "0" {
+                    self.toolTipView.alpha = 1
+                } else {
+                    self.toolTipView.alpha = 0
+                }
+                
             }
         }, withCancel: nil)
     }
@@ -359,6 +369,19 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         return view
     }()
     
+    lazy var toolTipView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "toolTip.png")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.alpha = 0
+        imageView.tag = 10
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleToolTip)))
+        imageView.isUserInteractionEnabled = true
+        
+        return imageView
+    }()
+    
     let pointsContainerView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -496,6 +519,14 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         setupPointsContainerView()
     }
     
+    func setupToolTipView() {
+        // need x, y, width and height constraints
+        toolTipView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        toolTipView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
+        //toolTipView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -110).isActive = true
+        //toolTipView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+    
     func setupPointsContainerView() {
     
         pointsContainerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
@@ -526,6 +557,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     func handleRefresh() {
         loadRefreshControl()
         fetchPoints { (true) in
+            // set tooltip alpha to 0
+            self.toolTipView.alpha = 0
             self.getStep()
         }
     }
@@ -607,6 +640,15 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
         vcProfile.modalDelegate = self // Don't forget to set modalDelegate
         self.tr_presentViewController(vcProfile, method: TRPresentTransitionMethod.twitter, statusBarStyle: .lightContent, completion: nil)
         //self.present(vcProfile, animated: true, completion: nil)
+    }
+    
+    func handleToolTip() {
+        print("hello")
+        for subview in contentView.subviews {
+            if subview.tag == 10 {
+                subview.alpha = 0
+            }
+        }
     }
     
     // MARK: - Support
