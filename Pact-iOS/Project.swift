@@ -10,7 +10,7 @@ import UIKit
 
 class Project {
     
-    let buttonColors = [UIColor.buttonGreen, UIColor.buttonRed]
+    let buttonColors = [UIColor.buttonGreen, UIColor.buttonRed, UIColor.buttonBlue, UIColor.buttonYellow, UIColor.buttonOrange]
     
     private var _projectNameID: String!
     private var _title: String!
