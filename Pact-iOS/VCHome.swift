@@ -22,7 +22,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     @IBOutlet weak var pagingHeightCons: NSLayoutConstraint!
     
     // firebase ref
-    var ref: FIRDatabaseReference?
+    var ref: DatabaseReference?
     
     // userdata data
     var projects = [Project]()
@@ -144,8 +144,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
                                       properties: ["Points" : "\(steps)"])
         // update points
         self.user?.points = currentPointsStr
-        ref = FIRDatabase.database().reference()
-        let uid = FIRAuth.auth()?.currentUser?.uid
+        ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
         self.ref?.child("users/\(uid!)/points").setValue(currentPointsStr)
         
         _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
@@ -179,8 +179,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     func fetchPoints(completion: @escaping (Bool) -> ()) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 if let points = dictionary["points"] as? String {
@@ -192,8 +192,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     func fetchContriuteCount(project: Project, completion: @escaping (Bool) -> ()) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-            FIRDatabase.database().reference().child("users").child(uid!).child("projects").child(project.projectNameID).observeSingleEvent(of: .value, with: { (snapshot) in
+        let uid = Auth.auth().currentUser?.uid
+            Database.database().reference().child("users").child(uid!).child("projects").child(project.projectNameID).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 if let contributeCount = dictionary["contributeCount"] as? String {
@@ -205,8 +205,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     func fetchUser() {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let name = dictionary["name"] as! String
@@ -234,10 +234,10 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     func fetchProject(completion: @escaping (Bool) -> ()) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(uid!).child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
                     if let dict = snap.value as? [String: Any] {
                         if let projectNameID = dict["projectNameID"] as? String, let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let projectIconName = dict["projectIconName"] as? String, let itemName = dict["itemName"] as? String, let itemVerb = dict["itemVerb"] as? String, let buttonText = dict["buttonText"] as? String, let buttonColorIndex = dict["buttonColorIndex"] as? String {
@@ -280,8 +280,8 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
             // updating new values
             self.user?.points = pointsContributedString
             
-            ref = FIRDatabase.database().reference()
-            let uid = FIRAuth.auth()?.currentUser?.uid
+            ref = Database.database().reference()
+            let uid = Auth.auth().currentUser?.uid
             self.ref?.child("users/\(uid!)/points").setValue(newPointsString)
             self.ref?.child("users/\(uid!)/pointsContributed").setValue(pointsContributedString)
             self.ref?.child("users/\(uid!)/projects/\(project.projectNameID)/contributeCount/").setValue(contributeCountString)
@@ -588,7 +588,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     }
     
     func checkIfUserIsLoggedInViewAppear() {
-        if FIRAuth.auth()?.currentUser?.uid == nil {
+        if Auth.auth().currentUser?.uid == nil {
             print("user not signed in")
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
@@ -605,7 +605,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     
     
     func checkIfUserIsLoggedIn() {
-        if FIRAuth.auth()?.currentUser?.uid == nil {
+        if Auth.auth().currentUser?.uid == nil {
             // user not signed in so should load data at next view did appear
             shoudlLoadData = true
             print("user not signed in")
@@ -683,7 +683,7 @@ class VCHome: UIViewController, VProjectDelegate, ModalTransitionDelegate, LogOu
     
     func handleLogout() {
         do {
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
         } catch let logoutError {
             print(logoutError)
         }

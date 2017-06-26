@@ -18,7 +18,12 @@
 
 import UIKit
 import SnapKit
-import MarqueeLabel
+
+#if CARTHAGE_CONFIG
+    import MarqueeLabelSwift
+#else
+    import MarqueeLabel
+#endif
 
 public class NotificationBanner: BaseNotificationBanner {
     
@@ -31,7 +36,13 @@ public class NotificationBanner: BaseNotificationBanner {
     /// The view that is presented on the right side of the notification
     private var rightView: UIView?
     
-    public init(title: String, subtitle: String? = nil, leftView: UIView? = nil, rightView: UIView? = nil, style: BannerStyle = .info, colors: BannerColorsProtocol? = nil) {
+    public init(title: String,
+                subtitle: String? = nil,
+                leftView: UIView? = nil,
+                rightView: UIView? = nil,
+                style: BannerStyle = .info,
+                colors: BannerColorsProtocol? = nil) {
+        
         super.init(style: style, colors: colors)
         
         if let leftView = leftView {
@@ -60,7 +71,7 @@ public class NotificationBanner: BaseNotificationBanner {
         contentView.addSubview(labelsView)
         
         titleLabel = MarqueeLabel()
-        titleLabel!.type = .leftRight
+        titleLabel!.type = .left
         titleLabel!.font = UIFont.systemFont(ofSize: 17.5, weight: UIFontWeightBold)
         titleLabel!.textColor = .white
         titleLabel!.text = title
@@ -79,7 +90,7 @@ public class NotificationBanner: BaseNotificationBanner {
         
         if let subtitle = subtitle {
             subtitleLabel = MarqueeLabel()
-            subtitleLabel!.type = .leftRight
+            subtitleLabel!.type = .left
             subtitleLabel!.font = UIFont.systemFont(ofSize: 15.0)
             subtitleLabel!.numberOfLines = 1
             subtitleLabel!.textColor = .white
@@ -119,9 +130,15 @@ public class NotificationBanner: BaseNotificationBanner {
         
     }
     
-    public convenience init(attributedTitle: NSAttributedString, attributedSubtitle: NSAttributedString? = nil, leftView: UIView? = nil, rightView: UIView? = nil, style: BannerStyle = .info) {
+    public convenience init(attributedTitle: NSAttributedString,
+                            attributedSubtitle: NSAttributedString? = nil,
+                            leftView: UIView? = nil,
+                            rightView: UIView? = nil,
+                            style: BannerStyle = .info,
+                            colors: BannerColorsProtocol? = nil) {
+        
         let subtitle = (attributedSubtitle != nil) ? "" : nil
-        self.init(title: "", subtitle: subtitle, leftView: leftView, rightView: rightView, style: style)
+        self.init(title: "", subtitle: subtitle, leftView: leftView, rightView: rightView, style: style, colors: colors)
         titleLabel!.attributedText = attributedTitle
         subtitleLabel?.attributedText = attributedSubtitle
     }

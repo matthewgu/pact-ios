@@ -23,7 +23,7 @@ extension UIImageView {
             }
         } else { // otherwise fireoff firebase
             // firebase storageRef
-            let storage = FIRStorage.storage()
+            let storage = Storage.storage()
             let storageRef = storage.reference()
             
             // download profile image
@@ -71,7 +71,7 @@ extension UIImageView {
             }
         } else { // otherwise fireoff firebase
             // firebase storageRef
-            let storage = FIRStorage.storage()
+            let storage = Storage.storage()
             let storageRef = storage.reference()
             
             // download profile image

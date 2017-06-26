@@ -1,32 +1,34 @@
 PODS:
-  - BEMCheckBox (1.4.0)
-  - Firebase/Auth (3.15.0):
+  - BEMCheckBox (1.4.1)
+  - Firebase/Auth (4.0.2):
     - Firebase/Core
-    - FirebaseAuth (= 3.1.1)
-  - Firebase/Core (3.15.0):
-    - FirebaseAnalytics (= 3.7.0)
-    - FirebaseCore (= 3.5.2)
-  - Firebase/Database (3.15.0):
+    - FirebaseAuth (= 4.0.0)
+  - Firebase/Core (4.0.2):
+    - FirebaseAnalytics (= 4.0.1)
+    - FirebaseCore (= 4.0.2)
+  - Firebase/Database (4.0.2):
     - Firebase/Core
-    - FirebaseDatabase (= 3.1.2)
-  - Firebase/Storage (3.15.0):
+    - FirebaseDatabase (= 4.0.0)
+  - Firebase/Storage (4.0.2):
     - Firebase/Core
-    - FirebaseStorage (= 1.1.0)
-  - FirebaseAnalytics (3.7.0):
-    - FirebaseCore (~> 3.5)
-    - FirebaseInstanceID (~> 1.0)
+    - FirebaseStorage (= 2.0.0)
+  - FirebaseAnalytics (4.0.1):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseAuth (3.1.1):
-    - FirebaseAnalytics (~> 3.7)
+  - FirebaseAuth (4.0.0):
+    - FirebaseAnalytics (~> 4.0)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.5.2):
+  - FirebaseCore (4.0.2):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseDatabase (3.1.2):
-    - FirebaseAnalytics (~> 3.7)
-  - FirebaseInstanceID (1.0.9)
-  - FirebaseStorage (1.1.0):
-    - FirebaseAnalytics (~> 3.7)
+  - FirebaseDatabase (4.0.0):
+    - FirebaseAnalytics (~> 4.0)
+  - FirebaseInstanceID (2.0.0):
+    - FirebaseCore (~> 4.0)
+  - FirebaseStorage (2.0.0):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
@@ -38,13 +40,13 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
-  - GTMSessionFetcher/Core (1.1.9)
-  - IQKeyboardManagerSwift (4.0.9)
-  - MarqueeLabel/Swift (3.0.4)
-  - Mixpanel-swift (2.1.5)
-  - NotificationBannerSwift (1.1.0):
+  - GTMSessionFetcher/Core (1.1.10)
+  - IQKeyboardManagerSwift (4.0.10)
+  - MarqueeLabel/Swift (3.1.0)
+  - Mixpanel-swift (2.1.8)
+  - NotificationBannerSwift (1.4.0):
     - MarqueeLabel/Swift
-    - SnapKit (~> 3.2.0)
+    - SnapKit (~> 3.2)
   - PageControls (1.0.1):
     - PageControls/FilledPageControl (= 1.0.1)
     - PageControls/PillPageControl (= 1.0.1)
@@ -75,20 +77,20 @@ DEPENDENCIES:
   - TransitionTreasury
 
 SPEC CHECKSUMS:
-  BEMCheckBox: e18e4a148905b290bd03d98b767651c104f4eda3
-  Firebase: 2b1cdfba1cda8589f32904a697cc753322bff9d8
-  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
-  FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
-  FirebaseCore: a024587e43778508700af8c6b1209f7c4516ba02
-  FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
-  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
-  FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
+  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
+  Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
+  FirebaseAnalytics: 4d7040fefc3cd8b291cde35f12cf063d7963f15d
+  FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
+  FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
+  FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
+  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
-  IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
-  MarqueeLabel: 9dbd9aeaa01dd73dbc4b986b2cc945007bb480d5
-  Mixpanel-swift: bcf863981f72c3bb2a51549292da61f13043d944
-  NotificationBannerSwift: a80965dd87c39a15edc38a3adba352c4aa778088
+  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
+  MarqueeLabel: 061d04687ee5485ac035b45c8e292274a87afe01
+  Mixpanel-swift: 05695617653760d15d5aee1414f1ae7c336de1a2
+  NotificationBannerSwift: b2a81c9f0f816851686ca2e802058afd65676adc
   PageControls: fc2436c93e79419521a6de5d46d84722593e2949
   paper-onboarding: a8e001214d9ce9decf78e160b3823f396dbd51ac
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7

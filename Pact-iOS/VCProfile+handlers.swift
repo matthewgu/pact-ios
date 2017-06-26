@@ -44,17 +44,17 @@ extension VCProfile: UIImagePickerControllerDelegate, UINavigationControllerDele
     
     func uploadProfileImage() {
         let imageName = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child("profileImages").child("\(imageName).jpg")
+        let storageRef = Storage.storage().reference().child("profileImages").child("\(imageName).jpg")
         if let uploadData = UIImageJPEGRepresentation(profileImageView.image!, 0.3) {
-            storageRef.put(uploadData, metadata: nil, completion: { (metaData, error) in
+            storageRef.putData(uploadData, metadata: nil, completion: { (metaData, error) in
                 if error != nil {
                     print(error!)
                     return
                 }
                 
                 // uploading image to profile
-                self.ref = FIRDatabase.database().reference()
-                let uid = FIRAuth.auth()?.currentUser?.uid
+                self.ref = Database.database().reference()
+                let uid = Auth.auth().currentUser?.uid
                 self.ref?.child("users/\(uid!)/profileImageName").setValue("\(imageName).jpg")
             })
         }

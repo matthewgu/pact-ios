@@ -10,9 +10,9 @@ import Foundation
 
 protocol FlushDelegate {
     func flush(completion: (() -> Void)?)
-    #if os(iOS) && !APP_EXTENSION
+    #if os(iOS)
     func updateNetworkActivityIndicator(_ on: Bool)
-    #endif // os(iOS) && !APP_EXTENSION
+    #endif // os(iOS)
 }
 
 class Flush: AppLifecycle {
@@ -44,8 +44,29 @@ class Flush: AppLifecycle {
         self.flushRequest = FlushRequest(basePathIdentifier: basePathIdentifier)
     }
 
-    func flushEventsQueue(_ eventsQueue: inout Queue) {
+    func flushEventsQueue(_ eventsQueue: inout Queue, automaticEventsEnabled: Bool?) {
+        let automaticEventsQueue = orderAutomaticEvents(queue: &eventsQueue,
+                                                        automaticEventsEnabled: automaticEventsEnabled)
         flushQueue(type: .events, queue: &eventsQueue)
+        if let automaticEventsQueue = automaticEventsQueue {
+            eventsQueue.append(contentsOf: automaticEventsQueue)
+        }
+    }
+
+    func orderAutomaticEvents(queue: inout Queue, automaticEventsEnabled: Bool?) -> Queue? {
+        if automaticEventsEnabled == nil || !automaticEventsEnabled! {
+            var discardedItems = Queue()
+            for (i, ev) in queue.enumerated().reversed() {
+                if let eventName = ev["event"] as? String, eventName.hasPrefix("$ae_") {
+                    discardedItems.append(ev)
+                    queue.remove(at: i)
+                }
+            }
+            if automaticEventsEnabled == nil {
+                return discardedItems
+            }
+        }
+        return nil
     }
 
     func flushPeopleQueue(_ peopleQueue: inout Queue) {
@@ -94,17 +115,21 @@ class Flush: AppLifecycle {
             let requestData = JSONHandler.encodeAPIData(batch)
             if let requestData = requestData {
                 let semaphore = DispatchSemaphore(value: 0)
-                #if os(iOS) && !APP_EXTENSION
-                    delegate?.updateNetworkActivityIndicator(true)
-                #endif // os(iOS) && !APP_EXTENSION
+                #if os(iOS)
+                    if !MixpanelInstance.isiOSAppExtension() {
+                        delegate?.updateNetworkActivityIndicator(true)
+                    }
+                #endif // os(iOS)
                 var shadowQueue = queue
                 flushRequest.sendRequest(requestData,
                                          type: type,
                                          useIP: useIPAddressForGeoLocation,
                                          completion: { success in
-                                            #if os(iOS) && !APP_EXTENSION
-                                                self.delegate?.updateNetworkActivityIndicator(false)
-                                            #endif // os(iOS && !APP_EXTENSION
+                                            #if os(iOS)
+                                                if !MixpanelInstance.isiOSAppExtension() {
+                                                    self.delegate?.updateNetworkActivityIndicator(false)
+                                                }
+                                            #endif // os(iOS)
                                             if success {
                                                 if let lastIndex = range.last, shadowQueue.count < lastIndex {
                                                     shadowQueue.removeSubrange(range)

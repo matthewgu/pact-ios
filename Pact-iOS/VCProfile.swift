@@ -21,7 +21,7 @@ class VCProfile: UIViewController {
     weak var modalDelegate: ModalViewControllerDelegate?
     
     // firebase ref
-    var ref: FIRDatabaseReference?
+    var ref: DatabaseReference?
     
     var projects = [Project]()
     var user: User?
@@ -333,7 +333,7 @@ class VCProfile: UIViewController {
     
     func handleLogout() {
         do {
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
         } catch let logoutError {
             print(logoutError)
         }
@@ -350,8 +350,8 @@ class VCProfile: UIViewController {
     }
     
     func fetchUser(completion: @escaping (Bool) -> ()) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let name = dictionary["name"] as! String
@@ -371,10 +371,10 @@ class VCProfile: UIViewController {
     }
     
     func fetchProject(completion: @escaping (Bool) -> ()) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(uid!).child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
                     if let dict = snap.value as? [String: Any] {
                         if let projectNameID = dict["projectNameID"] as? String, let title = dict["title"] as? String, let description = dict["description"] as? String, let pointsNeeded = dict["pointsNeeded"] as? String, let contributeCount = dict["contributeCount"] as? String, let coverImageName = dict["coverImageName"] as? String, let sponsorImageName = dict["sponsorImageName"] as? String, let projectIconName = dict["projectIconName"] as? String, let itemName = dict["itemName"] as? String, let itemVerb = dict["itemVerb"] as? String, let buttonText = dict["buttonText"] as? String, let buttonColorIndex = dict["buttonColorIndex"] as? String {

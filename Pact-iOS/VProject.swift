@@ -146,7 +146,7 @@ class VProject: UIView {
         sponsorImage.layer.masksToBounds = true
         
         // firebase storageRef
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         let storageRef = storage.reference()
         
         // download cover image

@@ -32,6 +32,7 @@ class Decide {
     var ABTestingInstance = ABTesting()
     var webSocketWrapper: WebSocketWrapper?
     var gestureRecognizer: UILongPressGestureRecognizer?
+    var automaticEventsEnabled: Bool?
 
     var inAppDelegate: InAppNotificationsDelegate? {
         set {
@@ -121,6 +122,10 @@ class Decide {
                 decideResponse.newVariants = newVariants
                 self.ABTestingInstance.variants = newVariants.union(runningVariants)
 
+                if let automaticEvents = result["automatic_events"] as? Bool {
+                    self.automaticEventsEnabled = automaticEvents
+                }
+
                 self.decideFetched = true
                 semaphore.signal()
             }
@@ -158,7 +163,7 @@ class Decide {
             }
             oldInterval = mixpanelInstance.flushInterval
             mixpanelInstance.flushInterval = 1
-            UIApplication.shared.isIdleTimerDisabled = true
+            MixpanelInstance.sharedUIApplication()?.isIdleTimerDisabled = true
 
             for binding in self.codelessInstance.codelessBindings {
                 binding.stop()
@@ -175,7 +180,7 @@ class Decide {
                 return
             }
             mixpanelInstance.flushInterval = oldInterval
-            UIApplication.shared.isIdleTimerDisabled = false
+            MixpanelInstance.sharedUIApplication()?.isIdleTimerDisabled = false
 
             for binding in self.codelessInstance.codelessBindings {
                 binding.execute()

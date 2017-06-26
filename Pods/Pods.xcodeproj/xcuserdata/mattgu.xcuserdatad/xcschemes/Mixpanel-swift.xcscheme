@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5082C0A3F98D49041210858D20F85B87"
+               BlueprintIdentifier = "E8CCBFF8B4E68F3C656B105AF29633B8"
                BuildableName = "Mixpanel.framework"
                BlueprintName = "Mixpanel-swift"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5082C0A3F98D49041210858D20F85B87"
+            BlueprintIdentifier = "E8CCBFF8B4E68F3C656B105AF29633B8"
             BuildableName = "Mixpanel.framework"
             BlueprintName = "Mixpanel-swift"
             ReferencedContainer = "container:Pods.xcodeproj">

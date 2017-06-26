@@ -1,6 +1,7 @@
 ![Notification Banner](NotificationBanner/Assets/header.png)
 
 [![Version](https://img.shields.io/cocoapods/v/NotificationBannerSwift.svg?style=flat)](http://cocoapods.org/pods/NotificationBannerSwift)
+<a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 [![Platform](https://img.shields.io/cocoapods/p/NotificationBannerSwift.svg?style=flat)](http://cocoapods.org/pods/NotificationBannerSwift)
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift-3.0-4BC51D.svg?style=flat" alt="Language: Swift" /></a>
 [![License](https://img.shields.io/cocoapods/l/NotificationBannerSwift.svg?style=flat)](http://cocoapods.org/pods/NotificationBannerSwift)
@@ -21,14 +22,18 @@ NotificationBanner is an extremely customizable and lightweight library that mak
 - Custom `UIView` support ✅
 - Custom colors support ✅
 - Scrolling label support for banners with long titles/subtitles ✅
+- Presenting from top or bottom support ✅
+- Haptic feeback support ✅
 - Built in banner queue ✅
 
 ## Requirements
 
  - iOS 9.0+
- - xCode 8.1+
+ - Xcode 8.1+
 
 ## Installation
+
+### CocoaPods
 
 NotificationBanner is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -36,6 +41,18 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'NotificationBannerSwift'
 ```
+
+Then add `import NotificationBannerSwift` at the top of each file you use NotificationBanner in your project.
+
+### Carthage
+
+To use NotificationBanner via Carthage simply add this line to your `Cartfile`:
+
+```swift
+github "Daltron/NotificationBanner" ~> 1.5
+```
+
+Then add `NotificationBanner.framework` and the dependencies `SnapKit.framework` and `MarqueeLabelSwift.framework` in your project.
 
 ## Usage
 
@@ -53,10 +70,30 @@ let banner = StatusBarNotificationBanner(title: title, style: .success)
 banner.show()
 ```
 
+By default, each banner will be displayed on the main application window. If you are wanting to show a banner below a navigation bar, simply show on the view controller that is within the navigation system:
+
+```swift
+banner.show(on: viewController)
+```
+
+By default, each banner will present from the top. If you are wanting to display from the bottom, simply:
+
+```swift
+banner.show(bannerPosition: .bottom)
+```
+
+Each of the show properties defined above can be mixed and matched to work flawlessly with eachother.
+
 By default, each banner will automatically dismiss after 5 seconds. To dismiss programatically, simply:
 
 ```swift
 banner.dismiss()
+```
+
+To show a banner infinitely until it is manually dismissed, simply:
+
+```swift
+banner.autoDimiss = false
 ```
 
 NotificationBanner has five prebuilt styles that you can choose from:
@@ -93,7 +130,7 @@ class CustomBannerColors: BannerColorsProtocol {
             case .warning:  // Your custom .warning color
         }
     }
-       
+
 }
 ```
 
@@ -121,7 +158,7 @@ banner.show()
 let rightView = UIImageView(image: #imageLiteral(resourceName: "danger"))
 let banner = NotificationBanner(title: title, subtitle: subtitle, rightView: rightView, style: .danger)
 banner.show()    
-        
+
 // Info Style Notification with Left and Right Views
 let leftView = UIImageView(image: #imageLiteral(resourceName: "info"))
 let rightView = UIImageView(image: #imageLiteral(resourceName: "right_chevron"))
@@ -158,6 +195,40 @@ banner.onSwipeUp = {
 }
 ```
 
+### Banner Events
+
+You can choose to opt into a notification banner's events by registering as its delegate:
+
+```swift
+banner.delegate = self
+```
+Then just make sure to implement the following methods:
+
+```swift
+internal func notificationBannerWillAppear(_ banner: BaseNotificationBanner)
+internal func notificationBannerDidAppear(_ banner: BaseNotificationBanner)
+internal func notificationBannerWillDisappear(_ banner: BaseNotificationBanner)
+internal func notificationBannerDidDisappear(_ banner: BaseNotificationBanner)
+```
+
+## Haptic Feedback Support
+By default, when a banner is displayed, a haptic feedback will be generated on devices that support it. The types of haptic feedback are as follows:
+
+```swift
+public enum BannerHaptic {
+    case light
+    case medium
+    case heavy
+    case none
+}
+```
+
+To change the type of haptic feedback to generate when a banner is shown, simply:
+
+```swift
+banner.haptic = .heavy
+```
+
 ## Banner Queue
 
 By default, each notification banner is placed onto a `NotificationBannerQueue`. This allows an infinite amount of banners to be de displayed without one hiding the other. By default, each notification banner is placed on the back of the queue. If you would rather place the banner in the front and show it immediately no matter how many banners are in the queue, simply state it in the `show()` method:
@@ -166,13 +237,25 @@ By default, each notification banner is placed onto a `NotificationBannerQueue`.
 banner.show(queuePosition: .front)
 ```
 
-Adding a banner to the front of the queue will temporarily suspend the currently displayed banner (if there is one) and will resume it after the banner in front of it dismisses. 
+Adding a banner to the front of the queue will temporarily suspend the currently displayed banner (if there is one) and will resume it after the banner in front of it dismisses.
+
+To get the number of banners currently on the queue, simply:
+
+```swift
+let numberOfBanners = NotificationBannerQueue.default.numberOfBanners
+```
 
  <b>This is all automatically managed!</b>
 
 ## Feature Requests
 
-I'd love to know anything that you think NotificationBanner is missing. Open an issue and add the `feature request` label to it and I'll do everything I can to accomodate that request if it is in the library's best interest. 😄 
+I'd love to know anything that you think NotificationBanner is missing. Open an issue and I'll add the `feature request` label to it and I'll do everything I can to accomodate that request if it is in the library's best interest. 😄 
+
+## Apps that Use NotificationBanner
+[![Q - Talk About Music](AppIcons/q_talk_about_music.jpg)](https://itunes.apple.com/us/app/q-talk-about-music/id1071551321?mt=8) 
+[![VH Dispatch](AppIcons/vh_dispatch.png)](https://itunes.apple.com/us/app/vh-dispatch/id1249569084?mt=8)
+ 
+#### Feel free to add yours!
 
 ## Author
 

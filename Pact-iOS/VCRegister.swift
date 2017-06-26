@@ -13,7 +13,7 @@ import Mixpanel
 
 class VCRegister: UIViewController {
     
-    var ref: FIRDatabaseReference?
+    var ref: DatabaseReference?
     var inputsContainerViewHeigthAnchor: NSLayoutConstraint?
     var nameTextFieldTopAnchor: NSLayoutConstraint?
     
@@ -245,7 +245,7 @@ class VCRegister: UIViewController {
             return
         }
         
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 print(error as Any)
                 // TODO: proper login error message
@@ -275,7 +275,7 @@ class VCRegister: UIViewController {
             return
         }
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user:FIRUser?, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 print(error as Any)
                 // TODO: proper register error message
@@ -290,7 +290,7 @@ class VCRegister: UIViewController {
             }
             
             //successfully authenticated user
-            self.ref = FIRDatabase.database().reference()
+            self.ref = Database.database().reference()
             let userReference = self.ref?.child("users").child(uid)
             let values = ["name": name, "email": email, "points": "0", "pointsContributed": "0", "profileImageName": "nil"] as [String : Any]
             userReference?.updateChildValues(values, withCompletionBlock: { (err, ref) in
